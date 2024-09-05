@@ -6,4 +6,6 @@ import link.limecode.reddit.lite.data.model.request.subreddit.ApiReqNewSubReddit
 interface SubRedditUsersDao {
     
     suspend fun insert(entry: ApiReqNewSubRedditUser): ApiSubRedditUser
+
+    suspend fun getSubRedditUserBy(subRedditId: Int, userId: Int): ApiSubRedditUser?
 }

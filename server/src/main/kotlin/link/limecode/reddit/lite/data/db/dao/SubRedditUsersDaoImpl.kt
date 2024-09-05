@@ -12,4 +12,13 @@ class SubRedditUsersDaoImpl (private val table: PostgrestQueryBuilder) : SubRedd
             select()
         }.decodeSingle<ApiSubRedditUser>()
     }
+
+    override suspend fun getSubRedditUserBy(subRedditId: Int, userId: Int): ApiSubRedditUser? {
+        return table.select {
+            filter {
+                ApiSubRedditUser::subredditId eq subRedditId
+                ApiSubRedditUser::userId eq userId
+            }
+        }.decodeSingleOrNull<ApiSubRedditUser>()
+    }
 }
