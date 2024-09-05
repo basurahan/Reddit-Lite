@@ -4,10 +4,10 @@ import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.PostgrestQueryBuilder
 import link.limecode.reddit.lite.config.Tables
 import link.limecode.reddit.lite.data.db.Database
-import link.limecode.reddit.lite.data.db.subreddit.users.SubRedditUsersDaoImpl
-import link.limecode.reddit.lite.data.db.subreddits.SubRedditDaoImpl
+import link.limecode.reddit.lite.data.db.dao.SubRedditUsersDaoImpl
+import link.limecode.reddit.lite.data.db.dao.SubRedditDaoImpl
 import link.limecode.reddit.lite.domain.dao.UsersDao
-import link.limecode.reddit.lite.data.db.users.UsersDaoImpl
+import link.limecode.reddit.lite.data.db.dao.UsersDaoImpl
 import link.limecode.reddit.lite.domain.dao.SubRedditDao
 import link.limecode.reddit.lite.domain.dao.SubRedditUsersDao
 import org.koin.core.qualifier.named
