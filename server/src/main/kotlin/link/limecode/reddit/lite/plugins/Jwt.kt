@@ -21,7 +21,10 @@ fun Application.configureJwt() {
             )
             
             validate { credential ->
-                if (credential.payload.getClaim(Constants.JWT_CLAIM_USERNAME).asString() != null) {
+                val username: String? = credential.payload.getClaim(Constants.JWT_CLAIM_USERNAME).asString()
+                val userId: Int? = credential.payload.getClaim(Constants.JWT_CLAIM_USER_ID).asInt()
+
+                if (userId != null && username != null) {
                     JWTPrincipal(credential.payload)
                 } else {
                     null

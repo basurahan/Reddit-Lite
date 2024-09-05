@@ -1,14 +1,18 @@
 package link.limecode.reddit.lite.routes.subreddit.handlers
 
 import link.limecode.reddit.lite.data.model.request.subreddit.ApiReqNewSubReddit
+import link.limecode.reddit.lite.data.model.request.subreddit.ApiReqNewSubRedditUser
 import link.limecode.reddit.lite.data.model.response.subreddit.ApiResNewSubRedditValidation
 import link.limecode.reddit.lite.data.model.response.subreddit.ApiResNewSubreddit
 import link.limecode.reddit.lite.data.model.response.subreddit.isValid
 import link.limecode.reddit.lite.domain.dao.SubRedditDao
+import link.limecode.reddit.lite.domain.dao.SubRedditUsersDao
 import link.limecode.reddit.lite.exceptions.UnexpectedDataException
 
 suspend fun ApiReqNewSubReddit?.handleNewSubReddit(
-    subRedditDao: SubRedditDao
+    subRedditDao: SubRedditDao,
+    subRedditUsersDao: SubRedditUsersDao,
+    userId: Int
 ): ApiResNewSubreddit {
     val validationResult = validate(subRedditDao)
     
@@ -16,7 +20,8 @@ suspend fun ApiReqNewSubReddit?.handleNewSubReddit(
     if (this == null) throw UnexpectedDataException()
     
     val subReddit = subRedditDao.insert(this)
-    
+    subRedditUsersDao.insert(ApiReqNewSubRedditUser(subredditId = subReddit.id, userId = userId))
+
     return ApiResNewSubreddit.Success(
         subReddit = subReddit
     )

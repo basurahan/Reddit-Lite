@@ -12,5 +12,6 @@ object Constants {
     val JWT_AUDIENCE = BuildKonfig.JWT_AUDIENCE
     val JWT_REALM = BuildKonfig.JWT_REALM
     val JWT_CLAIM_USERNAME = BuildKonfig.JWT_CLAIM_USERNAME
+    val JWT_CLAIM_USER_ID = BuildKonfig.JWT_CLAIM_USER_ID
     val FALLBACK_ERROR_MESSAGE = BuildKonfig.FALLBACK_ERROR_MESSAGE
 }

@@ -23,7 +23,10 @@ class AuthUsecase (private val usersDao: UsersDao) {
         
         if (userData == null) throw InvalidCredentialException()
         
-        val token = generateToken(userData.username)
+        val token = generateToken(
+            username = userData.username,
+            userId = userData.id
+        )
 
         return Pair(userData, token)
     }
@@ -33,17 +36,18 @@ class AuthUsecase (private val usersDao: UsersDao) {
         return usersDao.insert(finalUser)
     }
     
-    private fun generateToken(username: String): String {
+    private fun generateToken(username: String, userId: Int): String {
         val currentMoment = Clock.System.now()
         val datetimeInUtc = currentMoment.plus(
-            value = 5,
-            unit = DateTimeUnit.MINUTE
+            value = 24,
+            unit = DateTimeUnit.HOUR
         ).toLocalDateTime(TimeZone.UTC).toJavaLocalDateTime()
 
         val token = JWT.create()
             .withAudience(Constants.JWT_AUDIENCE)
             .withIssuer(Constants.JWT_ISSUER)
             .withClaim(Constants.JWT_CLAIM_USERNAME, username)
+            .withClaim(Constants.JWT_CLAIM_USER_ID, userId)
             .withExpiresAt(datetimeInUtc.toInstant(ZoneOffset.UTC))
             .sign(Algorithm.HMAC256(Constants.JWT_SECRET))
 
