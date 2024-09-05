@@ -75,6 +75,7 @@ configure<BuildKonfigExtension> {
     val jwtAudience: String?
     val jwtRealm: String?
     val jwtClaimUserName: String?
+    val jwtClaimUserId: String?
     val fallbackErrorMessage: String?
 
     try {
@@ -90,6 +91,7 @@ configure<BuildKonfigExtension> {
         jwtAudience = props["JWT_AUDIENCE"]?.toString() ?: throw Throwable("missing JWT_AUDIENCE config")
         jwtRealm = props["JWT_REALM"]?.toString() ?: throw Throwable("missing JWT_REALM config")
         jwtClaimUserName = props["JWT_CLAIM_USERNAME"]?.toString() ?: throw Throwable("missing JWT_CLAIM_USERNAME config")
+        jwtClaimUserId = props["JWT_CLAIM_USER_ID"]?.toString() ?: throw Throwable("missing JWT_CLAIM_USER_ID config")
     } catch (e: Exception) {
         e.printStackTrace()
         throw e
@@ -155,5 +157,11 @@ configure<BuildKonfigExtension> {
              "JWT_CLAIM_USERNAME",
              jwtClaimUserName
          )
+
+        buildConfigField(
+            STRING,
+            "JWT_CLAIM_USER_ID",
+            jwtClaimUserId
+        )
     }
 }

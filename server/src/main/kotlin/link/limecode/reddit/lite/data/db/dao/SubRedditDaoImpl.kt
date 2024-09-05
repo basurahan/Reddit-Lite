@@ -1,4 +1,4 @@
-package link.limecode.reddit.lite.data.db.subreddits
+package link.limecode.reddit.lite.data.db.dao
 
 import io.github.jan.supabase.postgrest.query.PostgrestQueryBuilder
 import link.limecode.reddit.lite.data.model.ApiSubReddit

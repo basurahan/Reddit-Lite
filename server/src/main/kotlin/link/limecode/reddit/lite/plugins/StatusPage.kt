@@ -9,6 +9,8 @@ import link.limecode.reddit.lite.config.Constants
 fun Application.configureErrorHandling() {
     install(StatusPages) {
         exception<Throwable> { call, cause ->
+            print("hello man")
+            print(Constants.SUPABASE_URL)
             call.respond(
                 status = HttpStatusCode.InternalServerError,
                 message = cause.message ?: Constants.FALLBACK_ERROR_MESSAGE

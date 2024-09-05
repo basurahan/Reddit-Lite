@@ -12,4 +12,8 @@ class Subreddit(val parent: BaseRoute = BaseRoute()) {
     @Serializable
     @Resource("new")
     class New(val parent: Subreddit = Subreddit())
+
+    @Serializable
+    @Resource("join")
+    class Join(val parent: Subreddit = Subreddit())
 }
