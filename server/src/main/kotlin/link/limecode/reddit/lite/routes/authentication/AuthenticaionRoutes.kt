@@ -18,7 +18,7 @@ import link.limecode.reddit.lite.routes.authentication.resources.Login
 import link.limecode.reddit.lite.routes.authentication.resources.Register
 import org.koin.ktor.plugin.scope
 
-fun Route.authenticationRoutes() {
+fun Route.configureAuthenticationRoutes() {
 
     post<Register> {
         val usersDao = call.scope.get<UsersDao>()

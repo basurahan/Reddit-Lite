@@ -28,7 +28,7 @@ suspend fun ApiReqRegister?.registerHandler(
     )
 }
 
-suspend fun ApiReqRegister?.validate(usersDao: UsersDao): ApiResRegister? {
+suspend fun ApiReqRegister?.validate(usersDao: UsersDao): ApiResRegister.Fail? {
     var formValidation = ApiResRegisterValidation()
 
     if (this?.email.isNullOrBlank()) formValidation = formValidation.copy(email = "email is required")
