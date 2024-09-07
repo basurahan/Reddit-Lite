@@ -26,7 +26,7 @@ suspend fun ApiReqLogin?.loginHandler(
     )
 }
 
-fun ApiReqLogin?.validate(): ApiResLogin? {
+fun ApiReqLogin?.validate(): ApiResLogin.Fail? {
     var formValidation = ApiResLoginValidation()
     
     if (this?.username.isNullOrBlank()) formValidation = formValidation.copy(username = "username is required")
