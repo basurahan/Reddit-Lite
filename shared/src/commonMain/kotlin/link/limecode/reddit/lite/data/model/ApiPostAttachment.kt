@@ -8,8 +8,7 @@ data class ApiPostAttachment(
     val id: Int,
     @SerialName("post_id")
     val postId: Int,
-    @SerialName("attachment_url")
-    val attachmentUrl: String,
+    val name: String,
     @SerialName("attachment_type")
     val attachmentType: ApiAttachmentType
 )
