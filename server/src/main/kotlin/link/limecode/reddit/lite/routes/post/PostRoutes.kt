@@ -9,11 +9,14 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import link.limecode.reddit.lite.data.model.request.post.ApiReqNewPost
 import link.limecode.reddit.lite.data.model.request.post.ApiReqNewPostAttachement
+import link.limecode.reddit.lite.data.model.request.post.ApiReqVotePost
 import link.limecode.reddit.lite.data.model.response.post.ApiResNewPost
 import link.limecode.reddit.lite.domain.dao.PostAttachementDao
 import link.limecode.reddit.lite.domain.dao.PostDao
+import link.limecode.reddit.lite.domain.dao.PostVoteDao
 import link.limecode.reddit.lite.routes.post.handlers.handleNewPost
 import link.limecode.reddit.lite.routes.post.handlers.handleNewPostAttachment
+import link.limecode.reddit.lite.routes.post.handlers.handleVotePost
 import org.koin.ktor.plugin.scope
 
 fun Route.configurePostRoutes() {
@@ -33,6 +36,14 @@ fun Route.configurePostRoutes() {
 
         val requestData = runCatching { call.receiveNullable<ApiReqNewPostAttachement>() }.getOrNull()
         val result = requestData.handleNewPostAttachment(postAttachementDao)
+        call.respond(result)
+    }
+
+    post<Post.Vote> {
+        val postVoteDao = call.scope.get<PostVoteDao>()
+
+        val requestData = runCatching { call.receiveNullable<ApiReqVotePost>() }.getOrNull()
+        val result = requestData.handleVotePost(postVoteDao)
         call.respond(result)
     }
 }

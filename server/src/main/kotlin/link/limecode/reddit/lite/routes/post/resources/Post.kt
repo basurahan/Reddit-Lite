@@ -21,4 +21,8 @@ class Post(val parent: BaseRoute = BaseRoute()) {
         @Resource("new")
         class New(val parent: Attachment = Attachment())
     }
+
+    @Serializable
+    @Resource("vote")
+    class Vote(val parent: Post = Post())
 }

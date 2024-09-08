@@ -5,5 +5,6 @@ enum class Tables(val tableName: String) {
     SUBREDDITS("subreddits"),
     SUBREDDIT_USERS("subreddit_users"),
     POSTS("posts"),
-    POST_ATTACHMENTS("post_attachments")
+    POST_ATTACHMENTS("post_attachments"),
+    POST_VOTES("post_votes")
 }
