@@ -33,6 +33,10 @@ val dataModule = module {
         get<Database>().client.from(Tables.POST_ATTACHMENTS.tableName)
     }
 
+    single<PostgrestQueryBuilder>(named(Tables.POST_VOTES.tableName)) {
+        get<Database>().client.from(Tables.POST_VOTES.tableName)
+    }
+
     scope<RequestScope> {
         scoped<UsersDao> {
             UsersDaoImpl(get<PostgrestQueryBuilder>(named(Tables.USERS.tableName)))
@@ -52,6 +56,10 @@ val dataModule = module {
 
         scoped<PostAttachementDao> {
             PostAttachmentDaoImpl(get<PostgrestQueryBuilder>(named(Tables.POST_ATTACHMENTS.tableName)))
+        }
+
+        scoped<PostVoteDao> {
+            PostVoteDaoImpl(get<PostgrestQueryBuilder>(named(Tables.POST_VOTES.tableName)))
         }
     }
 }
