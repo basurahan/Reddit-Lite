@@ -5,10 +5,12 @@ import link.limecode.reddit.lite.data.model.response.post.ApiResNewPost
 import link.limecode.reddit.lite.data.model.response.post.ApiResNewPostValidation
 import link.limecode.reddit.lite.data.model.response.post.isValid
 import link.limecode.reddit.lite.domain.dao.PostDao
+import link.limecode.reddit.lite.domain.usecase.VoteUseCase
 import link.limecode.reddit.lite.exceptions.UnexpectedDataException
 
 suspend fun ApiReqNewPost?.handleNewPost(
-    postDao: PostDao
+    postDao: PostDao,
+    voteUseCase: VoteUseCase
 ) : ApiResNewPost {
     val validationResult = validate()
     
@@ -17,7 +19,7 @@ suspend fun ApiReqNewPost?.handleNewPost(
     
     val result = postDao.insert(this)
     
-    return ApiResNewPost.Success(result)
+    return ApiResNewPost.Success(voteUseCase.upVote(post = result, userId = this.userId))
 }
 
 fun ApiReqNewPost?.validate(): ApiResNewPost.Fail? {

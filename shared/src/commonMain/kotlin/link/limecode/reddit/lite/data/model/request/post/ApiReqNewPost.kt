@@ -10,5 +10,9 @@ data class ApiReqNewPost(
     @SerialName("user_id")
     val userId: Int,
     @SerialName("subreddit_id")
-    val subRedditId: Int
+    val subRedditId: Int,
+    @SerialName("upvote_count")
+    val upVoteCount: Int = 0,
+    @SerialName("downvote_count")
+    val downVoteCount: Int = 0
 )
