@@ -5,8 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class ApiAttachmentType {
-    @SerialName("jpg")
+    @SerialName("JPG")
     JPG,
-    @SerialName("gif")
-    GIFG
+    @SerialName("GIF")
+    GIF
 }

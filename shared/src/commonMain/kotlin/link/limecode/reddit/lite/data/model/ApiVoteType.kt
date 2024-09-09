@@ -5,8 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class ApiVoteType {
-    @SerialName("upvote")
+    @SerialName("UPVOTE")
     UPVOTE,
-    @SerialName("downvote")
+    @SerialName("DOWNVOTE")
     DOWNVOTE
 }

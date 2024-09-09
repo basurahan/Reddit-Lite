@@ -11,5 +11,9 @@ data class ApiPost(
     @SerialName("user_id")
     val userId: Int,
     @SerialName("subreddit_id")
-    val subRedditId: Int
+    val subredditId: Int,
+    @SerialName("upvote_count")
+    val upvoteCount: Int,
+    @SerialName("downvote_count")
+    val downvoteCount: Int
 )

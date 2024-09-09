@@ -13,7 +13,7 @@ import link.limecode.reddit.lite.data.model.request.post.ApiReqVotePost
 import link.limecode.reddit.lite.data.model.response.post.ApiResNewPost
 import link.limecode.reddit.lite.domain.dao.PostAttachementDao
 import link.limecode.reddit.lite.domain.dao.PostDao
-import link.limecode.reddit.lite.domain.dao.PostVoteDao
+import link.limecode.reddit.lite.domain.usecase.VoteUseCase
 import link.limecode.reddit.lite.routes.post.handlers.handleNewPost
 import link.limecode.reddit.lite.routes.post.handlers.handleNewPostAttachment
 import link.limecode.reddit.lite.routes.post.handlers.handleVotePost
@@ -23,9 +23,10 @@ fun Route.configurePostRoutes() {
     
     post<Post.New> {
         val postDao = call.scope.get<PostDao>()
+        val voteUseCase = call.scope.get<VoteUseCase>()
         
         val requestData = runCatching { call.receiveNullable<ApiReqNewPost>() }.getOrNull()
-        when (val result = requestData.handleNewPost(postDao)) {
+        when (val result = requestData.handleNewPost(postDao = postDao, voteUseCase = voteUseCase)) {
             is ApiResNewPost.Fail -> call.respond(status = HttpStatusCode.UnprocessableEntity, message = result)
             is ApiResNewPost.Success -> call.respond(result)
         }
@@ -40,10 +41,11 @@ fun Route.configurePostRoutes() {
     }
 
     post<Post.Vote> {
-        val postVoteDao = call.scope.get<PostVoteDao>()
+        val postDao = call.scope.get<PostDao>()
+        val voteUseCase = call.scope.get<VoteUseCase>()
 
         val requestData = runCatching { call.receiveNullable<ApiReqVotePost>() }.getOrNull()
-        val result = requestData.handleVotePost(postVoteDao)
+        val result = requestData.handleVotePost(postDao = postDao, voteUseCase = voteUseCase)
         call.respond(result)
     }
 }
