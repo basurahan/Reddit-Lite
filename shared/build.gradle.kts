@@ -46,6 +46,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kmp.kotlinx.serialization.json)
+            implementation(libs.kotlinx.datetime)
         }
     }
 }

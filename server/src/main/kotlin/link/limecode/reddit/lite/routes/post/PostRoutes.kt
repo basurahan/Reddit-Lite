@@ -10,14 +10,15 @@ import io.ktor.server.resources.post
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import link.limecode.reddit.lite.config.Constants
-import link.limecode.reddit.lite.data.model.request.post.ApiReqNewPost
-import link.limecode.reddit.lite.data.model.request.post.ApiReqNewPostAttachement
-import link.limecode.reddit.lite.data.model.request.post.ApiReqVotePost
+import link.limecode.reddit.lite.data.model.request.post.*
 import link.limecode.reddit.lite.data.model.response.post.ApiResNewPost
 import link.limecode.reddit.lite.domain.dao.PostAttachementDao
 import link.limecode.reddit.lite.domain.dao.PostDao
+import link.limecode.reddit.lite.domain.usecase.PostUseCase
 import link.limecode.reddit.lite.domain.usecase.VoteUseCase
 import link.limecode.reddit.lite.exceptions.InvalidTokenException
+import link.limecode.reddit.lite.exceptions.UnexpectedDataException
+import link.limecode.reddit.lite.routes.post.handlers.handleAuthPostList
 import link.limecode.reddit.lite.routes.post.handlers.handleNewPost
 import link.limecode.reddit.lite.routes.post.handlers.handleNewPostAttachment
 import link.limecode.reddit.lite.routes.post.handlers.handleVotePost
@@ -56,6 +57,21 @@ fun Route.configurePostRoutes() {
             val principal = call.principal<JWTPrincipal>() ?: throw InvalidTokenException()
             val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asInt() ?: throw InvalidTokenException()
             val result = requestData.handleVotePost(postDao = postDao, voteUseCase = voteUseCase, userId = userId)
+            call.respond(result)
+        }
+
+        post<Post> {
+            val postUseCase = call.scope.get<PostUseCase>()
+
+            val requestData = runCatching { call.receiveNullable<ApiReqAuthPostList>() }.getOrNull() ?: throw UnexpectedDataException()
+            val principal = call.principal<JWTPrincipal>() ?: throw InvalidTokenException()
+            val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asInt() ?: throw InvalidTokenException()
+
+            val result = requestData.handleAuthPostList(
+                postUseCase = postUseCase,
+                userId = userId
+            )
+
             call.respond(result)
         }
     }

@@ -1,5 +1,6 @@
 package link.limecode.reddit.lite.data.db.dao
 
+import io.github.jan.supabase.postgrest.query.Order
 import io.github.jan.supabase.postgrest.query.PostgrestQueryBuilder
 import link.limecode.reddit.lite.data.model.ApiPost
 import link.limecode.reddit.lite.data.model.request.post.ApiReqNewPost
@@ -85,5 +86,46 @@ class PostDaoImpl(private val table: PostgrestQueryBuilder) : PostDao {
                 ApiPost::id eq id
             }
         }.decodeSingle<ApiPost>()
+    }
+
+    override suspend fun getPostList(cursor: Int?, limit: Long, order: Order): List<ApiPost> {
+        return table.select {
+            // TODO: is there a better way than using string literal
+            order(column = "created_at", order = order)
+            filter {
+                if (cursor == null) return@filter
+
+                if (order == Order.DESCENDING) {
+                    ApiPost::id lt cursor
+                } else if (order == Order.ASCENDING) {
+                    ApiPost::id gt cursor
+                }
+            }
+            limit(count = limit)
+        }.decodeAs<List<ApiPost>>()
+    }
+
+    override suspend fun getPostListBy(
+        subredditId: Int,
+        cursor: Int?,
+        limit: Long,
+        order: Order
+    ): List<ApiPost> {
+        return table.select {
+            // TODO: is there a better way than using string literal
+            order(column = "created_at", order = order)
+            filter {
+                ApiPost::subredditId eq subredditId
+
+                if (cursor == null) return@filter
+
+                if (order == Order.DESCENDING) {
+                    ApiPost::id lt cursor
+                } else if (order == Order.ASCENDING) {
+                    ApiPost::id gt cursor
+                }
+            }
+            limit(count = limit)
+        }.decodeAs<List<ApiPost>>()
     }
 }

@@ -7,7 +7,11 @@ import link.limecode.reddit.lite.BaseRoute
 @Serializable
 @Resource("/post")
 @Suppress("unused")
-class Post(val parent: BaseRoute = BaseRoute()) {
+class Post(
+    val parent: BaseRoute = BaseRoute(),
+    val sort: String? = "new",
+    val filter: String? = "all"
+) {
     
     @Serializable
     @Resource("new")

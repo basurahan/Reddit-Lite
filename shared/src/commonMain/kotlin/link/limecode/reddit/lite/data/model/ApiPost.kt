@@ -1,5 +1,6 @@
 package link.limecode.reddit.lite.data.model
 
+import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -15,5 +16,7 @@ data class ApiPost(
     @SerialName("upvote_count")
     val upvoteCount: Int,
     @SerialName("downvote_count")
-    val downvoteCount: Int
+    val downvoteCount: Int,
+    @SerialName("created_at")
+    val createdAt: Instant
 )
