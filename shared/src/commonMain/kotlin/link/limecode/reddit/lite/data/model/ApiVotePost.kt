@@ -1,11 +1,12 @@
-package link.limecode.reddit.lite.data.model.request.post
+package link.limecode.reddit.lite.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import link.limecode.reddit.lite.data.model.ApiVoteType
 
 @Serializable
-data class ApiReqVotePost(
+data class ApiVotePost(
+    @SerialName("user_id")
+    val userId: Int,
     @SerialName("post_id")
     val postId: Int,
     @SerialName("vote_type")
