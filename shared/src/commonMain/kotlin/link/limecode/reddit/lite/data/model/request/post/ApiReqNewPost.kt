@@ -7,8 +7,6 @@ import kotlinx.serialization.Serializable
 data class ApiReqNewPost(
     val title: String,
     val body: String,
-    @SerialName("user_id")
-    val userId: Int,
     @SerialName("subreddit_id")
     val subRedditId: Int,
     @SerialName("upvote_count")

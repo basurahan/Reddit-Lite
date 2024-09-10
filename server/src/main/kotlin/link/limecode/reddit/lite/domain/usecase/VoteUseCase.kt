@@ -1,9 +1,8 @@
 package link.limecode.reddit.lite.domain.usecase
 
 import link.limecode.reddit.lite.data.model.ApiPost
-import link.limecode.reddit.lite.data.model.ApiPostVote
+import link.limecode.reddit.lite.data.model.ApiVotePost
 import link.limecode.reddit.lite.data.model.ApiVoteType
-import link.limecode.reddit.lite.data.model.request.post.ApiReqVotePost
 import link.limecode.reddit.lite.domain.dao.PostDao
 import link.limecode.reddit.lite.domain.dao.PostVoteDao
 
@@ -28,7 +27,7 @@ class VoteUseCase(
             return postDao.getPostBy(post.id)
         }
         
-        postVoteDao.insert(ApiReqVotePost(userId = userId, postId = post.id, voteType = ApiVoteType.UPVOTE))
+        postVoteDao.insert(ApiVotePost(userId = userId, postId = post.id, voteType = ApiVoteType.UPVOTE))
         
         val currentUpVoteCount = postDao.getUpVoteCount(post.id)
         postDao.incrementUpVote(id = post.id, currentCount = currentUpVoteCount)
@@ -42,7 +41,7 @@ class VoteUseCase(
         if (voteData?.voteType == ApiVoteType.DOWNVOTE) {
             return post
         } else if (voteData?.voteType == ApiVoteType.UPVOTE) {
-            postVoteDao.updateVote(userId = userId, postId = post.id, newVote = ApiVoteType.UPVOTE)
+            postVoteDao.updateVote(userId = userId, postId = post.id, newVote = ApiVoteType.DOWNVOTE)
             
             val currentDownVoteCount = postDao.getDownVoteCount(post.id)
             val currentUpVoteCount = postDao.getUpVoteCount(post.id)
@@ -53,7 +52,7 @@ class VoteUseCase(
         
         val currentDownVoteCount = postDao.getDownVoteCount(post.id)
         postDao.incrementDownVote(id = post.id, currentCount = currentDownVoteCount)
-        postVoteDao.insert(ApiReqVotePost(userId = userId, postId = post.id, voteType = ApiVoteType.DOWNVOTE))
+        postVoteDao.insert(ApiVotePost(userId = userId, postId = post.id, voteType = ApiVoteType.DOWNVOTE))
         
         return postDao.getPostBy(post.id)
     }
