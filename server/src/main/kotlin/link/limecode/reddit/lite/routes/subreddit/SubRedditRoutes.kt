@@ -29,7 +29,7 @@ fun Route.configureSubRedditRoutes() {
             val subRedditUsersDao = call.scope.get<SubRedditUsersDao>()
 
             val principal = call.principal<JWTPrincipal>() ?: throw InvalidTokenException()
-            val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asInt() ?: throw InvalidTokenException()
+            val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asLong() ?: throw InvalidTokenException()
             val requestData = runCatching { call.receive<ApiReqNewSubReddit>() }.getOrNull()
 
             val result = requestData.handleNewSubReddit(
@@ -48,7 +48,7 @@ fun Route.configureSubRedditRoutes() {
             val subRedditUsersDao = call.scope.get<SubRedditUsersDao>()
 
             val principal = call.principal<JWTPrincipal>() ?: throw InvalidTokenException()
-            val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asInt() ?: throw InvalidTokenException()
+            val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asLong() ?: throw InvalidTokenException()
             val requestData = runCatching { call.receive<ApiReqJoinSubReddit>() }.getOrNull()
 
             requestData.handleJoinSubReddit(

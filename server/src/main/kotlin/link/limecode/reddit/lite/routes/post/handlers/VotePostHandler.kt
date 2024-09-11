@@ -10,7 +10,7 @@ import link.limecode.reddit.lite.exceptions.UnexpectedDataException
 suspend fun ApiReqVotePost?.handleVotePost(
     postDao: PostDao,
     voteUseCase: VoteUseCase,
-    userId: Int
+    userId: Long
 ): ApiResVotePost {
     if (this == null) throw UnexpectedDataException()
     

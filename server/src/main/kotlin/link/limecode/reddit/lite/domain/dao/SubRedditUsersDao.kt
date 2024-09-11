@@ -7,5 +7,5 @@ interface SubRedditUsersDao {
     
     suspend fun insert(entry: ApiReqNewSubRedditUser): ApiSubRedditUser
 
-    suspend fun getSubRedditUserBy(subRedditId: Int, userId: Int): ApiSubRedditUser?
+    suspend fun getSubRedditUserBy(subRedditId: Long, userId: Long): ApiSubRedditUser?
 }

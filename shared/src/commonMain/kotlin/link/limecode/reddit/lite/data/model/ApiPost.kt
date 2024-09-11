@@ -6,13 +6,13 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ApiPost(
-    val id: Int,
+    val id: Long,
     val title: String,
     val body: String,
     @SerialName("user_id")
-    val userId: Int,
+    val userId: Long,
     @SerialName("subreddit_id")
-    val subredditId: Int,
+    val subredditId: Long,
     @SerialName("upvote_count")
     val upvoteCount: Int,
     @SerialName("downvote_count")

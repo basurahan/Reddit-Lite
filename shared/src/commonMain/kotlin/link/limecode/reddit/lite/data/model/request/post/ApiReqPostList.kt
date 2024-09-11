@@ -7,8 +7,8 @@ import kotlinx.serialization.Serializable
 data class ApiReqPostList(
     // TODO: cursor should be long
     @SerialName("subreddit_id")
-    val subredditId: Int? = null,
-    val cursor: Int? = null,
+    val subredditId: Long? = null,
+    val cursor: Long? = null,
     val limit: Long,
     val filter: ApiReqPostListFilter,
     val sort: ApiReqPostListSort

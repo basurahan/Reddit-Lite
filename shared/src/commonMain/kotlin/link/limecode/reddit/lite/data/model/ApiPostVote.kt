@@ -5,11 +5,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ApiPostVote(
-    val id: Int,
+    val id: Long,
     @SerialName("user_id")
-    val userId: Int,
+    val userId: Long,
     @SerialName("post_id")
-    val postId: Int,
+    val postId: Long,
     @SerialName("vote_type")
     val voteType: ApiVoteType
 )
