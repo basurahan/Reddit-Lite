@@ -4,9 +4,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ApiReqAuthPostList(
+data class ApiReqPostList(
     // TODO: cursor should be long
-        @SerialName("subreddit_id")
+    @SerialName("subreddit_id")
     val subredditId: Int? = null,
     val cursor: Int? = null,
     val limit: Long,

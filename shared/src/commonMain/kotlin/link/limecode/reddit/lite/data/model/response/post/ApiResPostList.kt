@@ -3,7 +3,7 @@ package link.limecode.reddit.lite.data.model.response.post
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ApiResAuthPostList(
+data class ApiResPostList(
     val items: List<ApiResPostListItem>,
     // TODO: cursor should be long
     val cursor: Int?,

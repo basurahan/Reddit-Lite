@@ -1,6 +1,5 @@
 package link.limecode.reddit.lite.routes.post
 
-import link.limecode.reddit.lite.routes.post.resources.Post
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -18,17 +17,16 @@ import link.limecode.reddit.lite.domain.usecase.PostUseCase
 import link.limecode.reddit.lite.domain.usecase.VoteUseCase
 import link.limecode.reddit.lite.exceptions.InvalidTokenException
 import link.limecode.reddit.lite.exceptions.UnexpectedDataException
-import link.limecode.reddit.lite.routes.post.handlers.handleAuthPostList
-import link.limecode.reddit.lite.routes.post.handlers.handleNewPost
-import link.limecode.reddit.lite.routes.post.handlers.handleNewPostAttachment
-import link.limecode.reddit.lite.routes.post.handlers.handleVotePost
+import link.limecode.reddit.lite.routes.post.handlers.*
+import link.limecode.reddit.lite.routes.post.resources.PostPrivate
+import link.limecode.reddit.lite.routes.post.resources.PostPublic
 import org.koin.ktor.plugin.scope
 
 fun Route.configurePostRoutes() {
     
     authenticate(Constants.JWT_USER_AUTH) {
 
-        post<Post.New> {
+        post<PostPrivate.New> {
             val postDao = call.scope.get<PostDao>()
             val voteUseCase = call.scope.get<VoteUseCase>()
 
@@ -41,7 +39,7 @@ fun Route.configurePostRoutes() {
             }
         }
 
-        post<Post.Attachment.New> {
+        post<PostPrivate.Attachment.New> {
             val postAttachementDao = call.scope.get<PostAttachementDao>()
 
             val requestData = runCatching { call.receiveNullable<ApiReqNewPostAttachement>() }.getOrNull()
@@ -49,7 +47,7 @@ fun Route.configurePostRoutes() {
             call.respond(result)
         }
 
-        post<Post.Vote> {
+        post<PostPrivate.Vote> {
             val postDao = call.scope.get<PostDao>()
             val voteUseCase = call.scope.get<VoteUseCase>()
 
@@ -60,19 +58,28 @@ fun Route.configurePostRoutes() {
             call.respond(result)
         }
 
-        post<Post> {
+        post<PostPrivate> {
             val postUseCase = call.scope.get<PostUseCase>()
 
-            val requestData = runCatching { call.receiveNullable<ApiReqAuthPostList>() }.getOrNull() ?: throw UnexpectedDataException()
+            val requestData = runCatching { call.receiveNullable<ApiReqPostList>() }.getOrNull() ?: throw UnexpectedDataException()
             val principal = call.principal<JWTPrincipal>() ?: throw InvalidTokenException()
             val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asInt() ?: throw InvalidTokenException()
 
-            val result = requestData.handleAuthPostList(
+            val result = requestData.handlePrivatePostList(
                 postUseCase = postUseCase,
                 userId = userId
             )
 
             call.respond(result)
         }
+    }
+
+    post<PostPublic> {
+        val postUseCase = call.scope.get<PostUseCase>()
+
+        val requestData = runCatching { call.receiveNullable<ApiReqPostList>() }.getOrNull() ?: throw UnexpectedDataException()
+        val result = requestData.handlePublicPostList(postUseCase)
+
+        call.respond(result)
     }
 }

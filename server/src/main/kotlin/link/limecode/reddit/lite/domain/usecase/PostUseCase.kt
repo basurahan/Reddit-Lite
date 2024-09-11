@@ -10,7 +10,7 @@ import link.limecode.reddit.lite.domain.dao.PostVoteDao
 class PostUseCase(private val postDao: PostDao, private val postVoteDao: PostVoteDao) {
     
     suspend fun getPostList(
-        userId: Int,
+        userId: Int?,
         cursor: Int?,
         limit: Long,
         sort: ApiReqPostListSort
@@ -26,7 +26,7 @@ class PostUseCase(private val postDao: PostDao, private val postVoteDao: PostVot
     
     suspend fun getPostListBy(
         subredditId: Int,
-        userId: Int,
+        userId: Int?,
         cursor: Int?,
         limit: Long,
         sort: ApiReqPostListSort
@@ -40,17 +40,26 @@ class PostUseCase(private val postDao: PostDao, private val postVoteDao: PostVot
         return attachUserState(postList = postList, userId = userId)
     }
     
-    private suspend fun attachUserState(postList: List<ApiPost>, userId: Int): List<ApiResPostListItem> {
+    private suspend fun attachUserState(postList: List<ApiPost>, userId: Int?): List<ApiResPostListItem> {
         val finalPostList = mutableListOf<ApiResPostListItem>()
         
         postList.forEach { post ->
-            val voteResult = postVoteDao.getVote(userId = userId, postId = post.id)
-            finalPostList.add(
-                ApiResPostListItem(
-                    data = post,
-                    userVote = voteResult?.voteType
+            if (userId != null) {
+                val voteResult = postVoteDao.getVote(userId = userId, postId = post.id)
+                finalPostList.add(
+                    ApiResPostListItem(
+                        data = post,
+                        userVote = voteResult?.voteType
+                    )
                 )
-            )
+            } else {
+                finalPostList.add(
+                    ApiResPostListItem(
+                        data = post,
+                        userVote = null
+                    )
+                )
+            }
         }
         
         return finalPostList.toList()
