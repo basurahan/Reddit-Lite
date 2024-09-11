@@ -10,8 +10,8 @@ import link.limecode.reddit.lite.domain.dao.PostVoteDao
 class PostUseCase(private val postDao: PostDao, private val postVoteDao: PostVoteDao) {
     
     suspend fun getPostList(
-        userId: Int?,
-        cursor: Int?,
+        userId: Long?,
+        cursor: Long?,
         limit: Long,
         sort: ApiReqPostListSort
     ): List<ApiResPostListItem> {
@@ -25,9 +25,9 @@ class PostUseCase(private val postDao: PostDao, private val postVoteDao: PostVot
     }
     
     suspend fun getPostListBy(
-        subredditId: Int,
-        userId: Int?,
-        cursor: Int?,
+        subredditId: Long,
+        userId: Long?,
+        cursor: Long?,
         limit: Long,
         sort: ApiReqPostListSort
     ): List<ApiResPostListItem> {
@@ -40,7 +40,7 @@ class PostUseCase(private val postDao: PostDao, private val postVoteDao: PostVot
         return attachUserState(postList = postList, userId = userId)
     }
     
-    private suspend fun attachUserState(postList: List<ApiPost>, userId: Int?): List<ApiResPostListItem> {
+    private suspend fun attachUserState(postList: List<ApiPost>, userId: Long?): List<ApiResPostListItem> {
         val finalPostList = mutableListOf<ApiResPostListItem>()
         
         postList.forEach { post ->

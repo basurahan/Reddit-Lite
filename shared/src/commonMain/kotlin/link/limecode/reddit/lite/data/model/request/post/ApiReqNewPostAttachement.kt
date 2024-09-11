@@ -7,7 +7,7 @@ import link.limecode.reddit.lite.data.model.ApiAttachmentType
 @Serializable
 data class ApiReqNewPostAttachement(
     @SerialName("post_id")
-    val postId: Int,
+    val postId: Long,
     val name: String,
     @SerialName("attachment_type")
     val attachmentType: ApiAttachmentType

@@ -32,7 +32,7 @@ fun Route.configurePostRoutes() {
 
             val requestData = runCatching { call.receiveNullable<ApiReqNewPost>() }.getOrNull()
             val principal = call.principal<JWTPrincipal>() ?: throw InvalidTokenException()
-            val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asInt() ?: throw InvalidTokenException()
+            val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asLong() ?: throw InvalidTokenException()
             when (val result = requestData.handleNewPost(postDao = postDao, voteUseCase = voteUseCase, userId = userId)) {
                 is ApiResNewPost.Fail -> call.respond(status = HttpStatusCode.UnprocessableEntity, message = result)
                 is ApiResNewPost.Success -> call.respond(result)
@@ -53,7 +53,7 @@ fun Route.configurePostRoutes() {
 
             val requestData = runCatching { call.receiveNullable<ApiReqVotePost>() }.getOrNull()
             val principal = call.principal<JWTPrincipal>() ?: throw InvalidTokenException()
-            val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asInt() ?: throw InvalidTokenException()
+            val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asLong() ?: throw InvalidTokenException()
             val result = requestData.handleVotePost(postDao = postDao, voteUseCase = voteUseCase, userId = userId)
             call.respond(result)
         }
@@ -63,7 +63,7 @@ fun Route.configurePostRoutes() {
 
             val requestData = runCatching { call.receiveNullable<ApiReqPostList>() }.getOrNull() ?: throw UnexpectedDataException()
             val principal = call.principal<JWTPrincipal>() ?: throw InvalidTokenException()
-            val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asInt() ?: throw InvalidTokenException()
+            val userId = principal.payload.claims[Constants.JWT_CLAIM_USER_ID]?.asLong() ?: throw InvalidTokenException()
 
             val result = requestData.handlePrivatePostList(
                 postUseCase = postUseCase,

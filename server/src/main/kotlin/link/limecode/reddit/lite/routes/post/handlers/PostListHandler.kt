@@ -8,7 +8,7 @@ import link.limecode.reddit.lite.exceptions.UnexpectedDataException
 
 suspend fun ApiReqPostList.handlePrivatePostList(
     postUseCase: PostUseCase,
-    userId: Int
+    userId: Long
 ): ApiResPostList {
     val result = when (this.filter) {
         ApiReqPostListFilter.ALL -> postUseCase.getPostList(

@@ -12,7 +12,7 @@ import link.limecode.reddit.lite.exceptions.UnexpectedDataException
 suspend fun ApiReqNewSubReddit?.handleNewSubReddit(
     subRedditDao: SubRedditDao,
     subRedditUsersDao: SubRedditUsersDao,
-    userId: Int
+    userId: Long
 ): ApiResNewSubreddit {
     val validationResult = validate(subRedditDao)
     

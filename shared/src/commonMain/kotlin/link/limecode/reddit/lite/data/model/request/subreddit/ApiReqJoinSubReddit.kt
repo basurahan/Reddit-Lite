@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ApiReqJoinSubReddit(
     @SerialName("subreddit_id")
-    val subRedditId: Int
+    val subRedditId: Long
 )

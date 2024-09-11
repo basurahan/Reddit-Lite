@@ -9,8 +9,8 @@ interface PostVoteDao {
     
     suspend fun insert(vote: ApiReqVotePost): ApiPostVote
     suspend fun insert(vote: ApiVotePost): ApiPostVote
-    suspend fun isDownVotedBy(userId: Int, postId: Int): Boolean
-    suspend fun isUpVotedBy(userId: Int, postId: Int): Boolean
-    suspend fun getVote(userId: Int, postId: Int): ApiPostVote?
-    suspend fun updateVote(userId: Int, postId: Int, newVote: ApiVoteType): ApiPostVote
+    suspend fun isDownVotedBy(userId: Long, postId: Long): Boolean
+    suspend fun isUpVotedBy(userId: Long, postId: Long): Boolean
+    suspend fun getVote(userId: Long, postId: Long): ApiPostVote?
+    suspend fun updateVote(userId: Long, postId: Long, newVote: ApiVoteType): ApiPostVote
 }

@@ -8,7 +8,7 @@ data class ApiReqNewPost(
     val title: String,
     val body: String,
     @SerialName("subreddit_id")
-    val subRedditId: Int,
+    val subRedditId: Long,
     @SerialName("upvote_count")
     val upVoteCount: Int = 0,
     @SerialName("downvote_count")

@@ -12,7 +12,7 @@ class PostDaoImpl(private val table: PostgrestQueryBuilder) : PostDao {
         return table.insert(post) { select() }.decodeSingle<ApiPost>()
     }
 
-    override suspend fun incrementUpVote(id: Int, currentCount: Int): ApiPost {
+    override suspend fun incrementUpVote(id: Long, currentCount: Int): ApiPost {
         return  table.update(
             {
                 ApiPost::upvoteCount setTo currentCount + 1
@@ -25,7 +25,7 @@ class PostDaoImpl(private val table: PostgrestQueryBuilder) : PostDao {
         }.decodeSingle<ApiPost>()
     }
 
-    override suspend fun incrementDownVote(id: Int, currentCount: Int): ApiPost {
+    override suspend fun incrementDownVote(id: Long, currentCount: Int): ApiPost {
         return  table.update(
             {
                 ApiPost::downvoteCount setTo currentCount + 1
@@ -38,7 +38,7 @@ class PostDaoImpl(private val table: PostgrestQueryBuilder) : PostDao {
         }.decodeSingle<ApiPost>()
     }
 
-    override suspend fun decrementUpVote(id: Int, currentCount: Int): ApiPost {
+    override suspend fun decrementUpVote(id: Long, currentCount: Int): ApiPost {
         return  table.update(
             {
                 ApiPost::upvoteCount setTo currentCount - 1
@@ -51,7 +51,7 @@ class PostDaoImpl(private val table: PostgrestQueryBuilder) : PostDao {
         }.decodeSingle<ApiPost>()
     }
 
-    override suspend fun decrementDownVote(id: Int, currentCount: Int): ApiPost {
+    override suspend fun decrementDownVote(id: Long, currentCount: Int): ApiPost {
         return  table.update(
             {
                 ApiPost::downvoteCount setTo currentCount - 1
@@ -64,7 +64,7 @@ class PostDaoImpl(private val table: PostgrestQueryBuilder) : PostDao {
         }.decodeSingle<ApiPost>()
     }
 
-    override suspend fun getUpVoteCount(id: Int): Int {
+    override suspend fun getUpVoteCount(id: Long): Int {
         return table.select {
             filter {
                 ApiPost::id eq id
@@ -72,7 +72,7 @@ class PostDaoImpl(private val table: PostgrestQueryBuilder) : PostDao {
         }.decodeSingle<ApiPost>().upvoteCount
     }
 
-    override suspend fun getDownVoteCount(id: Int): Int {
+    override suspend fun getDownVoteCount(id: Long): Int {
         return table.select {
             filter {
                 ApiPost::id eq id
@@ -80,7 +80,7 @@ class PostDaoImpl(private val table: PostgrestQueryBuilder) : PostDao {
         }.decodeSingle<ApiPost>().downvoteCount
     }
 
-    override suspend fun getPostBy(id: Int): ApiPost {
+    override suspend fun getPostBy(id: Long): ApiPost {
         return table.select {
             filter {
                 ApiPost::id eq id
@@ -88,7 +88,7 @@ class PostDaoImpl(private val table: PostgrestQueryBuilder) : PostDao {
         }.decodeSingle<ApiPost>()
     }
 
-    override suspend fun getPostList(cursor: Int?, limit: Long, order: Order): List<ApiPost> {
+    override suspend fun getPostList(cursor: Long?, limit: Long, order: Order): List<ApiPost> {
         return table.select {
             // TODO: is there a better way than using string literal
             order(column = "created_at", order = order)
@@ -106,8 +106,8 @@ class PostDaoImpl(private val table: PostgrestQueryBuilder) : PostDao {
     }
 
     override suspend fun getPostListBy(
-        subredditId: Int,
-        cursor: Int?,
+        subredditId: Long,
+        cursor: Long?,
         limit: Long,
         order: Order
     ): List<ApiPost> {

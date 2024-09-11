@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ApiReqNewSubRedditUser(
     @SerialName("subreddit_id")
-    val subredditId: Int,
+    val subredditId: Long,
     @SerialName("user_id")
-    val userId: Int
+    val userId: Long
 )

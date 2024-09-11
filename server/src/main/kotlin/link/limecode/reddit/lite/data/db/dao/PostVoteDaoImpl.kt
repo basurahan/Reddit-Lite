@@ -17,7 +17,7 @@ class PostVoteDaoImpl(private val table: PostgrestQueryBuilder): PostVoteDao {
         return table.insert(vote){ select() }.decodeSingle<ApiPostVote>()
     }
 
-    override suspend fun isUpVotedBy(userId: Int, postId: Int): Boolean {
+    override suspend fun isUpVotedBy(userId: Long, postId: Long): Boolean {
         return table.select {
             filter {
                 ApiPostVote::postId eq postId
@@ -27,7 +27,7 @@ class PostVoteDaoImpl(private val table: PostgrestQueryBuilder): PostVoteDao {
         }.decodeSingleOrNull<ApiPostVote>() != null
     }
 
-    override suspend fun isDownVotedBy(userId: Int, postId: Int): Boolean {
+    override suspend fun isDownVotedBy(userId: Long, postId: Long): Boolean {
         return table.select {
             filter {
                 ApiPostVote::postId eq postId
@@ -37,7 +37,7 @@ class PostVoteDaoImpl(private val table: PostgrestQueryBuilder): PostVoteDao {
         }.decodeSingleOrNull<ApiPostVote>() != null
     }
 
-    override suspend fun getVote(userId: Int, postId: Int): ApiPostVote? {
+    override suspend fun getVote(userId: Long, postId: Long): ApiPostVote? {
         return table.select {
             filter {
                 ApiPostVote::postId eq postId
@@ -46,7 +46,7 @@ class PostVoteDaoImpl(private val table: PostgrestQueryBuilder): PostVoteDao {
         }.decodeSingleOrNull<ApiPostVote>()
     }
 
-    override suspend fun updateVote(userId: Int, postId: Int, newVote: ApiVoteType): ApiPostVote {
+    override suspend fun updateVote(userId: Long, postId: Long, newVote: ApiVoteType): ApiPostVote {
         return table.update(
             {
                 ApiPostVote::voteType setTo newVote

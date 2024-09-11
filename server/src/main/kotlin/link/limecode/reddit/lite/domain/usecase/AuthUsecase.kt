@@ -36,7 +36,7 @@ class AuthUsecase(private val usersDao: UsersDao) {
         return usersDao.insert(finalUser)
     }
     
-    private fun generateToken(username: String, userId: Int): String {
+    private fun generateToken(username: String, userId: Long): String {
         val currentMoment = Clock.System.now()
         val datetimeInUtc = currentMoment.plus(
             value = 24,

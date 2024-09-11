@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
 data class ApiResPostList(
     val items: List<ApiResPostListItem>,
     // TODO: cursor should be long
-    val cursor: Int?,
+    val cursor: Long?,
     val limit: Long
 )

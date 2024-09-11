@@ -11,7 +11,7 @@ import link.limecode.reddit.lite.exceptions.UnexpectedDataException
 suspend fun ApiReqNewPost?.handleNewPost(
     postDao: PostDao,
     voteUseCase: VoteUseCase,
-    userId: Int
+    userId: Long
 ) : ApiResNewPost {
     val validationResult = validate()
     

@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ApiSubReddit(
-    val id: Int,
+    val id: Long,
     val name: String,
     val description: String?,
     val logo: String?,

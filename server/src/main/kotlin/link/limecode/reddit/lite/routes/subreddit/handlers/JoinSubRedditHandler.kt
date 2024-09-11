@@ -8,7 +8,7 @@ import link.limecode.reddit.lite.exceptions.UnexpectedDataException
 
 suspend fun ApiReqJoinSubReddit?.handleJoinSubReddit(
     subRedditUsersDao: SubRedditUsersDao,
-    userId: Int
+    userId: Long
 ) {
     if (this == null) throw UnexpectedDataException()
     

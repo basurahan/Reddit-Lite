@@ -7,7 +7,7 @@ import link.limecode.reddit.lite.data.model.ApiVoteType
 @Serializable
 data class ApiReqVotePost(
     @SerialName("post_id")
-    val postId: Int,
+    val postId: Long,
     @SerialName("vote_type")
     val voteType: ApiVoteType
 )

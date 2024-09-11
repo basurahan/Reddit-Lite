@@ -11,7 +11,7 @@ class VoteUseCase(
     private val postDao: PostDao
 ) {
     
-    suspend fun upVote(post: ApiPost, userId: Int): ApiPost {
+    suspend fun upVote(post: ApiPost, userId: Long): ApiPost {
         val voteData = postVoteDao.getVote(userId = userId, postId = post.id)
         
         // if already upvoted then no need to do anything
@@ -34,7 +34,7 @@ class VoteUseCase(
         return postDao.getPostBy(post.id)
     }
     
-    suspend fun downVote(post: ApiPost, userId: Int): ApiPost {
+    suspend fun downVote(post: ApiPost, userId: Long): ApiPost {
         val voteData = postVoteDao.getVote(userId = userId, postId = post.id)
         
         // if already upvoted then no need to do anything
