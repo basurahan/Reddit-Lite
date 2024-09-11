@@ -4,14 +4,11 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class ApiReqPostListFilter(val paramName: String) {
+enum class ApiReqPostListFilter {
     
     @SerialName("ALL")
-    ALL("ALL"),
+    ALL,
     
     @SerialName("SUBREDDIT")
-    SUBREDDIT("SUBREDDIT"),
-    
-    @SerialName("POPULAR")
-    POPULAR("POPULAR")
+    SUBREDDIT
 }

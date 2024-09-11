@@ -5,9 +5,11 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-enum class ApiReqPostListSort(val paramName: String) {
+enum class ApiReqPostListSort {
+
     @SerialName("NEWEST")
-    NEWEST("NEWEST"),
+    NEWEST,
+
     @SerialName("OLDEST")
-    OLDEST("OLDEST")
+    OLDEST
 }

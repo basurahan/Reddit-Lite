@@ -28,12 +28,10 @@ suspend fun ApiReqAuthPostList.handleAuthPostList(
                 sort = sort
             )
         }
-    
-        ApiReqPostListFilter.POPULAR -> TODO()
     }
     
     return ApiResAuthPostList(
-        post = result,
+        items = result,
         cursor = result.lastOrNull()?.data?.id,
         limit = limit
     )
