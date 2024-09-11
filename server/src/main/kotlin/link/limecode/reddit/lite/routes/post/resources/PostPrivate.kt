@@ -7,15 +7,15 @@ import link.limecode.reddit.lite.BaseRoute
 @Serializable
 @Resource("/post")
 @Suppress("unused")
-class Post(val parent: BaseRoute = BaseRoute()) {
+class PostPrivate(val parent: BaseRoute = BaseRoute()) {
     
     @Serializable
     @Resource("new")
-    class New(val parent: Post = Post())
+    class New(val parent: PostPrivate = PostPrivate())
 
     @Serializable
     @Resource("attachment")
-    class Attachment(val parent: Post = Post()) {
+    class Attachment(val parent: PostPrivate = PostPrivate()) {
 
         @Serializable
         @Resource("new")
@@ -24,5 +24,5 @@ class Post(val parent: BaseRoute = BaseRoute()) {
 
     @Serializable
     @Resource("vote")
-    class Vote(val parent: Post = Post())
+    class Vote(val parent: PostPrivate = PostPrivate())
 }

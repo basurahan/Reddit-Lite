@@ -11,7 +11,7 @@ import link.limecode.reddit.lite.exceptions.InvalidCredentialException
 import java.security.MessageDigest
 import java.time.ZoneOffset
 
-class AuthUsecase (private val usersDao: UsersDao) {
+class AuthUsecase(private val usersDao: UsersDao) {
     
     suspend fun login(username: String, password: String): Pair<ApiUser, String> {
         val hashedPassword = password.sha256()
