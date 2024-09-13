@@ -5,8 +5,8 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 
 @Composable
-fun RedditAppBar() {
+fun RedditAppBar(title: String) {
     TopAppBar(
-        title = { Text("Reddit") }
+        title = { Text(title) }
     )
 }

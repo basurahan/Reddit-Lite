@@ -22,7 +22,7 @@ kmp-kotlinx-serialization = "1.7.1"
 ksp = "2.0.10-1.0.24"
 kotlinx-datetime = "0.6.1"
 build-konfig = "0.15.2"
-voyager = "1.1.0-beta02"
+kmp-compose-navigation = "2.7.0-alpha07"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -55,8 +55,7 @@ ktor-client-apache = { module = "io.ktor:ktor-client-apache5", version.ref = "kt
 ktor-server-auth = { module = "io.ktor:ktor-server-auth", version.ref = "ktor" }
 ktor-server-auth-jwt = { module = "io.ktor:ktor-server-auth-jwt", version.ref = "ktor" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
-voyager-navigator = { group = "cafe.adriel.voyager", name = "voyager-navigator", version.ref = "voyager" }
-voyager-tab-navigator = { group = "cafe.adriel.voyager", name = "voyager-tab-navigator", version.ref = "voyager" }
+kmp-compose-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "kmp-compose-navigation" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

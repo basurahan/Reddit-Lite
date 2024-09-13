@@ -64,8 +64,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(projects.shared)
 
-            implementation(libs.voyager.navigator)
-            implementation(libs.voyager.tab.navigator)
+            implementation(libs.kmp.compose.navigation)
         }
     }
 }
