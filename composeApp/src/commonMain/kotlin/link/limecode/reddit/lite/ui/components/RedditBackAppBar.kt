@@ -1,5 +1,7 @@
 package link.limecode.reddit.lite.ui.components
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -9,9 +11,9 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 
 @Composable
-fun RedditBackAppBar(onNavigateBack: () -> Unit) {
+fun RedditBackAppBar(title: String, onNavigateBack: () -> Unit) {
     TopAppBar(
-        title = { Text("Reddit") },
+        title = { Text(title) },
         navigationIcon = {
             IconButton(onClick = { onNavigateBack.invoke() }) {
                 Icon(
@@ -19,6 +21,7 @@ fun RedditBackAppBar(onNavigateBack: () -> Unit) {
                     contentDescription = null
                 )
             } 
-        }
+        },
+        windowInsets = WindowInsets.statusBars
     )
 }

@@ -27,14 +27,16 @@ fun Root() {
 
     Scaffold(
         bottomBar = {
-            RedditBottomNavBar(currentSelectedTab) { selected ->
-                navController.navigate(selected.asRoute()) {
-                    launchSingleTop = true
-                    restoreState = true
+            if (currentSelectedTab != null) {
+                RedditBottomNavBar(currentSelectedTab!!) { selected ->
+                    navController.navigate(selected.asRoute()) {
+                        launchSingleTop = true
+                        restoreState = true
 
-                    navController.graph.findStartDestination().route?.let {
-                        popUpTo(it) {
-                            saveState = true
+                        navController.graph.findStartDestination().route?.let {
+                            popUpTo(it) {
+                                saveState = true
+                            }
                         }
                     }
                 }

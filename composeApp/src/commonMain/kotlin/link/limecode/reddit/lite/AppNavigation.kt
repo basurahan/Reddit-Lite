@@ -73,7 +73,9 @@ internal fun AppNavigation(
             startDestination = RouteBuilder.Login.createRoute(Screen.Login)
         ) {
             composable(RouteBuilder.Login.createRoute(Screen.Login)) {
-                LoginScreen()
+                LoginScreen(
+                    onNavBack = { navController.navigateUp() }
+                )
             }
         }
     }
@@ -114,8 +116,8 @@ private fun NavGraphBuilder.addProfileStack(
 }
 
 @Composable
-internal fun NavController.currentTabAsState(): State<HomeTabs> {
-    val selectedItem = remember { mutableStateOf(HomeTabs.HOME) }
+internal fun NavController.currentTabAsState(): State<HomeTabs?> {
+    val selectedItem = remember { mutableStateOf<HomeTabs?>(HomeTabs.HOME) }
 
     DisposableEffect(this) {
         val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
@@ -134,6 +136,9 @@ internal fun NavController.currentTabAsState(): State<HomeTabs> {
                 }
                 destination.hierarchy.any { it.route == HomeTabs.PROFILE.asRoute() } -> {
                     selectedItem.value = HomeTabs.PROFILE
+                }
+                else  -> {
+                    selectedItem.value = null
                 }
             }
         }
