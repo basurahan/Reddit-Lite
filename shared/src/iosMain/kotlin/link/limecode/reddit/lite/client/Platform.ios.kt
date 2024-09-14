@@ -1,9 +1,9 @@
 package link.limecode.reddit.lite.client
 
-import platform.UIKit.UIDevice
+class IOSPlatform : Platform {
 
-class IOSPlatform: Platform {
-    override val name: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
+    override val target: Target
+        get() = Target.IOS
 }
 
 actual fun getPlatform(): Platform = IOSPlatform()

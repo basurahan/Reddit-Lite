@@ -1,7 +1,7 @@
 package link.limecode.reddit.lite.client
 
 interface Platform {
-    val name: String
+    val target: Target
 }
 
 expect fun getPlatform(): Platform
