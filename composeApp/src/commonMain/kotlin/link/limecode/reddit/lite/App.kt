@@ -1,11 +1,15 @@
 package link.limecode.reddit.lite
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
+import link.limecode.reddit.lite.ui.components.RedditBottomNavBar
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -19,60 +23,27 @@ fun App() {
 @Composable
 fun Root() {
     val navController = rememberNavController()
+    val currentSelectedTab by navController.currentTabAsState()
+
     Scaffold(
         bottomBar = {
-            BottomNavigation(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                BottomNavigationItem(
-                    selected = false,
-                    onClick = {},
-                    icon = {},
-                    label = {
-                        Text("Home")
-                    }
-                )
+            RedditBottomNavBar(currentSelectedTab) { selected ->
+                navController.navigate(selected.asRoute()) {
+                    launchSingleTop = true
+                    restoreState = true
 
-                BottomNavigationItem(
-                    selected = false,
-                    onClick = {},
-                    icon = {},
-                    label = {
-                        Text("Chats")
+                    navController.graph.findStartDestination().route?.let {
+                        popUpTo(it) {
+                            saveState = true
+                        }
                     }
-                )
-
-                BottomNavigationItem(
-                    selected = false,
-                    onClick = {},
-                    icon = {},
-                    label = {
-                        Text("Create")
-                    }
-                )
-
-                BottomNavigationItem(
-                    selected = false,
-                    onClick = {},
-                    icon = {},
-                    label = {
-                        Text("Notification")
-                    }
-                )
-                BottomNavigationItem(
-                    selected = false,
-                    onClick = {},
-                    icon = {},
-                    label = {
-                        Text("Profile")
-                    }
-                )
+                }
             }
         }
     ) {
         AppNavigation(
             navController = navController,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize().padding(it)
         )
     }
 }
