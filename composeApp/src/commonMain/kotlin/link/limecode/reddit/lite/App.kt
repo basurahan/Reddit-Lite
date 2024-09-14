@@ -2,7 +2,6 @@ package link.limecode.reddit.lite
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -10,12 +9,17 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
 import link.limecode.reddit.lite.ui.components.RedditBottomNavBar
+import link.limecode.reddit.lite.ui.components.RedditDesktopAppBar
+import link.limecode.reddit.lite.ui.theme.LocalPlatformTarget
+import link.limecode.reddit.lite.ui.theme.RedditLiteTheme
+import link.limecode.reddit.lite.util.isDesktop
+import link.limecode.reddit.lite.util.isMobile
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
+    RedditLiteTheme {
         Root()
     }
 }
@@ -24,10 +28,16 @@ fun App() {
 fun Root() {
     val navController = rememberNavController()
     val currentSelectedTab by navController.currentTabAsState()
+    val platform = LocalPlatformTarget.current
 
     Scaffold(
+        topBar = {
+            if (currentSelectedTab != null && platform.target.isDesktop()) {
+                RedditDesktopAppBar()
+            }
+        },
         bottomBar = {
-            if (currentSelectedTab != null) {
+            if (currentSelectedTab != null && platform.target.isMobile()) {
                 RedditBottomNavBar(currentSelectedTab!!) { selected ->
                     navController.navigate(selected.asRoute()) {
                         launchSingleTop = true

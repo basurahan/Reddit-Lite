@@ -23,6 +23,8 @@ ksp = "2.0.10-1.0.24"
 kotlinx-datetime = "0.6.1"
 build-konfig = "0.15.2"
 kmp-compose-navigation = "2.7.0-alpha07"
+coil3 = "3.0.0-alpha06"
+ktor-client = "3.0.0-wasm2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -56,6 +58,11 @@ ktor-server-auth = { module = "io.ktor:ktor-server-auth", version.ref = "ktor" }
 ktor-server-auth-jwt = { module = "io.ktor:ktor-server-auth-jwt", version.ref = "ktor" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
 kmp-compose-navigation = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "kmp-compose-navigation" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
+coil-compose-core = { module = "io.coil-kt.coil3:coil-compose-core", version.ref = "coil3" }
+coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "coil3" }
+coil-mp = { module = "io.coil-kt.coil3:coil", version.ref = "coil3" }
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor-client" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

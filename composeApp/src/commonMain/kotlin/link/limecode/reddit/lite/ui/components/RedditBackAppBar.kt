@@ -9,6 +9,8 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import link.limecode.reddit.lite.ui.theme.RedditLiteTheme
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun RedditBackAppBar(title: String, onNavigateBack: () -> Unit) {
@@ -24,4 +26,12 @@ fun RedditBackAppBar(title: String, onNavigateBack: () -> Unit) {
         },
         windowInsets = WindowInsets.statusBars
     )
+}
+
+@Composable
+@Preview
+private fun PreviewRedditBackAppBar() {
+    RedditLiteTheme {
+        RedditBackAppBar("Sample") {}
+    }
 }

@@ -9,7 +9,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import link.limecode.reddit.lite.ui.components.RedditAppBar
+import link.limecode.reddit.lite.ui.components.RedditMobileAppBar
+import link.limecode.reddit.lite.ui.theme.LocalPlatformTarget
+import link.limecode.reddit.lite.util.isMobile
 import org.jetbrains.compose.resources.stringResource
 import redditlite.composeapp.generated.resources.Res
 import redditlite.composeapp.generated.resources.login_screen_label
@@ -19,8 +21,9 @@ import redditlite.composeapp.generated.resources.profile_tab_label
 fun ProfileTabScreen(
     navToLogin: () -> Unit
 ) {
+    val platform = LocalPlatformTarget.current
     Scaffold(
-        topBar = { RedditAppBar(stringResource(Res.string.profile_tab_label)) },
+        topBar = { if (platform.target.isMobile()) RedditMobileAppBar(stringResource(Res.string.profile_tab_label)) },
         modifier = Modifier.fillMaxSize()
     ) {
         Column(

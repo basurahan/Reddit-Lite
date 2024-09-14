@@ -12,12 +12,12 @@ import androidx.compose.material.icons.outlined.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import link.limecode.reddit.lite.HomeTabs
+import link.limecode.reddit.lite.ui.theme.RedditLiteTheme
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import redditlite.composeapp.generated.resources.*
 
 @Composable
-@Preview
 fun RedditBottomNavBar(
     currentSelectedTab: HomeTabs,
     onTabSelected: (HomeTabs) -> Unit
@@ -100,5 +100,13 @@ fun RedditBottomNavBar(
                 Text(stringResource(Res.string.profile_tab_label))
             }
         )
+    }
+}
+
+@Composable
+@Preview
+private fun PreviewRedditBottomNavBar() {
+    RedditLiteTheme {
+        RedditBottomNavBar(HomeTabs.CREATE) {}
     }
 }
