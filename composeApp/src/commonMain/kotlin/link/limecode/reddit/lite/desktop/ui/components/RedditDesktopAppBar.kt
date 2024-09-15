@@ -14,7 +14,6 @@ import link.limecode.reddit.lite.components.Logo
 import link.limecode.reddit.lite.desktop.ui.theme.DesktopTheme
 import link.limecode.reddit.lite.desktop.ui.theme.LocalCustomColors
 import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import redditlite.composeapp.generated.resources.Res
@@ -23,7 +22,12 @@ import redditlite.composeapp.generated.resources.notifications_outline
 import redditlite.composeapp.generated.resources.person_outline
 
 @Composable
-fun RedditDesktopAppBar() {
+fun RedditDesktopAppBar(
+    navToChat: () -> Unit,
+    navToNotification: () -> Unit,
+    navToProfile: () -> Unit,
+    navToHome: () -> Unit
+) {
     Surface(
         modifier = Modifier.height(65.dp).fillMaxWidth(),
         color = MaterialTheme.colors.surface,
@@ -35,23 +39,25 @@ fun RedditDesktopAppBar() {
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Logo(40.dp)
+            Logo(40.dp) { navToHome() }
             Spacer(Modifier.weight(1f).fillMaxHeight())
-            DeskTopAppBarMenuItem(Res.drawable.chatbubble_ellipses_outline)
+            DeskTopAppBarMenuItem(Res.drawable.chatbubble_ellipses_outline) { navToChat() }
             Spacer(Modifier.width(16.dp).fillMaxHeight())
-            DeskTopAppBarMenuItem(Res.drawable.notifications_outline)
+            DeskTopAppBarMenuItem(Res.drawable.notifications_outline) { navToNotification() }
             Spacer(Modifier.width(16.dp).fillMaxHeight())
-            DeskTopAppBarMenuItem(Res.drawable.person_outline)
+            DeskTopAppBarMenuItem(Res.drawable.person_outline) {
+                navToProfile()
+            }
         }
     }
 }
 
 @Composable
-fun DeskTopAppBarMenuItem(resource: DrawableResource) {
+fun DeskTopAppBarMenuItem(resource: DrawableResource, onClick: () -> Unit) {
     val customColors = LocalCustomColors.current
     
     IconButton(
-        onClick = {},
+        onClick = { onClick() },
         modifier = Modifier.size(width = 40.dp, height = 40.dp)
             .background(color = customColors.onSurfaceButtonBackground, shape = CircleShape)
             .border(width = 1.dp, color = Color.LightGray, shape = CircleShape)
@@ -68,6 +74,11 @@ fun DeskTopAppBarMenuItem(resource: DrawableResource) {
 @Preview
 private fun PreviewRedditDesktopAppBar() {
     DesktopTheme {
-        RedditDesktopAppBar()
+        RedditDesktopAppBar(
+            navToChat = {},
+            navToHome = {},
+            navToNotification = {},
+            navToProfile = {}
+        )
     }
 }

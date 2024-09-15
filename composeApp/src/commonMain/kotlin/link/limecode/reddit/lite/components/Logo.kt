@@ -1,6 +1,7 @@
 package link.limecode.reddit.lite.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -18,9 +19,9 @@ import redditlite.composeapp.generated.resources.app_name
 import redditlite.composeapp.generated.resources.compose_multiplatform
 
 @Composable
-fun Logo(height: Dp) {
+fun Logo(height: Dp, onClick: () -> Unit) {
     Row(
-        modifier = Modifier.wrapContentHeight(),
+        modifier = Modifier.wrapContentHeight().clickable { onClick() },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
@@ -41,6 +42,6 @@ fun Logo(height: Dp) {
 @Preview
 fun PreviewLogo() {
     MobileTheme {
-        Logo(40.dp)
+        Logo(40.dp) {}
     }
 }
