@@ -6,18 +6,13 @@ import androidx.compose.material.Typography
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import link.limecode.reddit.lite.client.getPlatform
 import org.jetbrains.compose.resources.Font
 import redditlite.composeapp.generated.resources.*
-
-val LocalPlatformTarget = staticCompositionLocalOf { getPlatform() }
 
 private val LightColors = lightColors(
     primary = primaryColor,
@@ -35,8 +30,6 @@ private val DarkColors = darkColors(
 
 @Composable
 fun MobileTheme(isDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    val platform = remember { getPlatform() }
-
     val colors = if (isDarkTheme) {
         DarkColors
     } else {
@@ -146,11 +139,9 @@ fun MobileTheme(isDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composab
         )
     }
 
-    CompositionLocalProvider(LocalPlatformTarget provides platform) {
-        MaterialTheme(
-            colors = colors,
-            content = content,
-            typography = typography
-        )
-    }
+    MaterialTheme(
+        colors = colors,
+        content = content,
+        typography = typography
+    )
 }

@@ -11,7 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import link.limecode.reddit.lite.mobile.MobileNavigation
 import link.limecode.reddit.lite.mobile.asRoute
 import link.limecode.reddit.lite.mobile.currentTabAsState
-import link.limecode.reddit.lite.mobile.ui.components.RedditBottomNavBar
+import link.limecode.reddit.lite.mobile.ui.components.RedditMobileBottomNavBar
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -23,7 +23,7 @@ fun MobileRoot() {
     Scaffold(
         bottomBar = {
             if (currentSelectedTab != null) {
-                RedditBottomNavBar(currentSelectedTab!!) { selected ->
+                RedditMobileBottomNavBar(currentSelectedTab!!) { selected ->
                     navController.navigate(selected.asRoute()) {
                         launchSingleTop = true
                         restoreState = true
