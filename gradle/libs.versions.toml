@@ -26,6 +26,7 @@ kmp-compose-navigation = "2.7.0-alpha07"
 coil3 = "3.0.0-alpha06"
 ktor-client = "3.0.0-wasm2"
 coroutine = "1.9.0"
+kmp-viewmodel = "2.8.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -69,6 +70,7 @@ ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.r
 ktor-client-js = { group = "io.ktor", name = "ktor-client-js", version.ref = "ktor-client" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutine" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutine" }
+kmp-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "kmp-viewmodel" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
