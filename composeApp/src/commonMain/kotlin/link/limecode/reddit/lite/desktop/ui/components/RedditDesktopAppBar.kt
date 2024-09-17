@@ -1,38 +1,44 @@
 package link.limecode.reddit.lite.desktop.ui.components
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import link.limecode.reddit.lite.components.Logo
 import link.limecode.reddit.lite.desktop.ui.theme.DesktopTheme
-import link.limecode.reddit.lite.desktop.ui.theme.LocalCustomColors
 import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import redditlite.composeapp.generated.resources.Res
-import redditlite.composeapp.generated.resources.chatbubble_ellipses_outline
-import redditlite.composeapp.generated.resources.notifications_outline
-import redditlite.composeapp.generated.resources.person_outline
+import redditlite.composeapp.generated.resources.*
 
+@ExperimentalMaterialApi
 @Composable
 fun RedditDesktopAppBar(
     navToChat: () -> Unit,
     navToNotification: () -> Unit,
     navToProfile: () -> Unit,
-    navToHome: () -> Unit
+    navToHome: () -> Unit,
+    navToLogin: () -> Unit
 ) {
     Surface(
-        modifier = Modifier.height(65.dp).fillMaxWidth(),
-        color = MaterialTheme.colors.surface,
-        contentColor = MaterialTheme.colors.onSurface,
-        elevation = AppBarDefaults.TopAppBarElevation
+        modifier = Modifier.height(56.dp)
+            .fillMaxWidth()
+            .drawBehind {
+                drawLine(
+                    color = Color.Gray,
+                    start = Offset(0f, size.height),
+                    end = Offset(size.width, size.height)
+                )
+            },
+        color = MaterialTheme.colors.surface
     ) {
         Row(
             modifier = Modifier.fillMaxHeight().fillMaxWidth().padding(horizontal = 16.dp),
@@ -45,8 +51,24 @@ fun RedditDesktopAppBar(
             Spacer(Modifier.width(16.dp).fillMaxHeight())
             DeskTopAppBarMenuItem(Res.drawable.notifications_outline) { navToNotification() }
             Spacer(Modifier.width(16.dp).fillMaxHeight())
-            DeskTopAppBarMenuItem(Res.drawable.person_outline) {
-                navToProfile()
+
+            Box(modifier = Modifier.wrapContentSize()) {
+                val profileMenuExpanded = remember { mutableStateOf(false) }
+                DeskTopAppBarMenuItem(Res.drawable.person_outline) {
+                    profileMenuExpanded.value = true
+                    //navToProfile()
+                }
+
+                DropdownMenu(
+                    expanded = profileMenuExpanded.value,
+                    onDismissRequest = {
+                        profileMenuExpanded.value = false
+                    }
+                ) {
+                    DropdownMenuItem(onClick = { navToLogin() }) {
+                        Text(stringResource(Res.string.login_screen_label))
+                    }
+                }
             }
         }
     }
@@ -54,13 +76,9 @@ fun RedditDesktopAppBar(
 
 @Composable
 fun DeskTopAppBarMenuItem(resource: DrawableResource, onClick: () -> Unit) {
-    val customColors = LocalCustomColors.current
-    
     IconButton(
         onClick = { onClick() },
         modifier = Modifier.size(width = 40.dp, height = 40.dp)
-            .background(color = customColors.onSurfaceButtonBackground, shape = CircleShape)
-            .border(width = 1.dp, color = Color.LightGray, shape = CircleShape)
     ) {
         Icon(
             imageVector = vectorResource(resource),
@@ -70,6 +88,7 @@ fun DeskTopAppBarMenuItem(resource: DrawableResource, onClick: () -> Unit) {
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 @Preview
 private fun PreviewRedditDesktopAppBar() {
@@ -78,7 +97,8 @@ private fun PreviewRedditDesktopAppBar() {
             navToChat = {},
             navToHome = {},
             navToNotification = {},
-            navToProfile = {}
+            navToProfile = {},
+            navToLogin = {}
         )
     }
 }
