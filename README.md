@@ -30,7 +30,7 @@ Backend MVP Features
 3. Web (WASM) - removed
 4. Server (JVM) - Ktor
 
-## iOS Skeleton Done :-)
+## :sparkling_heart: iOS Skeleton Done :sparkling_heart:
 ![ios-skeleton](./assets/ios-skeleton.gif)
 
 ## Challenges
