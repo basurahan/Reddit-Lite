@@ -9,17 +9,37 @@
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
-		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		1874E6E82C9BFE3400A283D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */; };
+		1874E6EA2C9BFF2600A283D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */; };
+		1874E6F02C9C0EC500A283D6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6EF2C9C0EC500A283D6 /* UIViewExtension.swift */; };
+		1874E6F22C9C102100A283D6 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6F12C9C102100A283D6 /* UIViewControllerExtension.swift */; };
+		1874E6F72C9C122300A283D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6F62C9C122300A283D6 /* LoginViewController.swift */; };
+		1874E6F92C9C144900A283D6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6F82C9C144900A283D6 /* HomeViewController.swift */; };
+		1874E7002C9C14C900A283D6 /* HomeHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6FF2C9C14C900A283D6 /* HomeHomeViewController.swift */; };
+		1874E7022C9C14F600A283D6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E7012C9C14F600A283D6 /* ChatViewController.swift */; };
+		1874E7052C9C154400A283D6 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E7042C9C154400A283D6 /* CreateViewController.swift */; };
+		1874E7072C9C156E00A283D6 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E7062C9C156E00A283D6 /* NotificationViewController.swift */; };
+		1874E7092C9C15A200A283D6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E7082C9C15A200A283D6 /* ProfileViewController.swift */; };
+		1874E70D2C9C23BE00A283D6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E70C2C9C23BE00A283D6 /* ProfileView.swift */; };
 		463C6505D2B31C8830F0489A /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8121F484C6497A23D6FC3A17 /* Pods_iosApp.framework */; };
-		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1874E6EF2C9C0EC500A283D6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		1874E6F12C9C102100A283D6 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		1874E6F62C9C122300A283D6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1874E6F82C9C144900A283D6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1874E6FF2C9C14C900A283D6 /* HomeHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHomeViewController.swift; sourceTree = "<group>"; };
+		1874E7012C9C14F600A283D6 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		1874E7042C9C154400A283D6 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		1874E7062C9C156E00A283D6 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		1874E7082C9C15A200A283D6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1874E70C2C9C23BE00A283D6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8121F484C6497A23D6FC3A17 /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E702D32857D576C4BDA4498 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -52,8 +72,96 @@
 				9E702D32857D576C4BDA4498 /* Pods-iosApp.debug.xcconfig */,
 				B521FAEED3D5D958CBE6336B /* Pods-iosApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		1874E6E32C9BFD8C00A283D6 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */,
+				1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		1874E6EE2C9C0E2D00A283D6 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				1874E6EF2C9C0EC500A283D6 /* UIViewExtension.swift */,
+				1874E6F12C9C102100A283D6 /* UIViewControllerExtension.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		1874E6F32C9C11D700A283D6 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				1874E6F52C9C11F700A283D6 /* Home */,
+				1874E6F42C9C11E600A283D6 /* Login */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		1874E6F42C9C11E600A283D6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1874E6F62C9C122300A283D6 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		1874E6F52C9C11F700A283D6 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1874E6FE2C9C14B800A283D6 /* Profile */,
+				1874E6FD2C9C14B200A283D6 /* Notification */,
+				1874E6FC2C9C14AC00A283D6 /* Create */,
+				1874E6FB2C9C14A700A283D6 /* Chat */,
+				1874E6FA2C9C149D00A283D6 /* Home */,
+				1874E6F82C9C144900A283D6 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1874E6FA2C9C149D00A283D6 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1874E6FF2C9C14C900A283D6 /* HomeHomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1874E6FB2C9C14A700A283D6 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				1874E7012C9C14F600A283D6 /* ChatViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		1874E6FC2C9C14AC00A283D6 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				1874E7042C9C154400A283D6 /* CreateViewController.swift */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		1874E6FD2C9C14B200A283D6 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				1874E7062C9C156E00A283D6 /* NotificationViewController.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		1874E6FE2C9C14B800A283D6 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				1874E7082C9C15A200A283D6 /* ProfileViewController.swift */,
+				1874E70C2C9C23BE00A283D6 /* ProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		3323D3D225D967A26D1CA02A /* Frameworks */ = {
@@ -85,10 +193,11 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				1874E6F32C9C11D700A283D6 /* Pages */,
+				1874E6EE2C9C0E2D00A283D6 /* Util */,
+				1874E6E32C9BFD8C00A283D6 /* Supporting */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
-				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
-				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 			);
 			path = iosApp;
@@ -127,6 +236,7 @@
 				TargetAttributes = {
 					7555FF7A242A565900829871 = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1540;
 					};
 				};
 			};
@@ -190,8 +300,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
-				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				1874E7052C9C154400A283D6 /* CreateViewController.swift in Sources */,
+				1874E70D2C9C23BE00A283D6 /* ProfileView.swift in Sources */,
+				1874E7072C9C156E00A283D6 /* NotificationViewController.swift in Sources */,
+				1874E7002C9C14C900A283D6 /* HomeHomeViewController.swift in Sources */,
+				1874E6F72C9C122300A283D6 /* LoginViewController.swift in Sources */,
+				1874E6E82C9BFE3400A283D6 /* AppDelegate.swift in Sources */,
+				1874E6EA2C9BFF2600A283D6 /* SceneDelegate.swift in Sources */,
+				1874E7092C9C15A200A283D6 /* ProfileViewController.swift in Sources */,
+				1874E6F22C9C102100A283D6 /* UIViewControllerExtension.swift in Sources */,
+				1874E6F02C9C0EC500A283D6 /* UIViewExtension.swift in Sources */,
+				1874E6F92C9C144900A283D6 /* HomeViewController.swift in Sources */,
+				1874E7022C9C14F600A283D6 /* ChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,17 +439,20 @@
 			baseConfigurationReference = 9E702D32857D576C4BDA4498 /* Pods-iosApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -340,17 +463,19 @@
 			baseConfigurationReference = B521FAEED3D5D958CBE6336B /* Pods-iosApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
