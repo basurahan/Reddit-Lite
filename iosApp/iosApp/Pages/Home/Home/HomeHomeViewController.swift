@@ -8,4 +8,9 @@
 
 import UIKit
 
-class HomeHomeViewController: UIViewController {}
+class HomeHomeViewController: UIViewController {
+    
+    override func loadView() {
+        self.view = HomeHomeView()
+    }
+}

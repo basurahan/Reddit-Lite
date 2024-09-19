@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  CreateView.swift
 //  iosApp
 //
 //  Created by Apple on 9/19/24.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ProfileView: UIView {
+class CreateView: UIView {
 
     lazy var button: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Create", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -43,9 +43,9 @@ class ProfileView: UIView {
 import SwiftUI
 
 @available(iOS 13, *)
-struct ProfileViewPreview: PreviewProvider {
+struct CreateViewPreview: PreviewProvider {
     static var previews: some View {
-        ProfileView().showPreview()
+        CreateView().showPreview()
     }
 }
 #endif

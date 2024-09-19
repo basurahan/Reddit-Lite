@@ -8,4 +8,9 @@
 
 import UIKit
 
-class CreateViewController: UIViewController {}
+class CreateViewController: UIViewController {
+    
+    override func loadView() {
+        self.view = CreateView()
+    }
+}

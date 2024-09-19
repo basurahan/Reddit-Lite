@@ -8,4 +8,9 @@
 
 import UIKit
 
-class ChatViewController: UIViewController {}
+class ChatViewController: UIViewController {
+    
+    override func loadView() {
+        self.view = ChatView()
+    }
+}

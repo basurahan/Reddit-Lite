@@ -8,4 +8,9 @@
 
 import UIKit
 
-class NotificationViewController: UIViewController {}
+class NotificationViewController: UIViewController {
+    
+    override func loadView() {
+        self.view = NotificationView()
+    }
+}

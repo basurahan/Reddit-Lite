@@ -21,6 +21,10 @@
 		1874E7072C9C156E00A283D6 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E7062C9C156E00A283D6 /* NotificationViewController.swift */; };
 		1874E7092C9C15A200A283D6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E7082C9C15A200A283D6 /* ProfileViewController.swift */; };
 		1874E70D2C9C23BE00A283D6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E70C2C9C23BE00A283D6 /* ProfileView.swift */; };
+		1874E70F2C9C4A4C00A283D6 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E70E2C9C4A4C00A283D6 /* NotificationView.swift */; };
+		1874E7112C9C4A9800A283D6 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E7102C9C4A9800A283D6 /* CreateView.swift */; };
+		1874E7132C9C4AB900A283D6 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E7122C9C4AB900A283D6 /* ChatView.swift */; };
+		1874E7152C9C4AE800A283D6 /* HomeHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E7142C9C4AE800A283D6 /* HomeHomeView.swift */; };
 		463C6505D2B31C8830F0489A /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8121F484C6497A23D6FC3A17 /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +43,10 @@
 		1874E7062C9C156E00A283D6 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		1874E7082C9C15A200A283D6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1874E70C2C9C23BE00A283D6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		1874E70E2C9C4A4C00A283D6 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		1874E7102C9C4A9800A283D6 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
+		1874E7122C9C4AB900A283D6 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		1874E7142C9C4AE800A283D6 /* HomeHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHomeView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8121F484C6497A23D6FC3A17 /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				1874E6FF2C9C14C900A283D6 /* HomeHomeViewController.swift */,
+				1874E7142C9C4AE800A283D6 /* HomeHomeView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -135,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				1874E7012C9C14F600A283D6 /* ChatViewController.swift */,
+				1874E7122C9C4AB900A283D6 /* ChatView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -143,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				1874E7042C9C154400A283D6 /* CreateViewController.swift */,
+				1874E7102C9C4A9800A283D6 /* CreateView.swift */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -151,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				1874E7062C9C156E00A283D6 /* NotificationViewController.swift */,
+				1874E70E2C9C4A4C00A283D6 /* NotificationView.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -303,10 +315,14 @@
 				1874E7052C9C154400A283D6 /* CreateViewController.swift in Sources */,
 				1874E70D2C9C23BE00A283D6 /* ProfileView.swift in Sources */,
 				1874E7072C9C156E00A283D6 /* NotificationViewController.swift in Sources */,
+				1874E70F2C9C4A4C00A283D6 /* NotificationView.swift in Sources */,
+				1874E7112C9C4A9800A283D6 /* CreateView.swift in Sources */,
 				1874E7002C9C14C900A283D6 /* HomeHomeViewController.swift in Sources */,
 				1874E6F72C9C122300A283D6 /* LoginViewController.swift in Sources */,
+				1874E7132C9C4AB900A283D6 /* ChatView.swift in Sources */,
 				1874E6E82C9BFE3400A283D6 /* AppDelegate.swift in Sources */,
 				1874E6EA2C9BFF2600A283D6 /* SceneDelegate.swift in Sources */,
+				1874E7152C9C4AE800A283D6 /* HomeHomeView.swift in Sources */,
 				1874E7092C9C15A200A283D6 /* ProfileViewController.swift in Sources */,
 				1874E6F22C9C102100A283D6 /* UIViewControllerExtension.swift in Sources */,
 				1874E6F02C9C0EC500A283D6 /* UIViewExtension.swift in Sources */,

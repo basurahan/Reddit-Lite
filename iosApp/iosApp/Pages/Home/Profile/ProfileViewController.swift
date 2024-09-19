@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController {
     }
     
     override func loadView() {
-        view = customView
+        self.view = customView
         customView.button.addTarget(self, action: #selector(onLoginClick), for: .touchUpInside)
     }
     

@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  ChatView.swift
 //  iosApp
 //
 //  Created by Apple on 9/19/24.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ProfileView: UIView {
+class ChatView: UIView {
 
     lazy var button: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Chat", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -43,9 +43,9 @@ class ProfileView: UIView {
 import SwiftUI
 
 @available(iOS 13, *)
-struct ProfileViewPreview: PreviewProvider {
+struct ChatViewPreview: PreviewProvider {
     static var previews: some View {
-        ProfileView().showPreview()
+        ChatView().showPreview()
     }
 }
 #endif

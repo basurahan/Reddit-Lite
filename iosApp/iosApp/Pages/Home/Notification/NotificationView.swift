@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  NotificationView.swift
 //  iosApp
 //
 //  Created by Apple on 9/19/24.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ProfileView: UIView {
+class NotificationView: UIView {
 
     lazy var button: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Notification", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -43,9 +43,9 @@ class ProfileView: UIView {
 import SwiftUI
 
 @available(iOS 13, *)
-struct ProfileViewPreview: PreviewProvider {
+struct NotificationViewPreview: PreviewProvider {
     static var previews: some View {
-        ProfileView().showPreview()
+        NotificationView().showPreview()
     }
 }
 #endif
