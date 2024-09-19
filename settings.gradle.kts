@@ -1,45 +1,20 @@
-rootProject.name = "RedditLite"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
 pluginManagement {
     repositories {
-        google {
-            mavenContent {
-                includeGroupAndSubgroups("androidx")
-                includeGroupAndSubgroups("com.android")
-                includeGroupAndSubgroups("com.google")
-            }
-        }
-        mavenCentral()
+        google()
         gradlePluginPortal()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
-        maven( "https://androidx.dev/storage/compose-compiler/repository")
-        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
-        maven("https://maven.pkg.jetbrains.space/public/p/ktor/eap")
-        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
+        mavenCentral()
     }
 }
 
 dependencyResolutionManagement {
     repositories {
-        google {
-            mavenContent {
-                includeGroupAndSubgroups("androidx")
-                includeGroupAndSubgroups("com.android")
-                includeGroupAndSubgroups("com.google")
-            }
-        }
+        google()
         mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
-        maven( "https://androidx.dev/storage/compose-compiler/repository")
-        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
-        maven("https://maven.pkg.jetbrains.space/public/p/ktor/eap")
-        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
     }
 }
 
-include(":composeApp")
-include(":server")
+rootProject.name = "Reddit_Lite"
+include(":androidApp")
 include(":shared")
+include(":backendApp")
