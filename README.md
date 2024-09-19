@@ -30,6 +30,9 @@ Backend MVP Features
 3. Web (WASM) - removed
 4. Server (JVM) - Ktor
 
+## iOS Skeleton Done :-)
+![ios-skeleton](./assets/ios-skeleton.gif)
+
 ## Challenges
 
 1. The navigation in the WASM JS target for Compose is currently inadequate, as it does not support the back and forward
