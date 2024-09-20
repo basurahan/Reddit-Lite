@@ -13,6 +13,8 @@ android-app-compat = "1.7.0"
 android-material = "1.12.0"
 android-activity = "1.9.2"
 android-constraint-layout = "2.1.4"
+android-navigation = "2.8.1"
+android-vue-binder = "1.4.1"
 
 # jvm dep
 ktor-server = "2.3.12"
@@ -40,11 +42,14 @@ ktor-client-apache = { module = "io.ktor:ktor-client-apache5", version.ref = "kt
 ktor-koin = { module = "io.insert-koin:koin-ktor" }
 
 # android dep
-android-core = { group = "androidx.core", name = "core-ktx", version.ref = "android-core" }
-android-app-compat = { group = "androidx.appcompat", name = "appcompat", version.ref = "android-app-compat" }
-android-material = { group = "com.google.android.material", name = "material", version.ref = "android-material" }
-android-activity = { group = "androidx.activity", name = "activity", version.ref = "android-activity" }
-android-constraint-layout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "android-constraint-layout" }
+android-core = { module = "androidx.core:core-ktx", version.ref = "android-core" }
+android-app-compat = { module = "androidx.appcompat:appcompat", version.ref = "android-app-compat" }
+android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
+android-activity = { module = "androidx.activity:activity", version.ref = "android-activity" }
+android-constraint-layout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "android-constraint-layout" }
+android-fragment-navigation = { module = "androidx.navigation:navigation-fragment", version.ref = "android-navigation" }
+android-navigation-ui = { module = "androidx.navigation:navigation-ui", version.ref = "android-navigation" }
+android-vue-binder = { module = "com.github.basurahan:vue-binder", version.ref = "android-vue-binder" }
 
 [plugins]
 # android dep

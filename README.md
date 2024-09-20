@@ -33,6 +33,9 @@ Backend MVP Features
 ## :sparkling_heart: iOS Skeleton Done :sparkling_heart:
 ![ios-skeleton](./assets/ios-skeleton.gif)
 
+## :sparkling_heart: Android Skeleton Done :sparkling_heart:
+![android-skeleton](./assets/android-skeleton.gif)
+
 ## Challenges
 
 1. The navigation in the WASM JS target for Compose is currently inadequate, as it does not support the back and forward
