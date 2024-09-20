@@ -72,3 +72,8 @@ object Constants {
 1. Koin - dependency injection
 2. kotlinx-datetime - date and time utility
 3. kotlinx-serialization - serialization and deserialization
+
+## Running the Server
+```
+./gradlew :backendApp:run
+```
