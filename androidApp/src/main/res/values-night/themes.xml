@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
@@ -47,5 +48,25 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
+
+        <item name="textAppearanceDisplayLarge">@style/DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/DisplaySmall</item>
+
+        <item name="textAppearanceHeadlineLarge">@style/HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/HeadlineSmall</item>
+
+        <item name="textAppearanceTitleLarge">@style/TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TitleSmall</item>
+
+        <item name="textAppearanceBodyLarge">@style/BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/BodySmall</item>
+
+        <item name="textAppearanceLabelLarge">@style/LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/LabelSmall</item>
     </style>
 </resources>
