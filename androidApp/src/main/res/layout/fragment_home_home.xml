@@ -6,5 +6,6 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Home" />
+        android:layout_gravity="center"
+        android:text="@string/home" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

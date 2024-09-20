@@ -6,5 +6,6 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login Page" />
+        android:layout_gravity="center"
+        android:text="@string/login" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
