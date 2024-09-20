@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_tab"
+        android:icon="@drawable/ic_home_outline"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/chat_tab"
+        android:icon="@drawable/ic_chat_outline"
+        android:title="@string/chat" />
+    <item
+        android:id="@+id/create_tab"
+        android:icon="@drawable/ic_add_circle_outline"
+        android:title="@string/create" />
+    <item
+        android:id="@+id/notification_tab"
+        android:icon="@drawable/ic_notifications_outline"
+        android:title="@string/notifications" />
+    <item
+        android:id="@+id/profile_tab"
+        android:icon="@drawable/ic_person_outline"
+        android:title="@string/profile" />
+</menu>

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.multiplatform.android)
+    alias(libs.plugins.kotlin.multiplatform.serialization)
 }
 
 android {
@@ -45,4 +46,8 @@ dependencies {
     implementation(libs.android.app.compat)
     implementation(libs.android.material)
     implementation(libs.android.constraint.layout)
+    implementation(libs.android.fragment.navigation)
+    implementation(libs.android.navigation.ui)
+    implementation(libs.kotlin.multiplatform.serialization.json)
+    implementation(libs.android.vue.binder)
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Home</string>
+    <string name="chat">Chat</string>
+    <string name="create">Create</string>
+    <string name="notifications">Notifs</string>
+    <string name="profile">Profile</string>
+    <string name="login">Login</string>
+</resources>
