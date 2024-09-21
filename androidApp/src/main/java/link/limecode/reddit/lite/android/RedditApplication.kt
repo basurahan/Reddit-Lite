@@ -1,20 +1,18 @@
 package link.limecode.reddit.lite.android
 
 import android.app.Application
-import link.limecode.reddit.lite.android.di.appModule
+import link.limecode.reddit.lite.di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
 
 class RedditApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
 
-        startKoin {
+        initKoin {
             androidLogger()
             androidContext(this@RedditApplication)
-            modules(appModule)
         }
     }
 }
