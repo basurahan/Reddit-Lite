@@ -4,50 +4,48 @@ import androidx.navigation.NavController
 import androidx.navigation.createGraph
 import androidx.navigation.fragment.fragment
 import androidx.navigation.navigation
-import link.limecode.reddit.lite.android.navigation.params.home.ChatFragmentParam
-import link.limecode.reddit.lite.android.navigation.params.home.CreateFragmentParam
-import link.limecode.reddit.lite.android.navigation.params.home.HomeHomeFragmentParam
-import link.limecode.reddit.lite.android.navigation.params.home.NotificationFragmentParam
-import link.limecode.reddit.lite.android.navigation.params.home.ProfileFragmentParam
-import link.limecode.reddit.lite.android.navigation.params.home.tabs.ChatTabParam
-import link.limecode.reddit.lite.android.navigation.params.home.tabs.CreateTabParam
-import link.limecode.reddit.lite.android.navigation.params.home.tabs.HomeTabParam
-import link.limecode.reddit.lite.android.navigation.params.home.tabs.NotificationTabParam
-import link.limecode.reddit.lite.android.navigation.params.home.tabs.ProfileTabParam
-import link.limecode.reddit.lite.android.navigation.params.main.LoginFragmentParam
+import link.limecode.reddit.lite.android.navigation.destinations.home.ChatFragmentDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.CreateFragmentDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.HomeHomeFragmentDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.NotificationFragmentDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.ProfileFragmentDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.ChatTabDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.CreateTabDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.HomeTabDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.NotificationTabDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.ProfileTabDestination
 import link.limecode.reddit.lite.android.pages.home.chat.ChatFragment
 import link.limecode.reddit.lite.android.pages.home.create.CreateFragment
 import link.limecode.reddit.lite.android.pages.home.home.HomeHomeFragment
 import link.limecode.reddit.lite.android.pages.home.notification.NotificationFragment
 import link.limecode.reddit.lite.android.pages.home.profile.ProfileFragment
-import link.limecode.reddit.lite.android.pages.login.LoginFragment
 
 fun NavController.setupHomeGraph() {
     graph = createGraph(
-        startDestination = HomeTabParam
+        startDestination = HomeTabDestination
     ) {
-        navigation<HomeTabParam>(startDestination = HomeHomeFragmentParam) {
-            fragment<HomeHomeFragment, HomeHomeFragmentParam>()
+        navigation<HomeTabDestination>(startDestination = HomeHomeFragmentDestination) {
+            fragment<HomeHomeFragment, HomeHomeFragmentDestination>()
         }
 
-        navigation<ChatTabParam>(startDestination = ChatFragmentParam) {
-            fragment<ChatFragment, ChatFragmentParam>()
+        navigation<ChatTabDestination>(startDestination = ChatFragmentDestination) {
+            fragment<ChatFragment, ChatFragmentDestination>()
         }
 
-        navigation<CreateTabParam>(startDestination = CreateFragmentParam) {
-            fragment<CreateFragment, CreateFragmentParam>()
+        navigation<CreateTabDestination>(startDestination = CreateFragmentDestination) {
+            fragment<CreateFragment, CreateFragmentDestination>()
         }
 
-        navigation<NotificationTabParam>(startDestination = NotificationFragmentParam) {
-            fragment<NotificationFragment, NotificationFragmentParam>()
+        navigation<NotificationTabDestination>(startDestination = NotificationFragmentDestination) {
+            fragment<NotificationFragment, NotificationFragmentDestination>()
         }
 
-        navigation<NotificationTabParam>(startDestination = NotificationFragmentParam) {
-            fragment<NotificationFragment, NotificationFragmentParam>()
+        navigation<NotificationTabDestination>(startDestination = NotificationFragmentDestination) {
+            fragment<NotificationFragment, NotificationFragmentDestination>()
         }
 
-        navigation<ProfileTabParam>(startDestination = ProfileFragmentParam) {
-            fragment<ProfileFragment, ProfileFragmentParam>()
+        navigation<ProfileTabDestination>(startDestination = ProfileFragmentDestination) {
+            fragment<ProfileFragment, ProfileFragmentDestination>()
         }
     }
 }

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import link.limecode.reddit.lite.android.R
 import link.limecode.reddit.lite.android.databinding.FragmentProfileBinding
-import link.limecode.reddit.lite.android.navigation.params.main.LoginFragmentParam
+import link.limecode.reddit.lite.android.navigation.destinations.main.LoginFragmentDestination
 import link.limecode.vuebinder.FragmentViewBinding
 
 class ProfileFragment : FragmentViewBinding<FragmentProfileBinding>() {
@@ -22,7 +22,7 @@ class ProfileFragment : FragmentViewBinding<FragmentProfileBinding>() {
         with(viewBinding) {
             login.setOnClickListener {
                 requireActivity().findNavController(R.id.nav_host_fragment)
-                    .navigate(LoginFragmentParam)
+                    .navigate(LoginFragmentDestination)
             }
         }
     }

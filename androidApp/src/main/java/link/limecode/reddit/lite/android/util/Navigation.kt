@@ -11,11 +11,11 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import link.limecode.reddit.lite.android.R
-import link.limecode.reddit.lite.android.navigation.params.home.tabs.ChatTabParam
-import link.limecode.reddit.lite.android.navigation.params.home.tabs.CreateTabParam
-import link.limecode.reddit.lite.android.navigation.params.home.tabs.HomeTabParam
-import link.limecode.reddit.lite.android.navigation.params.home.tabs.NotificationTabParam
-import link.limecode.reddit.lite.android.navigation.params.home.tabs.ProfileTabParam
+import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.ChatTabDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.CreateTabDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.HomeTabDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.NotificationTabDestination
+import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.ProfileTabDestination
 import java.lang.ref.WeakReference
 import kotlin.reflect.KClass
 
@@ -51,7 +51,7 @@ fun BottomNavigationView.activate(navController: NavController) {
 
 private fun BottomNavigationView.updateState(destination: NavDestination) {
     when {
-        destination.hierarchy.any { it.route == HomeTabParam::class.qualifiedName } -> {
+        destination.hierarchy.any { it.route == HomeTabDestination::class.qualifiedName } -> {
             menu.forEach { item ->
                 if (item.itemId == R.id.home_tab) {
                     item.isChecked = true
@@ -59,7 +59,7 @@ private fun BottomNavigationView.updateState(destination: NavDestination) {
             }
         }
 
-        destination.hierarchy.any { it.route == ChatTabParam::class.qualifiedName } -> {
+        destination.hierarchy.any { it.route == ChatTabDestination::class.qualifiedName } -> {
             menu.forEach { item ->
                 if (item.itemId == R.id.chat_tab) {
                     item.isChecked = true
@@ -67,7 +67,7 @@ private fun BottomNavigationView.updateState(destination: NavDestination) {
             }
         }
 
-        destination.hierarchy.any { it.route == CreateTabParam::class.qualifiedName } -> {
+        destination.hierarchy.any { it.route == CreateTabDestination::class.qualifiedName } -> {
             menu.forEach { item ->
                 if (item.itemId == R.id.create_tab) {
                     item.isChecked = true
@@ -75,7 +75,7 @@ private fun BottomNavigationView.updateState(destination: NavDestination) {
             }
         }
 
-        destination.hierarchy.any { it.route == NotificationTabParam::class.qualifiedName } -> {
+        destination.hierarchy.any { it.route == NotificationTabDestination::class.qualifiedName } -> {
             menu.forEach { item ->
                 if (item.itemId == R.id.notification_tab) {
                     item.isChecked = true
@@ -83,7 +83,7 @@ private fun BottomNavigationView.updateState(destination: NavDestination) {
             }
         }
 
-        destination.hierarchy.any { it.route == ProfileTabParam::class.qualifiedName } -> {
+        destination.hierarchy.any { it.route == ProfileTabDestination::class.qualifiedName } -> {
             menu.forEach { item ->
                 if (item.itemId == R.id.profile_tab) {
                     item.isChecked = true
@@ -121,11 +121,11 @@ fun NavController.switchTab(route: KClass<out Any>): Boolean {
 
 private fun MenuItem.toRoute(): KClass<out Any> {
     return when (itemId) {
-        R.id.home_tab -> HomeTabParam::class
-        R.id.chat_tab -> ChatTabParam::class
-        R.id.create_tab -> CreateTabParam::class
-        R.id.notification_tab -> NotificationTabParam::class
-        R.id.profile_tab -> ProfileTabParam::class
+        R.id.home_tab -> HomeTabDestination::class
+        R.id.chat_tab -> ChatTabDestination::class
+        R.id.create_tab -> CreateTabDestination::class
+        R.id.notification_tab -> NotificationTabDestination::class
+        R.id.profile_tab -> ProfileTabDestination::class
         else -> error("Illegal State, tab not found")
     }
 }
