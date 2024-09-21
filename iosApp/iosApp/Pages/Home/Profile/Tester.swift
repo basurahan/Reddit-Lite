@@ -6,7 +6,7 @@
 //  Copyright © 2024 orgName. All rights reserved.
 //
 
-import shared
+/*import shared
 
 class Tester: Kotlinx_coroutines_coreFlowCollector {
     
@@ -24,4 +24,4 @@ class Tester: Kotlinx_coroutines_coreFlowCollector {
         // Call the completion handler to signal success
         completionHandler(nil)
     }
-}
+}*/

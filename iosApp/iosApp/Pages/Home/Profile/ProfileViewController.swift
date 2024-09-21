@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
     
     private let customView = ProfileView()
     private let viewModel = LoginViewModelHelper().getViewModel()
-    private let collector = Tester()
+    //private let collector = Tester()
     
     init(nibName: String?, bundle: Bundle?, loginClick: @escaping () -> Void) {
         self.loginClick = loginClick
@@ -30,25 +30,15 @@ class ProfileViewController: UIViewController {
     override func loadView() {
         self.view = customView
         customView.button.addTarget(self, action: #selector(onLoginClick), for: .touchUpInside)
-        
-        Task {
-            await bindViewModelData()
-        }
     }
     
     @objc func onLoginClick() {
         //loginClick()
-        viewModel.updateData()
+        viewModel.login(username: "dev.renz", password: "S@langa1998")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        viewModel.cancelData()
-    }
-    
-    private func bindViewModelData() async {
-        viewModel.data.collect(collector: collector) { item in
-            print("completion")
-        }
+        //viewModel.cancelData()
     }
 }

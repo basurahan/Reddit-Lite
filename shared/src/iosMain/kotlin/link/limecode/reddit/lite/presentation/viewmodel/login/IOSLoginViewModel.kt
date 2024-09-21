@@ -1,43 +1,49 @@
 package link.limecode.reddit.lite.presentation.viewmodel.login
 
+import io.ktor.client.plugins.ClientRequestException
+import io.ktor.client.plugins.RedirectResponseException
+import io.ktor.client.plugins.ServerResponseException
+import io.ktor.client.statement.bodyAsText
+import io.ktor.utils.io.errors.IOException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.domain.usecase.LoginUseCase
+import platform.Foundation.NSLog
 
 class IOSLoginViewModel(private val loginUseCase: LoginUseCase) {
-    private var job: Job? = null
     private var coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private var loginJob: Job? = null
 
-    var count = 0
-
-    private val _data = MutableSharedFlow<String>()
-    val data: SharedFlow<String>
-        get() = _data
-
-    fun updateData() {
-        if (job?.isActive == true) {
+    fun login(username: String, password: String) {
+        if (loginJob?.isActive == true) {
             return
         }
 
-        job = coroutineScope.launch {
-            for (i in 1..100) {
-                _data.emit("Hello ${count}")
-                count++
-                delay(2000)
+        loginJob = coroutineScope.launch {
+            val param = LoginUseCase.Param(
+                username = username,
+                password = password
+            )
+
+            try {
+                loginUseCase.invoke(param)
+                NSLog("success")
+            } catch (e: RedirectResponseException) {
+                NSLog(e.response.bodyAsText())
+            } catch (e: ClientRequestException) {
+                NSLog(e.response.bodyAsText())
+            } catch (e: ServerResponseException) {
+                NSLog(e.response.bodyAsText())
+            } catch (e: TimeoutCancellationException) {
+                NSLog("timeout")
+            } catch (e: IOException) {
+                NSLog("IOException")
             }
         }
-    }
-
-    fun cancelData() {
-        job?.cancel()
-        job = null
     }
 }
