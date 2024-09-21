@@ -39,13 +39,12 @@ kotlin {
             implementation(libs.kotlin.multiplatform.serialization.json)
             implementation(libs.kotlin.multiplatform.datetime)
             implementation(libs.kotlin.multiplatform.ktor.client)
-
             implementation(project.dependencies.platform(libs.kotlin.multiplatform.koin.bom))
             implementation(libs.kotlin.multiplatform.koin.core)
             implementation(libs.kotlin.multiplatform.ktor.client.plugin.contentnegotiation)
             implementation(libs.kotlin.multiplatform.ktor.client.serialization)
-
             implementation(libs.kotlin.multiplatform.ktor.client.plugin.logging)
+            implementation(libs.kotlin.multiplatform.coroutines.core)
         }
         androidMain.dependencies {
             implementation(libs.android.ktor.client.engine)
@@ -60,7 +59,7 @@ kotlin {
         iosMain.dependencies {
             implementation(libs.ios.ktor.client.engine)
             implementation(libs.kotlin.multiplatform.koin.core)
-
+            //implementation(libs.kotlin.multiplatform.coroutines.core)
             // TODO: logger for ios
         }
     }

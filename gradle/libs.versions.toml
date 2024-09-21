@@ -6,6 +6,7 @@ kotlin-supabase = "2.6.0"
 kotlin-datetime = "0.6.1"
 kotlin-koin = "3.5.3"
 kotlin-ktor-client = "2.3.12"
+kotlin-coroutines = "1.9.0"
 
 # android dep
 agp = "8.3.0"
@@ -16,7 +17,6 @@ android-activity = "1.9.2"
 android-constraint-layout = "2.1.4"
 android-navigation = "2.8.1"
 android-vue-binder = "1.4.1"
-android-coroutines = "1.9.0"
 android-lifecycle = "2.8.6"
 android-logger = "1.7.36"
 
@@ -36,6 +36,7 @@ kotlin-multiplatform-ktor-client = { module = "io.ktor:ktor-client-core", versio
 kotlin-multiplatform-ktor-client-plugin-contentnegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "kotlin-ktor-client" }
 kotlin-multiplatform-ktor-client-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "kotlin-ktor-client" }
 kotlin-multiplatform-ktor-client-plugin-logging = { module = "io.ktor:ktor-client-logging", version.ref = "kotlin-ktor-client" }
+kotlin-multiplatform-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
 
 # jvm dep
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor-server" }
@@ -59,7 +60,7 @@ android-fragment-navigation = { module = "androidx.navigation:navigation-fragmen
 android-navigation-ui = { module = "androidx.navigation:navigation-ui", version.ref = "android-navigation" }
 android-vue-binder = { module = "com.github.basurahan:vue-binder", version.ref = "android-vue-binder" }
 android-ktor-client-engine = { module = "io.ktor:ktor-client-okhttp", version.ref = "kotlin-ktor-client" }
-android-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "android-coroutines" }
+android-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
 android-koin = { module = "io.insert-koin:koin-android" }
 android-koin-viewmodel = { module = "io.insert-koin:koin-android" }
 android-lifecycle = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "android-lifecycle" }

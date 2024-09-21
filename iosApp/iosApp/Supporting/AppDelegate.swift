@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // init koin for depenpency injection
-        InitKoinKt.doInitKoin()
+        KoinUtilKt.doInitIOSKoin()
         
         return true
     }
