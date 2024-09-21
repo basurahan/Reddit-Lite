@@ -20,15 +20,18 @@ fun initKtorClient(engine: HttpClientEngine): HttpClient {
     return HttpClient(engine) {
         expectSuccess = true
 
+        // TODO: add platform implementation
         install(Logging) {
             level = LogLevel.ALL
         }
 
         install(DefaultRequest) {
             url(CLIENT_BASE_URL)
+            // TODO: proper way to set content
             headers.appendIfNameAbsent(HttpHeaders.ContentType, "application/json")
         }
 
+        // TODO: organize serializer module to a more maintainable way
         val module = SerializersModule {
             polymorphic(ApiResLogin::class) {
                 subclass(ApiResLogin.Success::class)
