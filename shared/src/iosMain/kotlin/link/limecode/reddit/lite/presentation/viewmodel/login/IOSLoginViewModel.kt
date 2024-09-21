@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -13,7 +14,7 @@ import link.limecode.reddit.lite.domain.usecase.LoginUseCase
 
 class IOSLoginViewModel(private val loginUseCase: LoginUseCase) {
     private var job: Job? = null
-    private var coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
+    private var coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     var count = 0
 
@@ -37,5 +38,6 @@ class IOSLoginViewModel(private val loginUseCase: LoginUseCase) {
 
     fun cancelData() {
         job?.cancel()
+        job = null
     }
 }
