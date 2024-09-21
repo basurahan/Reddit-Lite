@@ -42,6 +42,8 @@ kotlin {
 
             implementation(project.dependencies.platform(libs.kotlin.multiplatform.koin.bom))
             implementation(libs.kotlin.multiplatform.koin.core)
+            implementation(libs.kotlin.multiplatform.ktor.client.plugin.contentnegotiation)
+            implementation(libs.kotlin.multiplatform.ktor.client.serialization)
         }
         androidMain.dependencies {
             implementation(libs.android.ktor.client.engine)

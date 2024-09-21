@@ -13,4 +13,5 @@ object Constants {
     val JWT_CLAIM_USERNAME = ""
     val JWT_CLAIM_USER_ID = ""
     val FALLBACK_ERROR_MESSAGE = ""
+    val CLIENT_BASE_URL = "http://localhost:8080/"
 }
