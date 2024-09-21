@@ -57,4 +57,8 @@ dependencies {
     implementation(libs.android.koin.viewmodel)
 
     implementation(libs.android.coroutines)
+
+    implementation(libs.android.lifecycle)
+    implementation(libs.android.livedata)
+    implementation(libs.android.saved.state)
 }

@@ -17,6 +17,7 @@ android-constraint-layout = "2.1.4"
 android-navigation = "2.8.1"
 android-vue-binder = "1.4.1"
 android-coroutines = "1.9.0"
+android-lifecycle = "2.8.6"
 
 # jvm dep
 ktor-server = "2.3.12"
@@ -59,6 +60,9 @@ android-ktor-client-engine = { module = "io.ktor:ktor-client-okhttp", version.re
 android-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "android-coroutines" }
 android-koin = { module = "io.insert-koin:koin-android" }
 android-koin-viewmodel = { module = "io.insert-koin:koin-android" }
+android-lifecycle = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "android-lifecycle" }
+android-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "android-lifecycle" }
+android-saved-state = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "android-lifecycle" }
 
 # ios dep
 ios-ktor-client-engine = { module = "io.ktor:ktor-client-darwin", version.ref = "kotlin-ktor-client" }

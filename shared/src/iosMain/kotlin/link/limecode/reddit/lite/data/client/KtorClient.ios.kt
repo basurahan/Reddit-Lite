@@ -2,7 +2,7 @@ package link.limecode.reddit.lite.data.client
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.darwin.Darwin
-import link.limecode.reddit.lite.data.util.initKtorClient
+import link.limecode.reddit.lite.util.initKtorClient
 
 class IOSKtorClient : KtorClient {
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- START STAGING SERVER -->
+        <domain includeSubdomains="true">192.168.6.212</domain>
+        <!-- END STAGING SERVER -->
+
+        <!-- START LOCAL SERVER -->
+        <domain includeSubdomains="true">192.168.1.168</domain>
+        <!-- END LOCAL SERVER -->
+    </domain-config>
+</network-security-config>

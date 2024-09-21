@@ -48,6 +48,10 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.android.ktor.client.engine)
             implementation(libs.android.koin)
+
+            implementation(libs.android.lifecycle)
+            implementation(libs.android.livedata)
+            implementation(libs.android.saved.state)
         }
         iosMain.dependencies {
             implementation(libs.ios.ktor.client.engine)

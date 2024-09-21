@@ -1,10 +1,9 @@
-package link.limecode.reddit.lite.data.util
+package link.limecode.reddit.lite.util
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.util.appendIfNameAbsent
@@ -17,7 +16,7 @@ fun initKtorClient(engine: HttpClientEngine): HttpClient {
 
         install(DefaultRequest) {
             url(CLIENT_BASE_URL)
-            headers.appendIfNameAbsent(HttpHeaders.ContentType, ContentType.Application.Json.contentType)
+            headers.appendIfNameAbsent(HttpHeaders.ContentType, "application/json")
         }
 
         install(ContentNegotiation) {
