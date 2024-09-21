@@ -5,6 +5,7 @@ koltin-serialization = "1.7.1"
 kotlin-supabase = "2.6.0"
 kotlin-datetime = "0.6.1"
 kotlin-koin = "3.5.3"
+kotlin-ktor-client = "2.3.12"
 
 # android dep
 agp = "8.3.0"
@@ -15,6 +16,7 @@ android-activity = "1.9.2"
 android-constraint-layout = "2.1.4"
 android-navigation = "2.8.1"
 android-vue-binder = "1.4.1"
+android-coroutines = "1.9.0"
 
 # jvm dep
 ktor-server = "2.3.12"
@@ -28,6 +30,7 @@ kotlin-multiplatform-supabase-postgres = { module = "io.github.jan-tennert.supab
 kotlin-multiplatform-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlin-datetime" }
 kotlin-multiplatform-koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "kotlin-koin" }
 kotlin-multiplatform-koin-core = { module = "io.insert-koin:koin-core" }
+kotlin-multiplatform-ktor-client = { module = "io.ktor:ktor-client-core", version.ref = "kotlin-ktor-client" }
 
 # jvm dep
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor-server" }
@@ -50,6 +53,13 @@ android-constraint-layout = { module = "androidx.constraintlayout:constraintlayo
 android-fragment-navigation = { module = "androidx.navigation:navigation-fragment", version.ref = "android-navigation" }
 android-navigation-ui = { module = "androidx.navigation:navigation-ui", version.ref = "android-navigation" }
 android-vue-binder = { module = "com.github.basurahan:vue-binder", version.ref = "android-vue-binder" }
+android-ktor-client-engine = { module = "io.ktor:ktor-client-okhttp", version.ref = "kotlin-ktor-client" }
+android-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "android-coroutines" }
+android-koin = { module = "io.insert-koin:koin-android" }
+android-koin-viewmodel = { module = "io.insert-koin:koin-android" }
+
+# ios dep
+ios-ktor-client-engine = { module = "io.ktor:ktor-client-darwin", version.ref = "kotlin-ktor-client" }
 
 [plugins]
 # android dep

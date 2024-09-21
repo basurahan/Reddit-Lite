@@ -38,6 +38,18 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.kotlin.multiplatform.serialization.json)
             implementation(libs.kotlin.multiplatform.datetime)
+            implementation(libs.kotlin.multiplatform.ktor.client)
+
+            implementation(project.dependencies.platform(libs.kotlin.multiplatform.koin.bom))
+            implementation(libs.kotlin.multiplatform.koin.core)
+        }
+        androidMain.dependencies {
+            implementation(libs.android.ktor.client.engine)
+            implementation(libs.android.koin)
+        }
+        iosMain.dependencies {
+            implementation(libs.ios.ktor.client.engine)
+            implementation(libs.kotlin.multiplatform.koin.core)
         }
     }
 }
