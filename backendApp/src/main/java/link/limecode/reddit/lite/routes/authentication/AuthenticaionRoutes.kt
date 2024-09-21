@@ -1,11 +1,11 @@
 package link.limecode.reddit.lite.routes.authentication
 
-import io.ktor.http.*
-import io.ktor.server.application.*
-import io.ktor.server.request.*
+import io.ktor.http.HttpStatusCode
+import io.ktor.server.application.call
+import io.ktor.server.request.receiveNullable
 import io.ktor.server.resources.post
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
+import io.ktor.server.response.respond
+import io.ktor.server.routing.Route
 import link.limecode.reddit.lite.data.model.request.login.ApiReqLogin
 import link.limecode.reddit.lite.data.model.request.register.ApiReqRegister
 import link.limecode.reddit.lite.data.model.response.login.ApiResLogin
@@ -35,9 +35,12 @@ fun Route.configureAuthenticationRoutes() {
         val authUsecase = call.scope.get<AuthUsecase>()
 
         val requestData = runCatching { call.receiveNullable<ApiReqLogin>() }.getOrNull()
-        when (val result = requestData.loginHandler(authUsecase)) {
-            is ApiResLogin.Fail -> call.respond(status = HttpStatusCode.UnprocessableEntity, message = result)
-            is ApiResLogin.Success -> call.respond(result)
+        val result = requestData.loginHandler(authUsecase)
+        val status = when (result) {
+            is ApiResLogin.Fail -> HttpStatusCode.UnprocessableEntity
+            is ApiResLogin.Success -> HttpStatusCode.OK
         }
+
+        call.respond(status = status, message = result)
     }
 }

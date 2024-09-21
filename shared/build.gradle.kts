@@ -44,6 +44,8 @@ kotlin {
             implementation(libs.kotlin.multiplatform.koin.core)
             implementation(libs.kotlin.multiplatform.ktor.client.plugin.contentnegotiation)
             implementation(libs.kotlin.multiplatform.ktor.client.serialization)
+
+            implementation(libs.kotlin.multiplatform.ktor.client.plugin.logging)
         }
         androidMain.dependencies {
             implementation(libs.android.ktor.client.engine)
@@ -52,10 +54,14 @@ kotlin {
             implementation(libs.android.lifecycle)
             implementation(libs.android.livedata)
             implementation(libs.android.saved.state)
+
+            implementation(libs.android.ktor.logger)
         }
         iosMain.dependencies {
             implementation(libs.ios.ktor.client.engine)
             implementation(libs.kotlin.multiplatform.koin.core)
+
+            // TODO: logger for ios
         }
     }
 }
