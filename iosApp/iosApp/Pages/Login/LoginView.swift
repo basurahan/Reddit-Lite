@@ -10,18 +10,14 @@ import UIKit
 
 class LoginView: UIView {
     
-    lazy var tfUsername: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Username"
-        textField.borderStyle = .roundedRect
+    lazy var tfUsername: TextFieldWithValidation = {
+        let textField = TextFieldWithValidation("Username")
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
-    lazy var tfPassword: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Password"
-        textField.borderStyle = .roundedRect
+    lazy var tfPassword: TextFieldWithValidation = {
+        let textField = TextFieldWithValidation("Password")
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()

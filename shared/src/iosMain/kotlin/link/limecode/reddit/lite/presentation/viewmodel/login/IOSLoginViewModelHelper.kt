@@ -1,5 +1,6 @@
 package link.limecode.reddit.lite.presentation.viewmodel.login
 
+import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.RedirectResponseException
 import io.ktor.client.plugins.ServerResponseException
@@ -14,35 +15,42 @@ import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.data.model.response.login.ApiResLogin
 import link.limecode.reddit.lite.domain.usecase.LoginUseCase
+import link.limecode.reddit.lite.util.buildNSError
 import platform.Foundation.NSError
 import platform.Foundation.NSLog
 
-class IOSLoginViewModel(private val loginUseCase: LoginUseCase) {
+class IOSLoginViewModelHelper(private val loginUseCase: LoginUseCase) {
     private var coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private var loginJob: Job? = null
 
     fun login(param: LoginUseCase.Param, callBack: (ApiResLogin?, NSError?) -> Unit): Job {
-        return coroutineScope.launch {
+        loginJob = coroutineScope.launch {
             try {
                 val result = loginUseCase.invoke(param)
                 callBack(result, null)
-                NSLog("success")
             } catch (e: RedirectResponseException) {
-                callBack(null, NSError.errorWithDomain("MyErrorDomain", 1, null))
-                NSLog(e.response.bodyAsText())
+                callBack(null, e.buildNSError(e.response.bodyAsText()))
+                NSLog("spawned --> redirect")
             } catch (e: ClientRequestException) {
-                callBack(null, NSError.errorWithDomain("MyErrorDomain", 1, null))
-                NSLog(e.response.bodyAsText())
+                val item = e.response.body<ApiResLogin>()
+                callBack(item, null)
+                NSLog("spawned --> client")
             } catch (e: ServerResponseException) {
-                callBack(null, NSError.errorWithDomain("MyErrorDomain", 1, null))
-                NSLog(e.response.bodyAsText())
+                callBack(null, e.buildNSError(e.response.bodyAsText()))
+                NSLog("spawned --> server")
             } catch (e: TimeoutCancellationException) {
-                callBack(null, NSError.errorWithDomain("MyErrorDomain", 1, null))
-                NSLog("timeout")
+                callBack(null, e.buildNSError(e.message))
+                NSLog("spawned --> timeout")
             } catch (e: IOException) {
-                callBack(null, NSError.errorWithDomain("MyErrorDomain", 1, null))
-                NSLog("IOException")
+                callBack(null, e.buildNSError(e.message))
+                NSLog("spawned --> io")
             }
         }
+
+        return loginJob as Job
+    }
+
+    fun cancelCoroutines() {
+        loginJob?.cancel()
     }
 }

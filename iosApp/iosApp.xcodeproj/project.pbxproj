@@ -11,6 +11,8 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		181FA8412C9F2DE30036FE3F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181FA8402C9F2DD90036FE3F /* LoginViewModel.swift */; };
 		185EB5992C9F99B00050BEA7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185EB5982C9F99AA0050BEA7 /* LoginView.swift */; };
+		18657AF42CA0003C001EC16A /* Snackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18657AF32CA00029001EC16A /* Snackbar.swift */; };
+		18657AF62CA02034001EC16A /* TextFieldWithValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18657AF52CA0202C001EC16A /* TextFieldWithValidation.swift */; };
 		1874E6E82C9BFE3400A283D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */; };
 		1874E6EA2C9BFF2600A283D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */; };
 		1874E6F02C9C0EC500A283D6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6EF2C9C0EC500A283D6 /* UIViewExtension.swift */; };
@@ -35,6 +37,8 @@
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		181FA8402C9F2DD90036FE3F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		185EB5982C9F99AA0050BEA7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		18657AF32CA00029001EC16A /* Snackbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snackbar.swift; sourceTree = "<group>"; };
+		18657AF52CA0202C001EC16A /* TextFieldWithValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithValidation.swift; sourceTree = "<group>"; };
 		1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1874E6EF2C9C0EC500A283D6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -85,6 +89,15 @@
 				B521FAEED3D5D958CBE6336B /* Pods-iosApp.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		18657AF22CA0001B001EC16A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				18657AF52CA0202C001EC16A /* TextFieldWithValidation.swift */,
+				18657AF32CA00029001EC16A /* Snackbar.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		1874E6E32C9BFD8C00A283D6 /* Supporting */ = {
@@ -211,6 +224,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				18657AF22CA0001B001EC16A /* Components */,
 				1874E6F32C9C11D700A283D6 /* Pages */,
 				1874E6EE2C9C0E2D00A283D6 /* Util */,
 				1874E6E32C9BFD8C00A283D6 /* Supporting */,
@@ -322,11 +336,13 @@
 				1874E70D2C9C23BE00A283D6 /* ProfileView.swift in Sources */,
 				1874E7072C9C156E00A283D6 /* NotificationViewController.swift in Sources */,
 				1874E70F2C9C4A4C00A283D6 /* NotificationView.swift in Sources */,
+				18657AF62CA02034001EC16A /* TextFieldWithValidation.swift in Sources */,
 				1874E7112C9C4A9800A283D6 /* CreateView.swift in Sources */,
 				1874E7002C9C14C900A283D6 /* HomeHomeViewController.swift in Sources */,
 				1874E6F72C9C122300A283D6 /* LoginViewController.swift in Sources */,
 				1874E7132C9C4AB900A283D6 /* ChatView.swift in Sources */,
 				1874E6E82C9BFE3400A283D6 /* AppDelegate.swift in Sources */,
+				18657AF42CA0003C001EC16A /* Snackbar.swift in Sources */,
 				1874E6EA2C9BFF2600A283D6 /* SceneDelegate.swift in Sources */,
 				181FA8412C9F2DE30036FE3F /* LoginViewModel.swift in Sources */,
 				1874E7152C9C4AE800A283D6 /* HomeHomeView.swift in Sources */,
