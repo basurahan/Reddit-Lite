@@ -15,8 +15,6 @@ class ProfileViewController: UIViewController {
     var loginClick: (() -> Void)
     
     private let customView = ProfileView()
-    private let viewModel = LoginViewModelHelper().getViewModel()
-    //private let collector = Tester()
     
     init(nibName: String?, bundle: Bundle?, loginClick: @escaping () -> Void) {
         self.loginClick = loginClick
@@ -33,12 +31,6 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func onLoginClick() {
-        //loginClick()
-        viewModel.login(username: "dev.renz", password: "S@langa1998")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        //viewModel.cancelData()
+        loginClick()
     }
 }
