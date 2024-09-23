@@ -30,6 +30,10 @@ class LoginViewController: UIViewController {
         viewModel.leave()
     }
     
+    deinit {
+        viewModel.leave()
+    }
+    
     private func setupViews() {
         customView.btLogin.addTarget(self, action: #selector(onLoginClick), for: .touchUpInside)
         customView.tfUsername.textField.addTarget(self, action: #selector(onUsernameChange(_:)), for: .editingChanged)
@@ -56,38 +60,50 @@ class LoginViewController: UIViewController {
         viewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink{ [weak self] isLoadng in
-                self?.customView.loadingIndicator.isHidden = !isLoadng
-                self?.customView.btLogin.isEnabled = !isLoadng
+                guard let strongSelf = self else { return }
+                strongSelf.customView.loadingIndicator.isHidden = !isLoadng
+                strongSelf.customView.btLogin.isEnabled = !isLoadng
             }
             .store(in: &cancellables)
         
         viewModel.$message
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchSerialQueue.main)
             .sink { [weak self] message in
-                if (message == nil) {
-                    return
-                }
-                self?.showSnackbar(message: message!)
+                guard let unWrapMessage = message else { return }
+                self?.showSnackbar(message: unWrapMessage)
             }
             .store(in: &cancellables)
         
         viewModel.$usernameError
             .receive(on: DispatchSerialQueue.main)
             .sink { [weak self] error in
-                if (error == nil) {
-                    return
-                }
-                self?.customView.tfUsername.showError(message: error!)
+                guard let strongSelf = self, let unWrapError = error else { return }
+                strongSelf.customView.tfUsername.showError(message: unWrapError)
             }
             .store(in: &cancellables)
         
         viewModel.$passwordError
             .receive(on: DispatchSerialQueue.main)
             .sink { [weak self] error in
-                if (error == nil) {
-                    return
+                guard let strongSelf = self, let unWrapError = error else { return }
+                strongSelf.customView.tfPassword.showError(message: unWrapError)
+            }
+            .store(in: &cancellables)
+        
+        viewModel.onSuccess
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                if let navController = self?.navigationController {
+                    navController.popToRootViewController(animated: true)
                 }
-                self?.customView.tfPassword.showError(message: error!)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                    guard let rootViewController = windowScene.windows.first?.rootViewController as? UINavigationController else { return }
+                    guard let homeViewController = rootViewController.viewControllers.first as? UITabBarController else { return }
+
+                    homeViewController.selectedIndex = 0
+                }
             }
             .store(in: &cancellables)
     }

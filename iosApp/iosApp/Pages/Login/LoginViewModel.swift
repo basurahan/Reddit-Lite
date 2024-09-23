@@ -12,7 +12,8 @@ import shared
 class LoginViewModel: ObservableObject {
     
     private let helper = LoginViewModelHelperWrapper().getHelper()
-    //private let login = LoginUse
+    
+    var onSuccess = PassthroughSubject<Void, Never>()
     
     @Published var isLoading: Bool = false
     @Published var message: String? = nil
@@ -39,7 +40,13 @@ class LoginViewModel: ObservableObject {
             }
             
             if let body = res as? ApiResLogin.Success {
-                self.message = "Success"
+                let success = KeychainHelper.save(token: body.token, forKey: KeyDirectory.token.key)
+                guard success else {
+                    self.message = "Something went wrong"
+                    return
+                }
+                
+                self.onSuccess.send()
                 return
             }
         }
