@@ -32,12 +32,24 @@ class LoginViewController: UIViewController {
     
     private func setupViews() {
         customView.btLogin.addTarget(self, action: #selector(onLoginClick), for: .touchUpInside)
+        customView.tfUsername.textField.addTarget(self, action: #selector(onUsernameChange(_:)), for: .editingChanged)
+        customView.tfPassword.textField.addTarget(self, action: #selector(onPasswordChange(_:)), for: .editingChanged)
     }
     
     @objc private func onLoginClick() {
         let username = customView.tfUsername.getText() ?? ""
         let password = customView.tfPassword.getText() ?? ""
         viewModel.login(username: username, password: password)
+    }
+    
+    @objc private func onUsernameChange(_ textfield: UITextField) {
+        customView.tfUsername.clearError()
+        customView.tfPassword.clearError()
+    }
+    
+    @objc private func onPasswordChange(_ textfield: UITextField) {
+        customView.tfUsername.clearError()
+        customView.tfPassword.clearError()
     }
     
     private func setupDataObservers() {

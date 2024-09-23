@@ -10,7 +10,8 @@ import UIKit
 
 class TextFieldWithValidation : UIView {
     
-    var hint: String
+    private var hint: String
+    private var errorLabelHeightConstraint: NSLayoutConstraint?
     
     lazy var textField: UITextField = {
         let textField = UITextField()
@@ -25,7 +26,7 @@ class TextFieldWithValidation : UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .red
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -45,6 +46,8 @@ class TextFieldWithValidation : UIView {
         addSubview(textField)
         addSubview(errorLabel)
         
+        errorLabelHeightConstraint = errorLabel.heightAnchor.constraint(equalToConstant: 0)
+        
         NSLayoutConstraint.activate([
             textField.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             textField.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -52,7 +55,8 @@ class TextFieldWithValidation : UIView {
             
             errorLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
             errorLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 4),
-            errorLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            errorLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            errorLabelHeightConstraint!
         ])
     }
     
@@ -63,10 +67,18 @@ class TextFieldWithValidation : UIView {
     func showError(message: String) {
         errorLabel.text = message
         errorLabel.isHidden = false
+        errorLabelHeightConstraint?.constant = errorLabel.intrinsicContentSize.height
+        UIView.animate(withDuration: 0.2) {
+            self.layoutIfNeeded()
+        }
     }
 
     func clearError() {
         errorLabel.isHidden = true
+        errorLabelHeightConstraint?.constant = 0
+        UIView.animate(withDuration: 0.2) {
+            self.layoutIfNeeded()
+        }
     }
 }
 
