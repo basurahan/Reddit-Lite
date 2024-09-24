@@ -6,11 +6,12 @@ plugins {
 
 android {
     namespace = "link.limecode.reddit.lite.android"
-    compileSdk = 35
+    compileSdk = 34
     defaultConfig {
         applicationId = "link.limecode.reddit.lite.android"
         minSdk = 26
-        targetSdk = 35
+        //noinspection OldTargetApi
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
