@@ -1,12 +1,11 @@
 package link.limecode.reddit.lite.android.pages.login
 
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.ScrollView
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import link.limecode.reddit.lite.android.databinding.FragmentLoginBinding
 import link.limecode.reddit.lite.presentation.viewmodel.login.AndroidLoginViewModel
 import link.limecode.vuebinder.FragmentViewBinding
@@ -17,37 +16,34 @@ class LoginFragment : FragmentViewBinding<FragmentLoginBinding>() {
     private val viewModel: AndroidLoginViewModel by viewModel()
 
     override fun bind(inflater: LayoutInflater, container: ViewGroup?): FragmentLoginBinding {
-        val binding = FragmentLoginBinding.inflate(inflater, container, false)
-        with(binding) {
-            val displayMetrics = resources.displayMetrics
-            val screenHeight = displayMetrics.heightPixels
-
-            val typedValue = TypedValue()
-            requireActivity().theme.resolveAttribute(android.R.attr.actionBarSize, typedValue, true)
-            val actionBarSize = TypedValue.complexToDimensionPixelSize(typedValue.data, displayMetrics)
-            val desiredHeight = screenHeight - actionBarSize
-
-            val params = groupForm.layoutParams as FrameLayout.LayoutParams
-            params.height = desiredHeight
-            groupForm.layoutParams = params
-            groupForm.requestLayout()
-            groupForm.invalidate()
-        }
-        return binding
+        return FragmentLoginBinding.inflate(inflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         with(viewBinding) {
+            /*val displayMetrics = resources.displayMetrics
+            val screenHeight = displayMetrics.heightPixels
+            val desiredHeight = (screenHeight * 0.5).toInt()
 
+            groupForm.setPadding(
+                groupForm.paddingLeft,
+                desiredHeight,
+                groupForm.paddingRight,
+                groupForm.paddingBottom
+            )*/
 
-            /*button.setOnClickListener {
-                viewModel.login(
-                    username = "dev.renz",
-                    password = "S@langa1998"
+            ViewCompat.setOnApplyWindowInsetsListener(appbarLayout) { view, insets ->
+                val systemWindowInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                view.setPadding(
+                    view.paddingLeft,
+                    systemWindowInsets.top,
+                    view.paddingRight,
+                    view.paddingBottom
                 )
-            }*/
+                insets
+            }
         }
     }
 }
