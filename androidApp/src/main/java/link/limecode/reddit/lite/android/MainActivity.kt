@@ -8,13 +8,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.fragment.NavHostFragment
 import link.limecode.reddit.lite.android.databinding.ActivityMainBinding
 import link.limecode.reddit.lite.android.navigation.setupMainNavGraph
-import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidAppViewModel
+import link.limecode.reddit.lite.presentation.viewmodel.app.AppEventsViewModel
 import link.limecode.vuebinder.ActivityViewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ActivityViewBinding<ActivityMainBinding>() {
 
-    private val viewModel: AndroidAppViewModel by viewModel()
+    private val viewModel: AppEventsViewModel by viewModel()
 
     override fun bind(inflater: LayoutInflater): ActivityMainBinding {
         return ActivityMainBinding.inflate(inflater)

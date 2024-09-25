@@ -1,4 +1,4 @@
-package link.limecode.reddit.lite.android.pages.home
+package link.limecode.reddit.lite.android.presentation.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

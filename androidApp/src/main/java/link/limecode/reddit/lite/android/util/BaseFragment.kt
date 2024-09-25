@@ -19,9 +19,9 @@ abstract class BaseKeyboardSafeCoordinatorLayout<T : ViewBinding> : FragmentView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        require(viewBinding.root is CoordinatorLayout) { "Illegal usage of ${this.javaClass.simpleName}, make sure your parent layout is coordinator layout" }
+        require(viewBinding.root is CoordinatorLayout) { "Illegal usage of ${this::class.qualifiedName}, make sure your parent layout is coordinator layout" }
         val child = viewBinding.root.findAppbarLayout()
-        requireNotNull(child) { "Illegal usage of ${this.javaClass.simpleName}, make sure to have an appbar child on your parent layout" }
+        requireNotNull(child) { "Illegal usage of ${this::class.qualifiedName}, make sure to have an appbar child on your parent layout" }
 
         setupKeyboardSafety(child)
     }

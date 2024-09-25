@@ -1,4 +1,4 @@
-package link.limecode.reddit.lite.android.pages.home.notification
+package link.limecode.reddit.lite.android.presentation.home.notification
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

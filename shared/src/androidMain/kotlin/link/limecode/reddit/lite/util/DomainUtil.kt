@@ -12,11 +12,14 @@ inline fun <T, R> T.runDomainCatching(block: T.() -> R): Result<R> {
     return try {
         Result.success(block())
     } catch (e: RedirectResponseException) {
-        Result.failure(DomainException(e.localizedMessage))
+        requireNotNull(e.localizedMessage) { "Illegal Argument, Domain error message not handled" }
+        Result.failure(DomainException(e.localizedMessage!!))
     } catch (e: ServerResponseException) {
-        Result.failure(DomainException(e.localizedMessage))
+        requireNotNull(e.localizedMessage) { "Illegal Argument, Domain error message not handled" }
+        Result.failure(DomainException(e.localizedMessage!!))
     } catch (e: TimeoutCancellationException) {
-        Result.failure(DomainException(e.localizedMessage))
+        requireNotNull(e.localizedMessage) { "Illegal Argument, Domain error message not handled" }
+        Result.failure(DomainException(e.localizedMessage!!))
     } catch (e: IOException) {
         Result.failure(DomainException(e.localizedMessage ?: Constants.FALLBACK_ERROR_MESSAGE))
     }
