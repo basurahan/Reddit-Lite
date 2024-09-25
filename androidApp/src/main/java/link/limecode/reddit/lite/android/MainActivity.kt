@@ -5,13 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import link.limecode.reddit.lite.android.databinding.ActivityMainBinding
 import link.limecode.reddit.lite.android.navigation.setupMainNavGraph
+import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidAppViewModel
 import link.limecode.vuebinder.ActivityViewBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ActivityViewBinding<ActivityMainBinding>() {
+
+    private val viewModel: AndroidAppViewModel by viewModel()
 
     override fun bind(inflater: LayoutInflater): ActivityMainBinding {
         return ActivityMainBinding.inflate(inflater)
