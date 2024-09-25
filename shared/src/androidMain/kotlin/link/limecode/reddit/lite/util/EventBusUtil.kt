@@ -3,40 +3,38 @@ package link.limecode.reddit.lite.util
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.atomic.AtomicBoolean
 
 class EventBusUtil<T> {
     private val _liveData = MutableLiveData<T>()
-    private val observers = ConcurrentHashMap<String, Boolean>()
+    private val observers = ConcurrentHashMap<String, AtomicBoolean>()
 
     fun registerObserver(id: String, lifecycleOwner: LifecycleOwner, callBack: (T) -> Unit) {
-        synchronized(observers) {
-            if (!observers.containsKey(id)) {
-                observers[id] = true
-            }
-        }
+        observers.computeIfAbsent(id) { AtomicBoolean(false) }
 
         _liveData.observe(lifecycleOwner) { value ->
-            synchronized(observers) {
-                if (observers[id] == true) return@observe
+            val isHandled = observers[id]?.get() ?: return@observe
 
-                handled(id)
+            if (!isHandled) {
                 callBack(value)
+                handled(id)
             }
         }
     }
 
     fun emit(value: T) {
-        synchronized(observers) {
-            observers.keys.forEach { key ->
-                observers[key] = false
-            }
+        observers.keys.forEach { key ->
+            observers[key]?.set(false)
         }
         _liveData.value = value
     }
 
     private fun handled(key: String) {
-        synchronized(observers) {
-            observers[key] = true
-        }
+        observers[key]?.set(true)
+    }
+
+    fun unregisterObserver(id: String) {
+        observers.remove(id)
     }
 }
+
