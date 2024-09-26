@@ -12,14 +12,14 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.android.databinding.FragmentLoginBinding
+import link.limecode.reddit.lite.android.util.BaseFragment
 import link.limecode.reddit.lite.android.util.showSoftKeyboardFor
 import link.limecode.reddit.lite.presentation.viewmodel.app.AppEventsViewModel
 import link.limecode.reddit.lite.presentation.viewmodel.login.AndroidLoginViewModel
-import link.limecode.vuebinder.FragmentViewBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : FragmentViewBinding<FragmentLoginBinding>() {
+class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     private val viewModel: AndroidLoginViewModel by viewModel()
     private val eventsViewModel: AppEventsViewModel by activityViewModel()
@@ -66,6 +66,13 @@ class LoginFragment : FragmentViewBinding<FragmentLoginBinding>() {
         with(viewBinding) {
             viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
                 Snackbar.make(viewBinding.root, message.message, Snackbar.LENGTH_LONG).show()
+            }
+
+            viewModel.loadingAction.observe(viewLifecycleOwner) { isLoading ->
+                if (isLoading)
+                    loadingDialog.show()
+                else
+                    loadingDialog.dismiss()
             }
 
             viewLifecycleOwner.lifecycleScope.launch {
