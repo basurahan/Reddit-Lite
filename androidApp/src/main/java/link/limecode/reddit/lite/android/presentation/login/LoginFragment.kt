@@ -55,7 +55,7 @@ class LoginFragment : FragmentViewBinding<FragmentLoginBinding>() {
 
             requireActivity().showSoftKeyboardFor(
                 parent = parent,
-                input = tfPassword
+                input = tfUsername
             )
         }
     }
