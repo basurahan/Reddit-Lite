@@ -12,14 +12,13 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.android.databinding.FragmentLoginBinding
-import link.limecode.reddit.lite.android.util.BaseKeyboardSafeCoordinatorLayout
-import link.limecode.reddit.lite.android.util.showSoftKeyboardFor
 import link.limecode.reddit.lite.presentation.viewmodel.app.AppEventsViewModel
 import link.limecode.reddit.lite.presentation.viewmodel.login.AndroidLoginViewModel
+import link.limecode.vuebinder.FragmentViewBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : BaseKeyboardSafeCoordinatorLayout<FragmentLoginBinding>() {
+class LoginFragment : FragmentViewBinding<FragmentLoginBinding>() {
 
     private val viewModel: AndroidLoginViewModel by viewModel()
     private val eventsViewModel: AppEventsViewModel by activityViewModel()
@@ -53,18 +52,18 @@ class LoginFragment : BaseKeyboardSafeCoordinatorLayout<FragmentLoginBinding>() 
                 viewModel.login()
             }
 
-            requireActivity().showSoftKeyboardFor(
+            /*requireActivity().showSoftKeyboardFor(
                 scroll = nestedScroll,
                 layout = layoutUsername,
                 input = tfUsername
-            )
+            )*/
         }
     }
 
     private fun setupDataObservers() {
         with(viewBinding) {
             viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
-                Snackbar.make(viewBinding.root, message.message, Snackbar.LENGTH_LONG)
+                Snackbar.make(viewBinding.root, message.message, Snackbar.LENGTH_LONG).show()
             }
 
             viewLifecycleOwner.lifecycleScope.launch {

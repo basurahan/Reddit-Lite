@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import link.limecode.reddit.lite.android.databinding.ActivityMainBinding
 import link.limecode.reddit.lite.android.navigation.setupMainNavGraph
@@ -14,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ActivityViewBinding<ActivityMainBinding>() {
 
-    private val viewModel: AppEventsViewModel by viewModel()
+    private val eventsViewModel: AppEventsViewModel by viewModel()
 
     override fun bind(inflater: LayoutInflater): ActivityMainBinding {
         return ActivityMainBinding.inflate(inflater)
@@ -23,6 +25,12 @@ class MainActivity : ActivityViewBinding<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setupEdgeToEdge()
         super.onCreate(savedInstanceState)
+
+        ViewCompat.setOnApplyWindowInsetsListener(viewBinding.layoutFrame) { v, insets ->
+            val imeHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
+            v.setPadding(0, 0, 0, imeHeight)
+            insets
+        }
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -42,5 +50,10 @@ class MainActivity : ActivityViewBinding<ActivityMainBinding>() {
             statusBarStyle = systemBarStyle,
             navigationBarStyle = systemBarStyle,
         )
+    }
+
+    override fun onDestroy() {
+        ViewCompat.setOnApplyWindowInsetsListener(viewBinding.layoutFrame, null)
+        super.onDestroy()
     }
 }
