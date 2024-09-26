@@ -31,14 +31,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/group_form"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="400dp">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="110dp"
                 android:hint="@string/username"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

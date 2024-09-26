@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.android.databinding.FragmentLoginBinding
+import link.limecode.reddit.lite.android.util.showSoftKeyboardFor
 import link.limecode.reddit.lite.presentation.viewmodel.app.AppEventsViewModel
 import link.limecode.reddit.lite.presentation.viewmodel.login.AndroidLoginViewModel
 import link.limecode.vuebinder.FragmentViewBinding
@@ -52,11 +53,10 @@ class LoginFragment : FragmentViewBinding<FragmentLoginBinding>() {
                 viewModel.login()
             }
 
-            /*requireActivity().showSoftKeyboardFor(
-                scroll = nestedScroll,
-                layout = layoutUsername,
-                input = tfUsername
-            )*/
+            requireActivity().showSoftKeyboardFor(
+                parent = parent,
+                input = tfPassword
+            )
         }
     }
 
