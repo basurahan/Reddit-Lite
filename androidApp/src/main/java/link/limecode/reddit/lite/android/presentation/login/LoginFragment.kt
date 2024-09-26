@@ -42,11 +42,13 @@ class LoginFragment : FragmentViewBinding<FragmentLoginBinding>() {
             }
 
             tfUsername.doOnTextChanged { text, _, _, _ ->
-                viewModel.username.value = text.toString()
+                viewModel.tfUsername.value = text.toString()
+                viewModel.errorUsername.value = null
             }
 
             tfPassword.doOnTextChanged { text, _, _, _ ->
-                viewModel.password.value = text.toString()
+                viewModel.tfPassword.value = text.toString()
+                viewModel.errorPassword.value = null
             }
 
             btnLogin.setOnClickListener {
@@ -69,7 +71,7 @@ class LoginFragment : FragmentViewBinding<FragmentLoginBinding>() {
             viewLifecycleOwner.lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.RESUMED) {
                     launch {
-                        viewModel.username.collect { text ->
+                        viewModel.tfUsername.collect { text ->
                             if (tfUsername.text.toString() != text) {
                                 tfUsername.setText(text)
                             }
@@ -77,10 +79,22 @@ class LoginFragment : FragmentViewBinding<FragmentLoginBinding>() {
                     }
 
                     launch {
-                        viewModel.password.collect { text ->
+                        viewModel.tfPassword.collect { text ->
                             if (tfPassword.text.toString() != text) {
                                 tfPassword.setText(text)
                             }
+                        }
+                    }
+
+                    launch {
+                        viewModel.errorUsername.collect { message ->
+                            layoutUsername.error = message
+                        }
+                    }
+
+                    launch {
+                        viewModel.errorPassword.collect { message ->
+                            layoutPassword.error = message
                         }
                     }
                 }
