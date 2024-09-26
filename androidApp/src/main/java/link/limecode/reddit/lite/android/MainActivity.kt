@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
+import androidx.core.graphics.Insets
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
@@ -29,7 +30,14 @@ class MainActivity : ActivityViewBinding<ActivityMainBinding>() {
         ViewCompat.setOnApplyWindowInsetsListener(viewBinding.layoutFrame) { v, insets ->
             val imeHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
             v.setPadding(0, 0, 0, imeHeight)
-            insets
+
+            val childInsets = WindowInsetsCompat.Builder(insets)
+            childInsets.setInsets(WindowInsetsCompat.Type.ime(), Insets.NONE)
+            if (imeHeight > 0) {
+                childInsets.setInsets(WindowInsetsCompat.Type.navigationBars(), Insets.NONE)
+            }
+
+            childInsets.build()
         }
 
         val navHostFragment =
