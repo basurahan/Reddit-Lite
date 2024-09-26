@@ -8,7 +8,7 @@ import link.limecode.reddit.lite.data.service.api.RedditLiteApi
 import link.limecode.reddit.lite.domain.repository.AuthenticationRepository
 import org.koin.dsl.module
 
-val dataModule = module {
+val sharedDataModule = module {
     single<KtorClient> { getKtorClient() }
     single<RedditLiteApi> { RedditLiteApiService(get()) }
     single<AuthenticationRepository> { AuthenticationRepositoryImpl(get()) }

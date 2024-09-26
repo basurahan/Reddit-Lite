@@ -19,6 +19,7 @@ android-navigation = "2.8.1"
 android-vue-binder = "1.4.1"
 android-lifecycle = "2.8.6"
 android-logger = "1.7.36"
+android-datastore = "1.1.1"
 
 # jvm dep
 ktor-server = "2.3.12"
@@ -67,6 +68,7 @@ android-lifecycle = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", ver
 android-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "android-lifecycle" }
 android-saved-state = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "android-lifecycle" }
 android-ktor-logger = { module = "org.slf4j:slf4j-android", version.ref = "android-logger" }
+android-datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "android-datastore" }
 
 # ios dep
 ios-ktor-client-engine = { module = "io.ktor:ktor-client-darwin", version.ref = "kotlin-ktor-client" }

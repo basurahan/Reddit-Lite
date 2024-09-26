@@ -62,4 +62,6 @@ dependencies {
     implementation(libs.android.lifecycle)
     implementation(libs.android.livedata)
     implementation(libs.android.saved.state)
+
+    implementation(libs.android.datastore)
 }

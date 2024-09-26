@@ -55,6 +55,7 @@ kotlin {
             implementation(libs.android.saved.state)
 
             implementation(libs.android.ktor.logger)
+            implementation(libs.android.datastore)
         }
         iosMain.dependencies {
             implementation(libs.ios.ktor.client.engine)

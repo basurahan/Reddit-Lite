@@ -11,13 +11,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import link.limecode.reddit.lite.android.databinding.ActivityMainBinding
 import link.limecode.reddit.lite.android.navigation.setupMainNavGraph
-import link.limecode.reddit.lite.presentation.viewmodel.app.AppEventsViewModel
+import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidAppEventsViewModel
 import link.limecode.vuebinder.ActivityViewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ActivityViewBinding<ActivityMainBinding>() {
 
-    private val eventsViewModel: AppEventsViewModel by viewModel()
+    private val eventsViewModel: AndroidAppEventsViewModel by viewModel()
 
     override fun bind(inflater: LayoutInflater): ActivityMainBinding {
         return ActivityMainBinding.inflate(inflater)
@@ -26,24 +26,32 @@ class MainActivity : ActivityViewBinding<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setupEdgeToEdge()
         super.onCreate(savedInstanceState)
+        setupKeyboardInsets()
+        setupNavGraph()
+    }
 
-        ViewCompat.setOnApplyWindowInsetsListener(viewBinding.layoutFrame) { v, insets ->
-            val imeHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
-            v.setPadding(0, 0, 0, imeHeight)
-
-            val childInsets = WindowInsetsCompat.Builder(insets)
-            childInsets.setInsets(WindowInsetsCompat.Type.ime(), Insets.NONE)
-            if (imeHeight > 0) {
-                childInsets.setInsets(WindowInsetsCompat.Type.navigationBars(), Insets.NONE)
-            }
-
-            childInsets.build()
-        }
-
+    private fun setupNavGraph() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         navController.setupMainNavGraph()
+    }
+
+    private fun setupKeyboardInsets() {
+        with(viewBinding) {
+            ViewCompat.setOnApplyWindowInsetsListener(layoutFrame) { v, insets ->
+                val imeHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
+                v.setPadding(0, 0, 0, imeHeight)
+
+                val childInsets = WindowInsetsCompat.Builder(insets)
+                childInsets.setInsets(WindowInsetsCompat.Type.ime(), Insets.NONE)
+                if (imeHeight > 0) {
+                    childInsets.setInsets(WindowInsetsCompat.Type.navigationBars(), Insets.NONE)
+                }
+
+                childInsets.build()
+            }
+        }
     }
 
     private fun setupEdgeToEdge() {

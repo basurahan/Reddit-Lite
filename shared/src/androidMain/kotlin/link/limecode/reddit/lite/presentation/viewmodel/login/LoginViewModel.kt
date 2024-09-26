@@ -5,16 +5,25 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.data.model.response.login.ApiResLogin
+import link.limecode.reddit.lite.domain.repository.TokenRepository
 import link.limecode.reddit.lite.domain.usecase.LoginUseCase
 import link.limecode.reddit.lite.util.ActionLiveData
 import link.limecode.reddit.lite.util.BaseViewModel
 import link.limecode.reddit.lite.util.DomainException
 import link.limecode.reddit.lite.util.runDomainCatching
 
-class AndroidLoginViewModel(private val loginUseCase: LoginUseCase) : BaseViewModel() {
+class AndroidLoginViewModel(
+    private val loginUseCase: LoginUseCase,
+    private val tokenRepository: TokenRepository
+) : BaseViewModel() {
 
+    // events
+    val onSessionStarted = ActionLiveData<Unit>()
+
+    // actions
     val loadingAction = ActionLiveData<Boolean>()
 
+    // ui states
     val tfUsername = MutableStateFlow("")
     val tfPassword = MutableStateFlow("")
     val errorUsername = MutableStateFlow<String?>(null)
@@ -43,7 +52,10 @@ class AndroidLoginViewModel(private val loginUseCase: LoginUseCase) : BaseViewMo
                         errorPassword.value = result.validation.password
                     }
 
-                    is ApiResLogin.Success -> {}
+                    is ApiResLogin.Success -> {
+                        startSession(result)
+                        onSessionStarted.value = Unit
+                    }
                 }
             } catch (e: DomainException) {
                 _errorMessages.value = e
@@ -51,5 +63,9 @@ class AndroidLoginViewModel(private val loginUseCase: LoginUseCase) : BaseViewMo
                 loadingAction.value = false
             }
         }
+    }
+
+    private suspend fun startSession(user: ApiResLogin.Success) {
+        tokenRepository.saveToken(user.token)
     }
 }

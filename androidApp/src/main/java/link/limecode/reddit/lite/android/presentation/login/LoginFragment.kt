@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.android.databinding.FragmentLoginBinding
 import link.limecode.reddit.lite.android.util.BaseFragment
 import link.limecode.reddit.lite.android.util.showSoftKeyboardFor
-import link.limecode.reddit.lite.presentation.viewmodel.app.AppEventsViewModel
+import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidAppEventsViewModel
 import link.limecode.reddit.lite.presentation.viewmodel.login.AndroidLoginViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     private val viewModel: AndroidLoginViewModel by viewModel()
-    private val eventsViewModel: AppEventsViewModel by activityViewModel()
+    private val appEventsViewModel: AndroidAppEventsViewModel by activityViewModel()
 
     override fun bind(inflater: LayoutInflater, container: ViewGroup?): FragmentLoginBinding {
         return FragmentLoginBinding.inflate(inflater, container, false)
@@ -65,7 +65,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private fun setupDataObservers() {
         with(viewBinding) {
             viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
-                Snackbar.make(viewBinding.root, message.message, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(root, message.message, Snackbar.LENGTH_LONG).show()
             }
 
             viewModel.loadingAction.observe(viewLifecycleOwner) { isLoading ->
@@ -73,6 +73,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                     loadingDialog.show()
                 else
                     loadingDialog.dismiss()
+            }
+
+            viewModel.onSessionStarted.observe(viewLifecycleOwner) {
+                appEventsViewModel.onUserSessionStarted.emit(Unit)
+                findNavController().navigateUp()
             }
 
             viewLifecycleOwner.lifecycleScope.launch {
