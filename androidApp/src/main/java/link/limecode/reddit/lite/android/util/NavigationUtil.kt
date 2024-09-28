@@ -102,7 +102,7 @@ fun NavController.switchTab(route: KClass<out Any>): Boolean {
         .setRestoreState(true)
 
     builder.setPopUpTo(
-        navController.graph.findStartDestination().id,
+        destinationId = navController.graph.findStartDestination().id,
         inclusive = false,
         saveState = true
     )

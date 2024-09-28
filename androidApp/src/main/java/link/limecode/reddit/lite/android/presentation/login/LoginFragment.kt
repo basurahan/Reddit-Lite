@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.android.databinding.FragmentLoginBinding
-import link.limecode.reddit.lite.android.util.BaseFragment
+import link.limecode.reddit.lite.android.base.BaseFragment
 import link.limecode.reddit.lite.android.util.showSoftKeyboardFor
 import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidAppEventsViewModel
 import link.limecode.reddit.lite.presentation.viewmodel.login.AndroidLoginViewModel
