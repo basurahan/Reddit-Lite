@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicBoolean
 
-class EventBusUtil<T> {
+class AndroidEventBusUtil<T> {
     private val _liveData = MutableLiveData<T>()
     private val observers = ConcurrentHashMap<String, AtomicBoolean>()
 

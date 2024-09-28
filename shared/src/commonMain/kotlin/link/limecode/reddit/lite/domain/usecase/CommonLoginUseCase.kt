@@ -5,7 +5,7 @@ import link.limecode.reddit.lite.data.model.response.login.ApiResLogin
 import link.limecode.reddit.lite.domain.repository.AuthenticationRepository
 import link.limecode.reddit.lite.domain.validation.offlineValidation
 
-class LoginUseCase(private val repository: AuthenticationRepository) {
+class CommonLoginUseCase(private val repository: AuthenticationRepository) {
 
     data class Param(
         val username: String,

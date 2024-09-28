@@ -13,7 +13,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
 import kotlinx.serialization.modules.subclass
-import link.limecode.reddit.lite.config.Constants.CLIENT_BASE_URL
+import link.limecode.reddit.lite.config.CommonConstants.CLIENT_BASE_URL
 import link.limecode.reddit.lite.data.model.response.login.ApiResLogin
 
 fun initKtorClient(engine: HttpClientEngine): HttpClient {

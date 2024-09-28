@@ -11,7 +11,7 @@ import shared
 
 class LoginViewModel: ObservableObject {
     
-    private let helper = LoginViewModelHelperWrapper().getHelper()
+    private let helper = IOSLoginViewModelHelperWrapper().getHelper()
     
     var onSuccess = PassthroughSubject<Void, Never>()
     
@@ -24,7 +24,7 @@ class LoginViewModel: ObservableObject {
     func login(username: String, password: String) {
         isLoading = true
         
-        let param = LoginUseCase.Param(username: username, password: password)
+        let param = CommonLoginUseCase.Param(username: username, password: password)
         helper.login(param: param) { res, error in
             self.isLoading = false
             

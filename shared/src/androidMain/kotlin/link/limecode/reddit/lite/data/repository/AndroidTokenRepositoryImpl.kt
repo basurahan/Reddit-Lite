@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import link.limecode.reddit.lite.domain.repository.TokenRepository
 
-class TokenRepositoryImpl(private val context: Context) : TokenRepository {
+class AndroidTokenRepositoryImpl(private val context: Context) : TokenRepository {
 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "token_repository")
     private val userTokenKey = stringPreferencesKey("user_token")

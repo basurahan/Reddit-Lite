@@ -4,7 +4,7 @@ import io.ktor.client.plugins.RedirectResponseException
 import io.ktor.client.plugins.ServerResponseException
 import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.TimeoutCancellationException
-import link.limecode.reddit.lite.config.Constants
+import link.limecode.reddit.lite.config.CommonConstants
 import java.io.IOException
 
 class DomainException(override val message: String) : Throwable(message)
@@ -17,8 +17,8 @@ suspend inline fun <T, R> T.runDomainCatching(block: T.() -> R): Result<R> {
     } catch (e: ServerResponseException) {
         Result.failure(DomainException(e.response.bodyAsText()))
     } catch (e: TimeoutCancellationException) {
-        Result.failure(DomainException(Constants.TIMEOUT_ERROR_MESSAGE))
+        Result.failure(DomainException(CommonConstants.TIMEOUT_ERROR_MESSAGE))
     } catch (e: IOException) {
-        Result.failure(DomainException(e.localizedMessage ?: Constants.FALLBACK_ERROR_MESSAGE))
+        Result.failure(DomainException(e.localizedMessage ?: CommonConstants.FALLBACK_ERROR_MESSAGE))
     }
 }

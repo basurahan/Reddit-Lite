@@ -5,13 +5,13 @@ import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.serializer.KotlinXSerializer
 import kotlinx.serialization.json.Json
-import link.limecode.reddit.lite.config.Constants
+import link.limecode.reddit.lite.config.CommonConstants
 
 class Database {
     
     private var _client: SupabaseClient = createSupabaseClient(
-        supabaseUrl = Constants.SUPABASE_URL,
-        supabaseKey = Constants.SUPABASE_KEY
+        supabaseUrl = CommonConstants.SUPABASE_URL,
+        supabaseKey = CommonConstants.SUPABASE_KEY
     ) {
         install(Postgrest)
         defaultSerializer = KotlinXSerializer(

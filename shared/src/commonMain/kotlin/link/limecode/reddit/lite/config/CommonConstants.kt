@@ -1,7 +1,7 @@
 package link.limecode.reddit.lite.config
 
 // TODO: This are going to be migrated to BuildKonfig in the future
-object Constants {
+object CommonConstants {
     val SERVER_PORT = 8080
     val SUPABASE_URL = "https://eviqhjaawdufedafxusz.supabase.co"
     val SUPABASE_KEY =
@@ -15,5 +15,5 @@ object Constants {
     val JWT_CLAIM_USER_ID = "user_id"
     val FALLBACK_ERROR_MESSAGE = "something went wrong"
     val TIMEOUT_ERROR_MESSAGE = "request timeout"
-    val CLIENT_BASE_URL = "http://192.168.1.168:8080/api/v1/"
+    val CLIENT_BASE_URL = "http://192.168.1.200:8080/api/v1/"
 }

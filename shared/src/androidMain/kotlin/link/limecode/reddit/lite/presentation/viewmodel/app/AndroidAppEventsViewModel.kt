@@ -1,9 +1,9 @@
 package link.limecode.reddit.lite.presentation.viewmodel.app
 
 import androidx.lifecycle.ViewModel
-import link.limecode.reddit.lite.util.EventBusUtil
+import link.limecode.reddit.lite.util.AndroidEventBusUtil
 
 class AndroidAppEventsViewModel : ViewModel() {
 
-    val onUserSessionStarted = EventBusUtil<Unit>()
+    val onUserSessionStarted = AndroidEventBusUtil<Unit>()
 }

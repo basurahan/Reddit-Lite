@@ -6,22 +6,22 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.data.model.response.login.ApiResLogin
 import link.limecode.reddit.lite.domain.repository.TokenRepository
-import link.limecode.reddit.lite.domain.usecase.LoginUseCase
-import link.limecode.reddit.lite.util.ActionLiveData
-import link.limecode.reddit.lite.util.BaseViewModel
+import link.limecode.reddit.lite.domain.usecase.CommonLoginUseCase
+import link.limecode.reddit.lite.util.AndroidActionLiveData
+import link.limecode.reddit.lite.util.AndroidBaseViewModel
 import link.limecode.reddit.lite.util.DomainException
 import link.limecode.reddit.lite.util.runDomainCatching
 
 class AndroidLoginViewModel(
-    private val loginUseCase: LoginUseCase,
+    private val loginUseCase: CommonLoginUseCase,
     private val tokenRepository: TokenRepository
-) : BaseViewModel() {
+) : AndroidBaseViewModel() {
 
     // events
-    val onSessionStarted = ActionLiveData<Unit>()
+    val onSessionStarted = AndroidActionLiveData<Unit>()
 
     // actions
-    val loadingAction = ActionLiveData<Boolean>()
+    val loadingAction = AndroidActionLiveData<Boolean>()
 
     // ui states
     val tfUsername = MutableStateFlow("")
@@ -38,7 +38,7 @@ class AndroidLoginViewModel(
 
         loginJob = viewModelScope.launch {
             loadingAction.value = true
-            val param = LoginUseCase.Param(
+            val param = CommonLoginUseCase.Param(
                 username = tfUsername.value,
                 password = tfPassword.value
             )

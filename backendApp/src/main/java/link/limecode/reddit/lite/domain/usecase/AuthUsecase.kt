@@ -3,7 +3,7 @@ package link.limecode.reddit.lite.domain.usecase
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import kotlinx.datetime.*
-import link.limecode.reddit.lite.config.Constants
+import link.limecode.reddit.lite.config.CommonConstants
 import link.limecode.reddit.lite.data.model.ApiUser
 import link.limecode.reddit.lite.data.model.request.register.ApiReqRegister
 import link.limecode.reddit.lite.domain.dao.UsersDao
@@ -44,12 +44,12 @@ class AuthUsecase(private val usersDao: UsersDao) {
         ).toLocalDateTime(TimeZone.UTC).toJavaLocalDateTime()
 
         val token = JWT.create()
-            .withAudience(Constants.JWT_AUDIENCE)
-            .withIssuer(Constants.JWT_ISSUER)
-            .withClaim(Constants.JWT_CLAIM_USERNAME, username)
-            .withClaim(Constants.JWT_CLAIM_USER_ID, userId)
+            .withAudience(CommonConstants.JWT_AUDIENCE)
+            .withIssuer(CommonConstants.JWT_ISSUER)
+            .withClaim(CommonConstants.JWT_CLAIM_USERNAME, username)
+            .withClaim(CommonConstants.JWT_CLAIM_USER_ID, userId)
             .withExpiresAt(datetimeInUtc.toInstant(ZoneOffset.UTC))
-            .sign(Algorithm.HMAC256(Constants.JWT_SECRET))
+            .sign(Algorithm.HMAC256(CommonConstants.JWT_SECRET))
 
         return token
     }
