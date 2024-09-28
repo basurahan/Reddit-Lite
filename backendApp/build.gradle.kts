@@ -8,7 +8,7 @@ plugins {
 group = "link.limecode.reddit.lite"
 version = "1.0.0"
 application {
-    mainClass.set("link.limecode.reddit.lite.ApplicationKt")
+    mainClass.set("link.limecode.reddit.lite.backend.ApplicationKt")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=${extra["io.ktor.development"] ?: "false"}")
 }
 
