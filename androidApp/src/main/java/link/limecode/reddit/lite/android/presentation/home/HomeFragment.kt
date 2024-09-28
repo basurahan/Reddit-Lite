@@ -47,7 +47,11 @@ class HomeFragment : FragmentViewBinding<FragmentHomeBinding>() {
                     id = it,
                     lifecycleOwner = viewLifecycleOwner
                 ) {
-                    Snackbar.make(root, "Login successful", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(
+                        parent,
+                        getString(R.string.login_successful),
+                        Snackbar.LENGTH_LONG
+                    ).setAnchorView(bottomNavigation).show()
                 }
             }
         }
