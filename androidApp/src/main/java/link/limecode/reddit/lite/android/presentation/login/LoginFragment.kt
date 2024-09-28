@@ -16,6 +16,7 @@ import link.limecode.reddit.lite.android.databinding.FragmentLoginBinding
 import link.limecode.reddit.lite.android.util.hideKeyboard
 import link.limecode.reddit.lite.android.util.showSoftKeyboardFor
 import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidAppEventsViewModel
+import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidSessionViewModel
 import link.limecode.reddit.lite.presentation.viewmodel.login.AndroidLoginViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,6 +25,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     private val viewModel: AndroidLoginViewModel by viewModel()
     private val appEventsViewModel: AndroidAppEventsViewModel by activityViewModel()
+    private val sessionViewModel: AndroidSessionViewModel by activityViewModel()
 
     override fun bind(inflater: LayoutInflater, container: ViewGroup?): FragmentLoginBinding {
         return FragmentLoginBinding.inflate(inflater, container, false)
@@ -77,6 +79,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             }
 
             viewModel.onSessionStarted.observe(viewLifecycleOwner) {
+                sessionViewModel.startSessionBy(it)
                 appEventsViewModel.onUserSessionStarted.emit(Unit)
                 hideKeyboard()
                 findNavController().navigateUp()

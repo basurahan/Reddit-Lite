@@ -12,12 +12,14 @@ import androidx.navigation.fragment.NavHostFragment
 import link.limecode.reddit.lite.android.databinding.ActivityMainBinding
 import link.limecode.reddit.lite.android.navigation.setupMainNavGraph
 import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidAppEventsViewModel
+import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidSessionViewModel
 import link.limecode.vuebinder.ActivityViewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ActivityViewBinding<ActivityMainBinding>() {
 
     private val eventsViewModel: AndroidAppEventsViewModel by viewModel()
+    private val sessionViewModel: AndroidSessionViewModel by viewModel()
 
     override fun bind(inflater: LayoutInflater): ActivityMainBinding {
         return ActivityMainBinding.inflate(inflater)

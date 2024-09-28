@@ -4,7 +4,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import link.limecode.reddit.lite.data.model.response.login.ApiResLogin
+import link.limecode.reddit.lite.domain.model.UiResLogin
+import link.limecode.reddit.lite.domain.model.UiUser
 import link.limecode.reddit.lite.domain.repository.TokenRepository
 import link.limecode.reddit.lite.domain.usecase.CommonLoginUseCase
 import link.limecode.reddit.lite.util.AndroidActionLiveData
@@ -18,7 +19,7 @@ class AndroidLoginViewModel(
 ) : AndroidBaseViewModel() {
 
     // events
-    val onSessionStarted = AndroidActionLiveData<Unit>()
+    val onSessionStarted = AndroidActionLiveData<UiUser>()
 
     // actions
     val loadingAction = AndroidActionLiveData<Boolean>()
@@ -47,14 +48,13 @@ class AndroidLoginViewModel(
                 val result = loginUseCase.runDomainCatching { invoke(param) }.getOrThrow()
 
                 when (result) {
-                    is ApiResLogin.Fail -> {
+                    is UiResLogin.Fail -> {
                         errorUsername.value = result.validation.username
                         errorPassword.value = result.validation.password
                     }
 
-                    is ApiResLogin.Success -> {
+                    is UiResLogin.Success -> {
                         startSession(result)
-                        onSessionStarted.value = Unit
                     }
                 }
             } catch (e: DomainException) {
@@ -65,7 +65,8 @@ class AndroidLoginViewModel(
         }
     }
 
-    private suspend fun startSession(user: ApiResLogin.Success) {
-        tokenRepository.saveToken(user.token)
+    private suspend fun startSession(info: UiResLogin.Success) {
+        tokenRepository.saveToken(info.token)
+        onSessionStarted.value = info.user
     }
 }
