@@ -10,7 +10,7 @@ import link.limecode.reddit.lite.domain.repository.TokenRepository
 import link.limecode.reddit.lite.domain.usecase.CommonLoginUseCase
 import link.limecode.reddit.lite.util.AndroidActionLiveData
 import link.limecode.reddit.lite.util.AndroidBaseViewModel
-import link.limecode.reddit.lite.util.DomainException
+import link.limecode.reddit.lite.util.CommonDomainException
 import link.limecode.reddit.lite.util.runDomainCatching
 
 class AndroidLoginViewModel(
@@ -57,7 +57,7 @@ class AndroidLoginViewModel(
                         startSession(result)
                     }
                 }
-            } catch (e: DomainException) {
+            } catch (e: CommonDomainException) {
                 _errorMessages.value = e
             } finally {
                 loadingAction.value = false

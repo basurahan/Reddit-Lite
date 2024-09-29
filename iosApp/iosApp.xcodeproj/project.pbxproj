@@ -123,13 +123,13 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		1874E6F32C9C11D700A283D6 /* Pages */ = {
+		1874E6F32C9C11D700A283D6 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				1874E6F52C9C11F700A283D6 /* Home */,
 				1874E6F42C9C11E600A283D6 /* Login */,
 			);
-			path = Pages;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		1874E6F42C9C11E600A283D6 /* Login */ = {
@@ -239,7 +239,7 @@
 			children = (
 				187D38412CA166960046C684 /* Config */,
 				18657AF22CA0001B001EC16A /* Components */,
-				1874E6F32C9C11D700A283D6 /* Pages */,
+				1874E6F32C9C11D700A283D6 /* Presentation */,
 				1874E6EE2C9C0E2D00A283D6 /* Util */,
 				1874E6E32C9BFD8C00A283D6 /* Supporting */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,

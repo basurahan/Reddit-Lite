@@ -97,13 +97,11 @@ class LoginViewController: UIViewController {
                     navController.popToRootViewController(animated: true)
                 }
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-                    guard let rootViewController = windowScene.windows.first?.rootViewController as? UINavigationController else { return }
-                    guard let homeViewController = rootViewController.viewControllers.first as? UITabBarController else { return }
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                guard let rootViewController = windowScene.windows.first?.rootViewController as? UINavigationController else { return }
+                guard let homeViewController = rootViewController.viewControllers.first as? UITabBarController else { return }
 
-                    homeViewController.selectedIndex = 0
-                }
+                homeViewController.selectedIndex = 0
             }
             .store(in: &cancellables)
     }

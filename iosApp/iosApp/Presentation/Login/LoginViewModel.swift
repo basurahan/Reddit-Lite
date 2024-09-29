@@ -33,13 +33,13 @@ class LoginViewModel: ObservableObject {
                 return
             }
             
-            if let body = res as? ApiResLogin.Fail {
+            if let body = res as? UiResLogin.Fail {
                 self.usernameError = body.validation.username
                 self.passwordError = body.validation.password
                 return
             }
             
-            if let body = res as? ApiResLogin.Success {
+            if let body = res as? UiResLogin.Success {
                 let success = KeychainHelper.save(token: body.token, forKey: KeyDirectory.token.key)
                 guard success else {
                     self.message = "Something went wrong"
