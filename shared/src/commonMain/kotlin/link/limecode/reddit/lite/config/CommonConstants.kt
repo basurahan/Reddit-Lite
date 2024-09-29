@@ -15,5 +15,5 @@ object CommonConstants {
     val JWT_CLAIM_USER_ID = "user_id"
     val FALLBACK_ERROR_MESSAGE = "something went wrong"
     val TIMEOUT_ERROR_MESSAGE = "request timeout"
-    val CLIENT_BASE_URL = "http://192.168.1.168:8080/api/v1/"
+    val CLIENT_BASE_URL = "http://192.168.1.200:8080/api/v1/"
 }

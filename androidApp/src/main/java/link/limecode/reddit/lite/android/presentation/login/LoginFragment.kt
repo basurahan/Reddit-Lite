@@ -82,7 +82,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 sessionViewModel.startSessionBy(it)
                 appEventsViewModel.onUserSessionStarted.emit(Unit)
                 hideKeyboard()
-                findNavController().navigateUp()
+                findNavController().popBackStack()
             }
 
             viewLifecycleOwner.lifecycleScope.launch {
