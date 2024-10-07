@@ -10,14 +10,21 @@ import UIKit
 
 class TextFieldWithValidation : UIView {
     
+    // MARK: - properties
     private var hint: String
-    private var errorLabelHeightConstraint: NSLayoutConstraint?
+    private var isPrivate: Bool
+    private var rightView: UIView?
     
-    lazy var textField: UITextField = {
-        let textField = UITextField()
+    // MARK: - ui components
+    lazy var textField: CustomTextField = {
+        let textField = CustomTextField()
         textField.placeholder = hint
         textField.borderStyle = .roundedRect
         textField.autocapitalizationType = .none
+        textField.rightView = rightView
+        textField.rightViewMode = .always
+        textField.clearsOnBeginEditing = false
+        textField.isSecureTextEntry = isPrivate
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -27,13 +34,17 @@ class TextFieldWithValidation : UIView {
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .red
         label.numberOfLines = 1
+        label.text = " "
         label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    init(_ hint: String) {
+    // MARK: - lifecycle
+    init(hint: String, isPrivate: Bool, rightView: UIView?) {
         self.hint = hint
+        self.isPrivate = isPrivate
+        self.rightView = rightView
         super.init(frame: .zero)
         setupViews()
     }
@@ -43,10 +54,8 @@ class TextFieldWithValidation : UIView {
     }
     
     private func setupViews() {
-        addSubview(textField)
-        addSubview(errorLabel)
-        
-        errorLabelHeightConstraint = errorLabel.heightAnchor.constraint(equalToConstant: 0)
+        self.addSubview(textField)
+        self.addSubview(errorLabel)
         
         NSLayoutConstraint.activate([
             textField.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -56,10 +65,11 @@ class TextFieldWithValidation : UIView {
             errorLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
             errorLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 4),
             errorLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            errorLabelHeightConstraint!
+            errorLabel.heightAnchor.constraint(equalToConstant: errorLabel.intrinsicContentSize.height)
         ])
     }
     
+    // MARK: - class helper
     func getText() -> String? {
         return textField.text
     }
@@ -67,18 +77,14 @@ class TextFieldWithValidation : UIView {
     func showError(message: String) {
         errorLabel.text = message
         errorLabel.isHidden = false
-        errorLabelHeightConstraint?.constant = errorLabel.intrinsicContentSize.height
-        UIView.animate(withDuration: 0.2) {
-            self.layoutIfNeeded()
-        }
     }
 
     func clearError() {
         errorLabel.isHidden = true
-        errorLabelHeightConstraint?.constant = 0
-        UIView.animate(withDuration: 0.2) {
-            self.layoutIfNeeded()
-        }
+    }
+    
+    func toggleSecurityText() {
+        textField.isSecureTextEntry.toggle()
     }
 }
 
@@ -88,7 +94,7 @@ import SwiftUI
 @available(iOS 13, *)
 struct TextFieldWithValidationPreview: PreviewProvider {
     static var previews: some View {
-        TextFieldWithValidation("Hello").showPreview()
+        TextFieldWithValidation(hint: "Hello", isPrivate: true, rightView: nil).showPreview()
     }
 }
 #endif

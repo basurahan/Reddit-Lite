@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
+		1806C3252CB21ED7000EAE3A /* PasswordToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806C3242CB21ED1000EAE3A /* PasswordToggle.swift */; };
+		1806C3272CB25D6F000EAE3A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1806C3262CB25D66000EAE3A /* CustomTextField.swift */; };
 		181FA8412C9F2DE30036FE3F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181FA8402C9F2DD90036FE3F /* LoginViewModel.swift */; };
 		185EB5992C9F99B00050BEA7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185EB5982C9F99AA0050BEA7 /* LoginView.swift */; };
 		18657AF42CA0003C001EC16A /* Snackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18657AF32CA00029001EC16A /* Snackbar.swift */; };
@@ -37,6 +39,8 @@
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1806C3242CB21ED1000EAE3A /* PasswordToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordToggle.swift; sourceTree = "<group>"; };
+		1806C3262CB25D66000EAE3A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		181FA8402C9F2DD90036FE3F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		185EB5982C9F99AA0050BEA7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		18657AF32CA00029001EC16A /* Snackbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snackbar.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 		18657AF22CA0001B001EC16A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1806C3262CB25D66000EAE3A /* CustomTextField.swift */,
+				1806C3242CB21ED1000EAE3A /* PasswordToggle.swift */,
 				18657AF52CA0202C001EC16A /* TextFieldWithValidation.swift */,
 				18657AF32CA00029001EC16A /* Snackbar.swift */,
 			);
@@ -351,6 +357,7 @@
 				1874E7072C9C156E00A283D6 /* NotificationViewController.swift in Sources */,
 				1874E70F2C9C4A4C00A283D6 /* NotificationView.swift in Sources */,
 				187D38402CA164820046C684 /* KeychainHelper.swift in Sources */,
+				1806C3252CB21ED7000EAE3A /* PasswordToggle.swift in Sources */,
 				18657AF62CA02034001EC16A /* TextFieldWithValidation.swift in Sources */,
 				1874E7112C9C4A9800A283D6 /* CreateView.swift in Sources */,
 				1874E7002C9C14C900A283D6 /* HomeHomeViewController.swift in Sources */,
@@ -359,6 +366,7 @@
 				1874E6E82C9BFE3400A283D6 /* AppDelegate.swift in Sources */,
 				18657AF42CA0003C001EC16A /* Snackbar.swift in Sources */,
 				1874E6EA2C9BFF2600A283D6 /* SceneDelegate.swift in Sources */,
+				1806C3272CB25D6F000EAE3A /* CustomTextField.swift in Sources */,
 				181FA8412C9F2DE30036FE3F /* LoginViewModel.swift in Sources */,
 				1874E7152C9C4AE800A283D6 /* HomeHomeView.swift in Sources */,
 				185EB5992C9F99B00050BEA7 /* LoginView.swift in Sources */,

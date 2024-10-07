@@ -11,10 +11,12 @@ import Combine
 
 class LoginViewController: UIViewController {
     
+    // MARK: - properties
     private let customView = LoginView()
     private let viewModel = LoginViewModel()
     private var cancellables = Set<AnyCancellable>()
     
+    // MARK: - lifecycle
     override func loadView() {
         self.view = customView
     }
@@ -34,6 +36,7 @@ class LoginViewController: UIViewController {
         viewModel.leave()
     }
     
+    // MARK: - ui events
     private func setupViews() {
         customView.btLogin.addTarget(self, action: #selector(onLoginClick), for: .touchUpInside)
         customView.tfUsername.textField.addTarget(self, action: #selector(onUsernameChange(_:)), for: .editingChanged)
@@ -56,6 +59,7 @@ class LoginViewController: UIViewController {
         customView.tfPassword.clearError()
     }
     
+    // MARK: - data observers
     private func setupDataObservers() {
         viewModel.$isLoading
             .receive(on: DispatchQueue.main)

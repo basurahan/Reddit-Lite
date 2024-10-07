@@ -11,16 +11,20 @@ import shared
 
 class LoginViewModel: ObservableObject {
     
+    // MARK: - properties
     private let helper = IOSLoginViewModelHelperWrapper().getHelper()
     
+    // MARK: - ui events
     var onSuccess = PassthroughSubject<Void, Never>()
     
+    // MARK: - ui state
     @Published var isLoading: Bool = false
     @Published var message: String? = nil
     
     @Published var usernameError: String? = nil
     @Published var passwordError: String? = nil
     
+    // MARK: - class helper
     func login(username: String, password: String) {
         isLoading = true
         

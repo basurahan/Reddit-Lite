@@ -10,16 +10,25 @@ import UIKit
 
 class LoginView: UIView {
     
+    // MARK: - ui components
     lazy var tfUsername: TextFieldWithValidation = {
-        let textField = TextFieldWithValidation("Username")
+        let textField = TextFieldWithValidation(hint: "Username", isPrivate: false, rightView: nil)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     lazy var tfPassword: TextFieldWithValidation = {
-        let textField = TextFieldWithValidation("Password")
+        let textField = TextFieldWithValidation(hint: "Password", isPrivate: true, rightView: btPasswordVisibility)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
+    }()
+    
+    lazy var btPasswordVisibility: PasswordToggle = {
+        let button = PasswordToggle() {
+            self.tfPassword.toggleSecurityText()
+        }
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     lazy var btLogin: UIButton = {
@@ -48,6 +57,7 @@ class LoginView: UIView {
         return ai
     }()
     
+    // MARK: - lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -72,11 +82,11 @@ class LoginView: UIView {
             
             tfPassword.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             tfPassword.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            tfPassword.topAnchor.constraint(equalTo: tfUsername.bottomAnchor, constant: 16),
+            tfPassword.topAnchor.constraint(equalTo: tfUsername.bottomAnchor, constant: 8),
             
             btLogin.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             btLogin.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            btLogin.topAnchor.constraint(equalTo: tfPassword.bottomAnchor, constant: 16),
+            btLogin.topAnchor.constraint(equalTo: tfPassword.bottomAnchor, constant: 8),
             
             btRegister.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             btRegister.topAnchor.constraint(equalTo: btLogin.bottomAnchor, constant: 16),
