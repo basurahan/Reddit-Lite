@@ -15,6 +15,7 @@ class Snackbar: UIView {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .left
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -51,22 +52,28 @@ extension UIViewController {
         // add the snackbar to the view controller
         let snackbar = Snackbar(message: message)
         snackbar.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(snackbar)
+        self.view.addSubview(snackbar)
         
+        // needed to get the correct height
+        snackbar.layoutIfNeeded()
+        
+        let hiddenTranslation = snackbar.frame.height
+        let shownTranslation = -(hiddenTranslation + 20)
+    
         // hide it below the view controller screen
         NSLayoutConstraint.activate([
             snackbar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
             snackbar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-            snackbar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 100)
+            snackbar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: hiddenTranslation)
         ])
         
-        // try to update the ui
-        view.layoutIfNeeded()
+        // make sure to get the updated constraint
+        self.view.layoutIfNeeded()
         
         UIView.animate(
             withDuration: 0.5,
             animations: {
-                snackbar.transform = CGAffineTransform(translationX: 0, y: -120)
+                snackbar.transform = CGAffineTransform(translationX: 0, y: shownTranslation)
             }
         ) { _ in
             DispatchQueue.main.asyncAfter(
@@ -75,7 +82,7 @@ extension UIViewController {
                 UIView.animate(
                     withDuration: 0.5,
                     animations: {
-                        snackbar.transform = CGAffineTransform.identity
+                        snackbar.transform =  .identity
                     }
                 ) { _ in
                     snackbar.removeFromSuperview()
