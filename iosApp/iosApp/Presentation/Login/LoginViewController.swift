@@ -71,7 +71,7 @@ class LoginViewController: UIViewController {
             .store(in: &cancellables)
         
         viewModel.$message
-            .receive(on: DispatchSerialQueue.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] message in
                 guard let unWrapMessage = message else { return }
                 self?.showSnackbar(message: unWrapMessage)
@@ -79,7 +79,7 @@ class LoginViewController: UIViewController {
             .store(in: &cancellables)
         
         viewModel.$usernameError
-            .receive(on: DispatchSerialQueue.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 guard let strongSelf = self, let unWrapError = error else { return }
                 strongSelf.customView.tfUsername.showError(message: unWrapError)
@@ -87,7 +87,7 @@ class LoginViewController: UIViewController {
             .store(in: &cancellables)
         
         viewModel.$passwordError
-            .receive(on: DispatchSerialQueue.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 guard let strongSelf = self, let unWrapError = error else { return }
                 strongSelf.customView.tfPassword.showError(message: unWrapError)
