@@ -61,6 +61,7 @@ class LoginView: UIView {
     
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.delaysContentTouches = false
         scrollView.addSubview(container)
         
         NSLayoutConstraint.activate([
@@ -99,6 +100,8 @@ class LoginView: UIView {
             btRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             btRegister.topAnchor.constraint(equalTo: btLogin.bottomAnchor, constant: 16),
             btRegister.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24),
+            //btRegister.heightAnchor.constraint(equalToConstant: 20),
+            //btRegister.widthAnchor.constraint(equalToConstant: 20),
             
             loadingIndicator.centerXAnchor.constraint(equalTo: btLogin.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: btLogin.centerYAnchor)
