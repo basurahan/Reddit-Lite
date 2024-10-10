@@ -10,6 +10,8 @@ import UIKit
 
 class LoginView: UIView {
     
+    var activeTextField: UITextField? = nil
+    
     // MARK: - ui components
     lazy var tfUsername: TextFieldWithValidation = {
         let textField = TextFieldWithValidation(hint: "Username", isPrivate: false, rightView: nil)
@@ -57,6 +59,55 @@ class LoginView: UIView {
         return ai
     }()
     
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.addSubview(container)
+        
+        NSLayoutConstraint.activate([
+            container.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            container.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            container.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            container.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    lazy var container: UIView = {
+        let view = UIView()
+        view.addSubview(tfUsername)
+        view.addSubview(tfPassword)
+        view.addSubview(btLogin)
+        view.addSubview(btRegister)
+        view.addSubview(loadingIndicator)
+        
+        NSLayoutConstraint.activate([
+            tfUsername.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            tfUsername.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            tfUsername.topAnchor.constraint(equalTo: view.topAnchor, constant: 600),
+            
+            tfPassword.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            tfPassword.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            tfPassword.topAnchor.constraint(equalTo: tfUsername.bottomAnchor, constant: 8),
+            
+            btLogin.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            btLogin.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            btLogin.topAnchor.constraint(equalTo: tfPassword.bottomAnchor, constant: 8),
+            
+            btRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            btRegister.topAnchor.constraint(equalTo: btLogin.bottomAnchor, constant: 16),
+            btRegister.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            loadingIndicator.centerXAnchor.constraint(equalTo: btLogin.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: btLogin.centerYAnchor)
+        ])
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     // MARK: - lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,30 +120,13 @@ class LoginView: UIView {
     }
     
     private func setupView() {
-        self.addSubview(tfUsername)
-        self.addSubview(tfPassword)
-        self.addSubview(btLogin)
-        self.addSubview(btRegister)
-        self.addSubview(loadingIndicator)
+        self.addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            tfUsername.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            tfUsername.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            tfUsername.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -100),
-            
-            tfPassword.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            tfPassword.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            tfPassword.topAnchor.constraint(equalTo: tfUsername.bottomAnchor, constant: 8),
-            
-            btLogin.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            btLogin.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            btLogin.topAnchor.constraint(equalTo: tfPassword.bottomAnchor, constant: 8),
-            
-            btRegister.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            btRegister.topAnchor.constraint(equalTo: btLogin.bottomAnchor, constant: 16),
-            
-            loadingIndicator.centerXAnchor.constraint(equalTo: btLogin.centerXAnchor),
-            loadingIndicator.centerYAnchor.constraint(equalTo: btLogin.centerYAnchor)
+            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: self.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 }

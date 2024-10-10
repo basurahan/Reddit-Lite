@@ -9,12 +9,14 @@
 import UIKit
 import Combine
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - properties
     private let customView = LoginView()
     private let viewModel = LoginViewModel()
     private var cancellables = Set<AnyCancellable>()
+    
+    private var activeTextField: UITextField? = nil
     
     // MARK: - lifecycle
     override func loadView() {
@@ -34,6 +36,8 @@ class LoginViewController: UIViewController {
     
     deinit {
         viewModel.leave()
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - ui events
@@ -41,6 +45,11 @@ class LoginViewController: UIViewController {
         customView.btLogin.addTarget(self, action: #selector(onLoginClick), for: .touchUpInside)
         customView.tfUsername.textField.addTarget(self, action: #selector(onUsernameChange(_:)), for: .editingChanged)
         customView.tfPassword.textField.addTarget(self, action: #selector(onPasswordChange(_:)), for: .editingChanged)
+        
+        customView.tfUsername.setDelegate(self)
+        customView.tfPassword.setDelegate(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardShown), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc private func onLoginClick() {
@@ -57,6 +66,32 @@ class LoginViewController: UIViewController {
     @objc private func onPasswordChange(_ textfield: UITextField) {
         customView.tfUsername.clearError()
         customView.tfPassword.clearError()
+    }
+    
+    @objc func onKeyboardShown(notification: NSNotification) {
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardSize = keyboardFrame.cgRectValue.size
+            let bottomInset = keyboardSize.height
+            
+            // add the keyboard height as inset to the scrollview so the user can scroll through all the items
+            customView.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottomInset, right: 0)
+            customView.scrollView.scrollIndicatorInsets = customView.scrollView.contentInset
+            
+            // If there's a currently focused text field, scroll it into view
+            if let activeField = activeTextField {
+                let visibleRect = customView.scrollView.frame.inset(by: customView.scrollView.contentInset)
+                let fieldFrame = activeField.convert(activeField.bounds, to: customView.scrollView)
+
+                if !visibleRect.contains(fieldFrame.origin) {
+                    customView.scrollView.scrollRectToVisible(fieldFrame, animated: true)
+                }
+            }
+        }
+    }
+    
+    @objc func onKeyboardHidden() {
+        customView.scrollView.contentInset = .zero
+        customView.scrollView.scrollIndicatorInsets = .zero
     }
     
     // MARK: - data observers
@@ -108,5 +143,23 @@ class LoginViewController: UIViewController {
                 homeViewController.selectedIndex = 0
             }
             .store(in: &cancellables)
+    }
+    
+    // MARK: - delegates
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = nil
+    }
+    
+    // MARK: - custom behaviour
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Dismiss the keyboard when the user taps anywhere outside the text fields
+        self.view.endEditing(true)
+        
+        // Call the superclass implementation if necessary
+        //super.touchesBegan(touches, with: event)
     }
 }

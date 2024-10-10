@@ -86,6 +86,10 @@ class TextFieldWithValidation : UIView {
     func toggleSecurityText() {
         textField.isSecureTextEntry.toggle()
     }
+    
+    func setDelegate(_ delegate: UITextFieldDelegate) {
+        textField.delegate = delegate
+    }
 }
 
 #if DEBUG
