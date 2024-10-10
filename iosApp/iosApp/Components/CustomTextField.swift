@@ -23,6 +23,8 @@ class CustomTextField: UITextField {
         if isSecureTextEntry, let text = self.text {
             self.text?.removeAll()
             insertText(text)
+            insertText("x")
+            deleteBackward()
         }
         return success
     }
