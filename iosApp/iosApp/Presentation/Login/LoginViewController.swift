@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     // MARK: - properties
     private let customView = LoginView()
@@ -98,10 +98,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private func setupDataObservers() {
         viewModel.$isLoading
             .receive(on: DispatchQueue.main)
-            .sink{ [weak self] isLoadng in
+            .sink{ [weak self] isLoading in
                 guard let strongSelf = self else { return }
-                strongSelf.customView.loadingIndicator.isHidden = !isLoadng
-                strongSelf.customView.btLogin.isEnabled = !isLoadng
+                if isLoading {
+                    strongSelf.showLoadingDialog()
+                } else {
+                    strongSelf.hideLoadingDialog()
+                }
             }
             .store(in: &cancellables)
         

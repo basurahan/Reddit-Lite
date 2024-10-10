@@ -51,14 +51,6 @@ class LoginView: UIView {
         return button
     }()
     
-    lazy var loadingIndicator: UIActivityIndicatorView = {
-        let ai = UIActivityIndicatorView()
-        ai.startAnimating()
-        ai.isHidden = true
-        ai.translatesAutoresizingMaskIntoConstraints = false
-        return ai
-    }()
-    
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.delaysContentTouches = false
@@ -82,7 +74,6 @@ class LoginView: UIView {
         view.addSubview(tfPassword)
         view.addSubview(btLogin)
         view.addSubview(btRegister)
-        view.addSubview(loadingIndicator)
         
         NSLayoutConstraint.activate([
             tfUsername.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -99,12 +90,7 @@ class LoginView: UIView {
             
             btRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             btRegister.topAnchor.constraint(equalTo: btLogin.bottomAnchor, constant: 16),
-            btRegister.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24),
-            //btRegister.heightAnchor.constraint(equalToConstant: 20),
-            //btRegister.widthAnchor.constraint(equalToConstant: 20),
-            
-            loadingIndicator.centerXAnchor.constraint(equalTo: btLogin.centerXAnchor),
-            loadingIndicator.centerYAnchor.constraint(equalTo: btLogin.centerYAnchor)
+            btRegister.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24)
         ])
         
         view.translatesAutoresizingMaskIntoConstraints = false

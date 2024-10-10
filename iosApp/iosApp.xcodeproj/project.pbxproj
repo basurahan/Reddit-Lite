@@ -33,6 +33,8 @@
 		1874E7152C9C4AE800A283D6 /* HomeHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E7142C9C4AE800A283D6 /* HomeHomeView.swift */; };
 		187D38402CA164820046C684 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D383F2CA164790046C684 /* KeychainHelper.swift */; };
 		187D38432CA166B30046C684 /* KeyDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187D38422CA1669E0046C684 /* KeyDirectory.swift */; };
+		18896D6B2CB7F0CA00872985 /* LoadingDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18896D6A2CB7F0C500872985 /* LoadingDialog.swift */; };
+		18896D6E2CB7F39F00872985 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18896D6D2CB7F39B00872985 /* BaseViewController.swift */; };
 		463C6505D2B31C8830F0489A /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8121F484C6497A23D6FC3A17 /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,8 @@
 		1874E7142C9C4AE800A283D6 /* HomeHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHomeView.swift; sourceTree = "<group>"; };
 		187D383F2CA164790046C684 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		187D38422CA1669E0046C684 /* KeyDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyDirectory.swift; sourceTree = "<group>"; };
+		18896D6A2CB7F0C500872985 /* LoadingDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDialog.swift; sourceTree = "<group>"; };
+		18896D6D2CB7F39B00872985 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8121F484C6497A23D6FC3A17 /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +106,7 @@
 		18657AF22CA0001B001EC16A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				18896D6A2CB7F0C500872985 /* LoadingDialog.swift */,
 				1806C3262CB25D66000EAE3A /* CustomTextField.swift */,
 				1806C3242CB21ED1000EAE3A /* PasswordToggle.swift */,
 				18657AF52CA0202C001EC16A /* TextFieldWithValidation.swift */,
@@ -113,8 +118,10 @@
 		1874E6E32C9BFD8C00A283D6 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */,
 				1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */,
+				7555FF8C242A565B00829871 /* Info.plist */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -214,6 +221,14 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		18896D6C2CB7F39500872985 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				18896D6D2CB7F39B00872985 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		3323D3D225D967A26D1CA02A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,13 +258,12 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				18896D6C2CB7F39500872985 /* Base */,
 				187D38412CA166960046C684 /* Config */,
 				18657AF22CA0001B001EC16A /* Components */,
 				1874E6F32C9C11D700A283D6 /* Presentation */,
 				1874E6EE2C9C0E2D00A283D6 /* Util */,
 				1874E6E32C9BFD8C00A283D6 /* Supporting */,
-				058557BA273AAA24004C7B11 /* Assets.xcassets */,
-				7555FF8C242A565B00829871 /* Info.plist */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 			);
 			path = iosApp;
@@ -353,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1874E7052C9C154400A283D6 /* CreateViewController.swift in Sources */,
+				18896D6B2CB7F0CA00872985 /* LoadingDialog.swift in Sources */,
 				1874E70D2C9C23BE00A283D6 /* ProfileView.swift in Sources */,
 				1874E7072C9C156E00A283D6 /* NotificationViewController.swift in Sources */,
 				1874E70F2C9C4A4C00A283D6 /* NotificationView.swift in Sources */,
@@ -364,6 +379,7 @@
 				1874E6F72C9C122300A283D6 /* LoginViewController.swift in Sources */,
 				1874E7132C9C4AB900A283D6 /* ChatView.swift in Sources */,
 				1874E6E82C9BFE3400A283D6 /* AppDelegate.swift in Sources */,
+				18896D6E2CB7F39F00872985 /* BaseViewController.swift in Sources */,
 				18657AF42CA0003C001EC16A /* Snackbar.swift in Sources */,
 				1874E6EA2C9BFF2600A283D6 /* SceneDelegate.swift in Sources */,
 				1806C3272CB25D6F000EAE3A /* CustomTextField.swift in Sources */,
@@ -507,7 +523,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = iosApp/Info.plist;
+				INFOPLIST_FILE = iosApp/Supporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -531,7 +547,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = iosApp/Info.plist;
+				INFOPLIST_FILE = iosApp/Supporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
