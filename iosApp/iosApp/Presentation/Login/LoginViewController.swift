@@ -154,12 +154,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         activeTextField = nil
     }
     
-    // MARK: - custom behaviour
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Dismiss the keyboard when the user taps anywhere outside the text fields
-        self.view.endEditing(true)
-        
-        // Call the superclass implementation if necessary
-        //super.touchesBegan(touches, with: event)
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()  // Hides the keyboard
+        return true
     }
 }

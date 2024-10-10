@@ -98,7 +98,7 @@ class LoginView: UIView {
             
             btRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             btRegister.topAnchor.constraint(equalTo: btLogin.bottomAnchor, constant: 16),
-            btRegister.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            btRegister.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24),
             
             loadingIndicator.centerXAnchor.constraint(equalTo: btLogin.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: btLogin.centerYAnchor)
