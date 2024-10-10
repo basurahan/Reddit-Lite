@@ -6,6 +6,6 @@ import androidx.lifecycle.ViewModel
 open class AndroidBaseViewModel : ViewModel() {
 
     @Suppress("PropertyName")
-    protected val _errorMessages = AndroidActionLiveData<CommonDomainException>()
-    val errorMessage: LiveData<CommonDomainException> = _errorMessages
+    protected val _errorMessages = AndroidActionLiveData<CommonDomainParentException>()
+    val errorMessage: LiveData<CommonDomainParentException> = _errorMessages
 }

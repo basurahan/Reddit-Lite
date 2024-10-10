@@ -10,8 +10,10 @@ import link.limecode.reddit.lite.domain.repository.TokenRepository
 import link.limecode.reddit.lite.domain.usecase.CommonLoginUseCase
 import link.limecode.reddit.lite.util.AndroidActionLiveData
 import link.limecode.reddit.lite.util.AndroidBaseViewModel
+import link.limecode.reddit.lite.util.AndroidDomainException
 import link.limecode.reddit.lite.util.CommonDomainException
-import link.limecode.reddit.lite.util.runDomainCatching
+import link.limecode.reddit.lite.util.runAndroidDomainCatching
+import link.limecode.reddit.lite.util.runCommonDomainCatching
 
 class AndroidLoginViewModel(
     private val loginUseCase: CommonLoginUseCase,
@@ -45,7 +47,9 @@ class AndroidLoginViewModel(
             )
 
             try {
-                val result = loginUseCase.runDomainCatching { invoke(param) }.getOrThrow()
+                val result = loginUseCase.runCommonDomainCatching {
+                        runAndroidDomainCatching { invoke(param) }.getOrThrow()
+                    }.getOrThrow()
 
                 when (result) {
                     is UiResLogin.Fail -> {
@@ -58,6 +62,8 @@ class AndroidLoginViewModel(
                     }
                 }
             } catch (e: CommonDomainException) {
+                _errorMessages.value = e
+            } catch (e: AndroidDomainException) {
                 _errorMessages.value = e
             } finally {
                 loadingAction.value = false
