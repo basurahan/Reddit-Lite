@@ -86,7 +86,7 @@ class LoginView: UIView {
         NSLayoutConstraint.activate([
             tfUsername.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tfUsername.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            tfUsername.topAnchor.constraint(equalTo: view.topAnchor, constant: 600),
+            tfUsername.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             
             tfPassword.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tfPassword.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),

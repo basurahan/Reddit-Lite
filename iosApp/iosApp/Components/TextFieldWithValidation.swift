@@ -25,6 +25,8 @@ class TextFieldWithValidation : UIView {
         textField.rightViewMode = .always
         textField.clearsOnBeginEditing = false
         textField.isSecureTextEntry = isPrivate
+        textField.autocorrectionType = .no
+        textField.spellCheckingType = .no
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
