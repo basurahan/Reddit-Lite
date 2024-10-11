@@ -34,10 +34,9 @@ class TextFieldWithValidation : UIView {
     lazy var errorLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
+        label.textAlignment = .right
         label.textColor = .red
         label.numberOfLines = 1
-        label.text = " "
-        label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -64,10 +63,11 @@ class TextFieldWithValidation : UIView {
             textField.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             textField.topAnchor.constraint(equalTo: self.topAnchor),
             
+            errorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
             errorLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
             errorLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 4),
             errorLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            errorLabel.heightAnchor.constraint(equalToConstant: errorLabel.intrinsicContentSize.height)
+            errorLabel.heightAnchor.constraint(equalToConstant: errorLabel.font.lineHeight)
         ])
     }
     
@@ -78,11 +78,10 @@ class TextFieldWithValidation : UIView {
     
     func showError(message: String) {
         errorLabel.text = message
-        errorLabel.isHidden = false
     }
 
     func clearError() {
-        errorLabel.isHidden = true
+        errorLabel.text = ""
     }
     
     func toggleSecurityText() {

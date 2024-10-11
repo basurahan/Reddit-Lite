@@ -78,7 +78,7 @@ class LoginView: UIView {
         NSLayoutConstraint.activate([
             tfUsername.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tfUsername.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            tfUsername.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            tfUsername.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
             
             tfPassword.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tfPassword.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
@@ -90,7 +90,7 @@ class LoginView: UIView {
             
             btRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             btRegister.topAnchor.constraint(equalTo: btLogin.bottomAnchor, constant: 16),
-            btRegister.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24)
+            btRegister.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24)
         ])
         
         view.translatesAutoresizingMaskIntoConstraints = false

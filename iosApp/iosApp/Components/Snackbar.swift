@@ -16,6 +16,7 @@ class Snackbar: UIView {
         label.textColor = .white
         label.textAlignment = .left
         label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -52,28 +53,37 @@ extension UIViewController {
         // add the snackbar to the view controller
         let snackbar = Snackbar(message: message)
         snackbar.translatesAutoresizingMaskIntoConstraints = false
+        
+        // hide it so we can calculate the hide using autolayout
+        snackbar.isHidden = true
         self.view.addSubview(snackbar)
         
-        // needed to get the correct height
-        snackbar.layoutIfNeeded()
-        
-        let hiddenTranslation = snackbar.frame.height
-        let shownTranslation = -(hiddenTranslation + 20)
+        let bottomConstraint = snackbar.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
     
         // hide it below the view controller screen
         NSLayoutConstraint.activate([
             snackbar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
             snackbar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-            snackbar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: hiddenTranslation)
+            bottomConstraint
         ])
         
         // make sure to get the updated constraint
         self.view.layoutIfNeeded()
         
+        // hide the snackbar using translation instead of visibility
+        let hiddenTranslation = snackbar.frame.height + self.view.safeAreaInsets.bottom
+        bottomConstraint.constant = hiddenTranslation
+        snackbar.isHidden = false
+        
+        // make sure to get the updated constraint
+        self.view.layoutIfNeeded()
+        
+        // animate showing of snackbar
+        let showTranslation = -(hiddenTranslation + 20)
         UIView.animate(
             withDuration: 0.5,
             animations: {
-                snackbar.transform = CGAffineTransform(translationX: 0, y: shownTranslation)
+                snackbar.transform = CGAffineTransform(translationX: 0, y: showTranslation)
             }
         ) { _ in
             DispatchQueue.main.asyncAfter(
