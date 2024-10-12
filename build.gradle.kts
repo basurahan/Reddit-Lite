@@ -9,4 +9,5 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform.cocoapods) apply false
     alias(libs.plugins.kotlin.multiplatform.jvm) apply false
     alias(libs.plugins.kotlin.multiplatform.serialization) apply false
+    alias(libs.plugins.kotlin.multiplatform.sqldelight) apply false
 }

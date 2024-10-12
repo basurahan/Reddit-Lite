@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.domain.model.UiResLogin
 import link.limecode.reddit.lite.domain.model.UiUser
-import link.limecode.reddit.lite.domain.repository.TokenRepository
+import link.limecode.reddit.lite.domain.repository.SessionRepository
 import link.limecode.reddit.lite.domain.usecase.CommonLoginUseCase
 import link.limecode.reddit.lite.util.AndroidActionLiveData
 import link.limecode.reddit.lite.util.AndroidBaseViewModel
@@ -17,7 +17,7 @@ import link.limecode.reddit.lite.util.runCommonDomainCatching
 
 class AndroidLoginViewModel(
     private val loginUseCase: CommonLoginUseCase,
-    private val tokenRepository: TokenRepository
+    private val tokenRepository: SessionRepository
 ) : AndroidBaseViewModel() {
 
     // events
@@ -72,7 +72,7 @@ class AndroidLoginViewModel(
     }
 
     private suspend fun startSession(info: UiResLogin.Success) {
-        tokenRepository.saveToken(info.token)
+        tokenRepository.setSessionBy(user = info.user, token = info.token)
         onSessionStarted.value = info.user
     }
 }

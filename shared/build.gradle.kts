@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.multiplatform.cocoapods)
     alias(libs.plugins.kotlin.multiplatform.serialization)
+    alias(libs.plugins.kotlin.multiplatform.sqldelight)
     alias(libs.plugins.android.library)
 }
 
@@ -45,6 +46,7 @@ kotlin {
             implementation(libs.kotlin.multiplatform.ktor.client.serialization)
             implementation(libs.kotlin.multiplatform.ktor.client.plugin.logging)
             implementation(libs.kotlin.multiplatform.coroutines.core)
+            implementation(libs.kotlin.multiplatform.sqldelight.coroutine)
         }
         androidMain.dependencies {
             implementation(libs.android.ktor.client.engine)
@@ -56,12 +58,15 @@ kotlin {
 
             implementation(libs.android.ktor.logger)
             implementation(libs.android.datastore)
+
+            implementation(libs.android.sqldelight.driver)
         }
         iosMain.dependencies {
             implementation(libs.ios.ktor.client.engine)
             implementation(libs.kotlin.multiplatform.koin.core)
             //implementation(libs.kotlin.multiplatform.coroutines.core)
             // TODO: logger for ios
+            implementation(libs.ios.sqldelight.driver)
         }
     }
 }
@@ -75,5 +80,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("link.limecode.reddit.lite.database")
+        }
     }
 }
