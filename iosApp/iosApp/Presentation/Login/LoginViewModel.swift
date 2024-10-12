@@ -15,7 +15,7 @@ class LoginViewModel: ObservableObject {
     private let helper = IOSLoginViewModelHelperWrapper().getHelper()
     
     // MARK: - ui events
-    var onSuccess = PassthroughSubject<Void, Never>()
+    var onSuccess = PassthroughSubject<UiUser, Never>()
     
     // MARK: - ui state
     @Published var isLoading: Bool = false
@@ -50,7 +50,7 @@ class LoginViewModel: ObservableObject {
                     return
                 }
                 
-                self.onSuccess.send()
+                self.onSuccess.send(body.user)
                 return
             }
         }

@@ -15,6 +15,11 @@
 		185EB5992C9F99B00050BEA7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185EB5982C9F99AA0050BEA7 /* LoginView.swift */; };
 		18657AF42CA0003C001EC16A /* Snackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18657AF32CA00029001EC16A /* Snackbar.swift */; };
 		18657AF62CA02034001EC16A /* TextFieldWithValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18657AF52CA0202C001EC16A /* TextFieldWithValidation.swift */; };
+		18660B792CB9F5A900CBDFBE /* EventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B782CB9F5A700CBDFBE /* EventBus.swift */; };
+		18660B7D2CB9F7DE00CBDFBE /* AtomicDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B7C2CB9F7D800CBDFBE /* AtomicDictionary.swift */; };
+		18660B7F2CB9F8DA00CBDFBE /* AtomicBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B7E2CB9F8D300CBDFBE /* AtomicBool.swift */; };
+		18660B812CBA094D00CBDFBE /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B802CBA094A00CBDFBE /* AppViewController.swift */; };
+		18660B832CBA098900CBDFBE /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B822CBA098500CBDFBE /* SessionViewModel.swift */; };
 		1874E6E82C9BFE3400A283D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */; };
 		1874E6EA2C9BFF2600A283D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */; };
 		1874E6F02C9C0EC500A283D6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6EF2C9C0EC500A283D6 /* UIViewExtension.swift */; };
@@ -47,6 +52,11 @@
 		185EB5982C9F99AA0050BEA7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		18657AF32CA00029001EC16A /* Snackbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snackbar.swift; sourceTree = "<group>"; };
 		18657AF52CA0202C001EC16A /* TextFieldWithValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithValidation.swift; sourceTree = "<group>"; };
+		18660B782CB9F5A700CBDFBE /* EventBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBus.swift; sourceTree = "<group>"; };
+		18660B7C2CB9F7D800CBDFBE /* AtomicDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicDictionary.swift; sourceTree = "<group>"; };
+		18660B7E2CB9F8D300CBDFBE /* AtomicBool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicBool.swift; sourceTree = "<group>"; };
+		18660B802CBA094A00CBDFBE /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
+		18660B822CBA098500CBDFBE /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
 		1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1874E6EF2C9C0EC500A283D6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -129,6 +139,9 @@
 		1874E6EE2C9C0E2D00A283D6 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				18660B7E2CB9F8D300CBDFBE /* AtomicBool.swift */,
+				18660B7C2CB9F7D800CBDFBE /* AtomicDictionary.swift */,
+				18660B782CB9F5A700CBDFBE /* EventBus.swift */,
 				187D383F2CA164790046C684 /* KeychainHelper.swift */,
 				1874E6EF2C9C0EC500A283D6 /* UIViewExtension.swift */,
 				1874E6F12C9C102100A283D6 /* UIViewControllerExtension.swift */,
@@ -139,6 +152,8 @@
 		1874E6F32C9C11D700A283D6 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				18660B822CBA098500CBDFBE /* SessionViewModel.swift */,
+				18660B802CBA094A00CBDFBE /* AppViewController.swift */,
 				1874E6F52C9C11F700A283D6 /* Home */,
 				1874E6F42C9C11E600A283D6 /* Login */,
 			);
@@ -373,22 +388,27 @@
 				1874E70F2C9C4A4C00A283D6 /* NotificationView.swift in Sources */,
 				187D38402CA164820046C684 /* KeychainHelper.swift in Sources */,
 				1806C3252CB21ED7000EAE3A /* PasswordToggle.swift in Sources */,
+				18660B832CBA098900CBDFBE /* SessionViewModel.swift in Sources */,
 				18657AF62CA02034001EC16A /* TextFieldWithValidation.swift in Sources */,
 				1874E7112C9C4A9800A283D6 /* CreateView.swift in Sources */,
 				1874E7002C9C14C900A283D6 /* HomeHomeViewController.swift in Sources */,
 				1874E6F72C9C122300A283D6 /* LoginViewController.swift in Sources */,
 				1874E7132C9C4AB900A283D6 /* ChatView.swift in Sources */,
 				1874E6E82C9BFE3400A283D6 /* AppDelegate.swift in Sources */,
+				18660B792CB9F5A900CBDFBE /* EventBus.swift in Sources */,
 				18896D6E2CB7F39F00872985 /* BaseViewController.swift in Sources */,
 				18657AF42CA0003C001EC16A /* Snackbar.swift in Sources */,
 				1874E6EA2C9BFF2600A283D6 /* SceneDelegate.swift in Sources */,
+				18660B7F2CB9F8DA00CBDFBE /* AtomicBool.swift in Sources */,
 				1806C3272CB25D6F000EAE3A /* CustomTextField.swift in Sources */,
 				181FA8412C9F2DE30036FE3F /* LoginViewModel.swift in Sources */,
+				18660B812CBA094D00CBDFBE /* AppViewController.swift in Sources */,
 				1874E7152C9C4AE800A283D6 /* HomeHomeView.swift in Sources */,
 				185EB5992C9F99B00050BEA7 /* LoginView.swift in Sources */,
 				1874E7092C9C15A200A283D6 /* ProfileViewController.swift in Sources */,
 				187D38432CA166B30046C684 /* KeyDirectory.swift in Sources */,
 				1874E6F22C9C102100A283D6 /* UIViewControllerExtension.swift in Sources */,
+				18660B7D2CB9F7DE00CBDFBE /* AtomicDictionary.swift in Sources */,
 				1874E6F02C9C0EC500A283D6 /* UIViewExtension.swift in Sources */,
 				1874E6F92C9C144900A283D6 /* HomeViewController.swift in Sources */,
 				1874E7022C9C14F600A283D6 /* ChatViewController.swift in Sources */,
