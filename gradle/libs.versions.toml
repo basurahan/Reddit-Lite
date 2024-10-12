@@ -7,6 +7,7 @@ kotlin-datetime = "0.6.1"
 kotlin-koin = "3.5.3"
 kotlin-ktor-client = "2.3.12"
 kotlin-coroutines = "1.9.0"
+kotlin-sqldelight = "2.0.2"
 
 # android dep
 agp = "8.3.0"
@@ -38,6 +39,7 @@ kotlin-multiplatform-ktor-client-plugin-contentnegotiation = { module = "io.ktor
 kotlin-multiplatform-ktor-client-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "kotlin-ktor-client" }
 kotlin-multiplatform-ktor-client-plugin-logging = { module = "io.ktor:ktor-client-logging", version.ref = "kotlin-ktor-client" }
 kotlin-multiplatform-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
+kotlin-multiplatform-sqldelight-coroutine = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "kotlin-sqldelight" }
 
 # jvm dep
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor-server" }
@@ -69,9 +71,11 @@ android-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", versi
 android-saved-state = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "android-lifecycle" }
 android-ktor-logger = { module = "org.slf4j:slf4j-android", version.ref = "android-logger" }
 android-datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "android-datastore" }
+android-sqldelight-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "kotlin-sqldelight" }
 
 # ios dep
 ios-ktor-client-engine = { module = "io.ktor:ktor-client-darwin", version.ref = "kotlin-ktor-client" }
+ios-sqldelight-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "kotlin-sqldelight" }
 
 [plugins]
 # android dep
@@ -84,6 +88,7 @@ kotlin-multiplatform-android = { id = "org.jetbrains.kotlin.android", version.re
 kotlin-multiplatform-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin-multiplatform" }
 kotlin-multiplatform-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-multiplatform" }
 kotlin-multiplatform-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-multiplatform" }
+kotlin-multiplatform-sqldelight = { id = "app.cash.sqldelight", version.ref = "kotlin-sqldelight" }
 
 # jvm dep
 ktor-server = { id = "io.ktor.plugin", version.ref = "ktor-server" }
