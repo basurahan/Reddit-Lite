@@ -9,5 +9,5 @@ import org.koin.dsl.module
 val androidPresentationModule = module {
     viewModel<AndroidLoginViewModel> { AndroidLoginViewModel(get(), get()) }
     viewModel<AndroidAppEventsViewModel> { AndroidAppEventsViewModel() }
-    viewModel<AndroidSessionViewModel> { AndroidSessionViewModel() }
+    viewModel<AndroidSessionViewModel> { AndroidSessionViewModel(get()) }
 }

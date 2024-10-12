@@ -1,17 +1,30 @@
 package link.limecode.reddit.lite.presentation.viewmodel.app
 
-import kotlinx.coroutines.flow.MutableStateFlow
-import link.limecode.reddit.lite.domain.model.UiUser
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import link.limecode.reddit.lite.domain.usecase.CommonLoadLastSessionUseCase
 import link.limecode.reddit.lite.util.AndroidBaseViewModel
 
-class AndroidSessionViewModel : AndroidBaseViewModel() {
-    private val _session = MutableStateFlow<UiUser?>(null)
+class AndroidSessionViewModel(
+    loadLastSessionUseCase: CommonLoadLastSessionUseCase
+) : AndroidBaseViewModel() {
 
-    fun startSessionBy(user: UiUser) {
-        _session.value = user
-    }
+    var isReady: Boolean = false
 
-    fun endSession() {
-        _session.value = null
+    private val session = loadLastSessionUseCase.invoke()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = null
+        )
+
+    init {
+        viewModelScope.launch {
+            session.collect {
+                isReady = true
+            }
+        }
     }
 }

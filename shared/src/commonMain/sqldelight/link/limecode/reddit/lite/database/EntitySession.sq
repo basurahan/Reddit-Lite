@@ -1,0 +1,19 @@
+CREATE TABLE EntitySession (
+    session_id INTEGER PRIMARY KEY NOT NULL,
+    token TEXT NOT NULL,
+    email TEXT NOT NULL,
+    username TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+);
+
+getToken:
+SELECT token
+FROM EntitySession;
+
+setSessionBy:
+INSERT OR REPLACE INTO EntitySession(session_id, token, email, username, updated_at)
+VALUES (?, ?, ?, ?, ?);
+
+getUserInfo:
+SELECT email, username
+FROM EntitySession;

@@ -64,4 +64,5 @@ dependencies {
     implementation(libs.android.saved.state)
 
     implementation(libs.android.datastore)
+    implementation(libs.android.splashscreen)
 }

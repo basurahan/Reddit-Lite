@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.core.graphics.Insets
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
@@ -26,8 +27,14 @@ class MainActivity : ActivityViewBinding<ActivityMainBinding>() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         setupEdgeToEdge()
         super.onCreate(savedInstanceState)
+        with(viewBinding) {
+            root.viewTreeObserver.addOnPreDrawListener {
+                return@addOnPreDrawListener sessionViewModel.isReady
+            }
+        }
         setupKeyboardInsets()
         setupNavGraph()
     }
