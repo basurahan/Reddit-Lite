@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootViewController: UINavigationController {
+class AppViewController: UINavigationController {
     
-    let sessionViewModel = SessionViewModel()
+    let sessionViewModel = SessionViewModel.shared
 }
