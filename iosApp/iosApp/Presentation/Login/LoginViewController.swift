@@ -14,7 +14,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     // MARK: - properties
     private let customView = LoginView()
     private let viewModel = LoginViewModel()
-    private let sessionViewModel = SessionViewModel.shared
+    private let appEventsViewModel = AppEventsViewModel.shared
     private var cancellables = Set<AnyCancellable>()
     
     private var activeTextField: UITextField? = nil
@@ -135,7 +135,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
         viewModel.onSuccess
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] user in
+            .sink { [weak self] username in
                 if let navController = self?.navigationController {
                     navController.popToRootViewController(animated: true)
                 }
@@ -146,7 +146,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 
                 homeViewController.selectedIndex = 0
                 
-                self?.sessionViewModel.startSessionBy(user)
+                self?.appEventsViewModel.onSessionStarted.emit(username)
             }
             .store(in: &cancellables)
     }
