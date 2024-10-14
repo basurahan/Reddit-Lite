@@ -4,6 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.graphics.Insets
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -13,6 +18,7 @@ import link.limecode.reddit.lite.android.databinding.FragmentHomeBinding
 import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.HomeTabDestination
 import link.limecode.reddit.lite.android.navigation.setupHomeGraph
 import link.limecode.reddit.lite.android.util.activate
+import link.limecode.reddit.lite.android.util.dpToPx
 import link.limecode.reddit.lite.android.util.switchTab
 import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidAppEventsViewModel
 import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidSessionViewModel
@@ -32,8 +38,27 @@ class HomeFragment : FragmentViewBinding<FragmentHomeBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupViews()
         setupNavGraph()
         setupEventObservers()
+    }
+
+    private fun setupViews() {
+        with(viewBinding) {
+            ViewCompat.setOnApplyWindowInsetsListener(tabHostFragment) { v, insets ->
+                val systemNavigationBarInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+                val bottomNavigationViewHeight = requireContext().dpToPx(80)
+                v.updateLayoutParams<CoordinatorLayout.LayoutParams> {
+                    bottomMargin = systemNavigationBarInsets.bottom + bottomNavigationViewHeight
+                }
+
+                val childInsets = WindowInsetsCompat.Builder(insets)
+                val updatedInsets = Insets.of(systemNavigationBarInsets.left, systemNavigationBarInsets.top, systemNavigationBarInsets.right, Insets.NONE.bottom)
+                childInsets.setInsets(WindowInsetsCompat.Type.navigationBars(), updatedInsets)
+
+                childInsets.build()
+            }
+        }
     }
 
     private fun setupNavGraph() {
