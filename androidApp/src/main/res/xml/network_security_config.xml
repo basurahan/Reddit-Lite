@@ -6,7 +6,7 @@
         <!-- END STAGING SERVER -->
 
         <!-- START LOCAL SERVER -->
-        <domain includeSubdomains="true">192.168.1.168</domain>
+        <domain includeSubdomains="true">192.168.1.203</domain>
         <!-- END LOCAL SERVER -->
     </domain-config>
 </network-security-config>

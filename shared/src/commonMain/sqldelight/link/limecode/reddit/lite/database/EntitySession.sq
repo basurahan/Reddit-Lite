@@ -17,3 +17,6 @@ VALUES (?, ?, ?, ?, ?);
 getUserInfo:
 SELECT email, username
 FROM EntitySession;
+
+destorySession:
+DELETE FROM EntitySession;

@@ -3,6 +3,7 @@ package link.limecode.reddit.lite.presentation.viewmodel.login
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.domain.model.UiResLogin
 import link.limecode.reddit.lite.domain.repository.SessionRepository
@@ -16,14 +17,11 @@ import link.limecode.reddit.lite.util.runCommonDomainCatching
 
 class AndroidLoginViewModel(
     private val loginUseCase: CommonLoginUseCase,
-    private val tokenRepository: SessionRepository
+    private val sessionRepository: SessionRepository
 ) : AndroidBaseViewModel() {
 
     // events
     val onSessionStarted = AndroidActionLiveData<String>()
-
-    // actions
-    val loadingAction = AndroidActionLiveData<Boolean>()
 
     // ui states
     val tfUsername = MutableStateFlow("")
@@ -39,7 +37,7 @@ class AndroidLoginViewModel(
         }
 
         loginJob = viewModelScope.launch {
-            loadingAction.value = true
+            _blockInteraction.update { true }
             val param = CommonLoginUseCase.Param(
                 username = tfUsername.value,
                 password = tfPassword.value
@@ -65,13 +63,13 @@ class AndroidLoginViewModel(
             } catch (e: AndroidDomainException) {
                 _errorMessages.value = e
             } finally {
-                loadingAction.value = false
+                _blockInteraction.update { false }
             }
         }
     }
 
     private suspend fun startSession(info: UiResLogin.Success) {
-        tokenRepository.setSessionBy(user = info.user, token = info.token)
+        sessionRepository.setSessionBy(user = info.user, token = info.token)
         onSessionStarted.value = info.user.username
     }
 }

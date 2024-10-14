@@ -71,6 +71,15 @@ class HomeFragment : FragmentViewBinding<FragmentHomeBinding>() {
                     )
                 }
             }
+
+            HomeFragment::class.qualifiedName?.let {
+                appEventsViewModel.onUserSessionDestroyed.registerObserver(
+                    id = it,
+                    lifecycleOwner = viewLifecycleOwner
+                ) {
+                    tabNavController.switchTab(HomeTabDestination::class)
+                }
+            }
         }
     }
 }
