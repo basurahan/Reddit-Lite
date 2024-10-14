@@ -12,19 +12,16 @@ import shared
 class SessionViewModel {
     static let shared = SessionViewModel()
     
-    let helper = IOSSessionViewModelHelperWrapper().getHelper()
+    // MARK: - properties
+    private let helper = IOSSessionViewModelHelperWrapper().getHelper()
+    
+    // MARK: - ui state
     let onReady = CurrentValueSubject<Bool, Never>(false)
     let userInfo = CurrentValueSubject<UiUserInfo?, Never>(nil)
     
-    init() {
-        helper.collectSession { [weak self] info in
-            self?.userInfo.send(info)
-            self?.onReady.send(true)
-        }
-    }
     
-    deinit {
-        // TODO check when is the best way to cancel coroutines
+    // MARK: - class helper
+    func leave() {
         helper.leave()
     }
 }

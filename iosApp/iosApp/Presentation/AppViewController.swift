@@ -11,9 +11,11 @@ import Combine
 
 class AppViewController: UINavigationController {
     
+    // MARK: - properties
     let sessionViewModel = SessionViewModel.shared
     var cancellables = Set<AnyCancellable>()
     
+    // MARK: - lifecycle
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         
@@ -27,5 +29,9 @@ class AppViewController: UINavigationController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        sessionViewModel.leave()
     }
 }
