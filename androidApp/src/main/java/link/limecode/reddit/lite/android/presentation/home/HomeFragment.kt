@@ -70,9 +70,7 @@ class HomeFragment : FragmentViewBinding<FragmentHomeBinding>() {
                         200
                     )
                 }
-            }
 
-            HomeFragment::class.qualifiedName?.let {
                 appEventsViewModel.onUserSessionDestroyed.registerObserver(
                     id = it,
                     lifecycleOwner = viewLifecycleOwner
