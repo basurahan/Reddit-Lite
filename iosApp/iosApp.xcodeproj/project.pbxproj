@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,10 @@
 		18660B7F2CB9F8DA00CBDFBE /* AtomicBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B7E2CB9F8D300CBDFBE /* AtomicBool.swift */; };
 		18660B812CBA094D00CBDFBE /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B802CBA094A00CBDFBE /* AppViewController.swift */; };
 		18660B832CBA098900CBDFBE /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B822CBA098500CBDFBE /* SessionViewModel.swift */; };
+		18660B902CBB6D4900CBDFBE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18660B8F2CBB6D4900CBDFBE /* Launch Screen.storyboard */; };
+		18660B962CBB883D00CBDFBE /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B952CBB883100CBDFBE /* LaunchView.swift */; };
+		18660B9A2CBB891600CBDFBE /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B992CBB890D00CBDFBE /* LaunchViewController.swift */; };
+		18660B9C2CBB941500CBDFBE /* AppEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B9B2CBB940E00CBDFBE /* AppEventsViewModel.swift */; };
 		1874E6E82C9BFE3400A283D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */; };
 		1874E6EA2C9BFF2600A283D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */; };
 		1874E6F02C9C0EC500A283D6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6EF2C9C0EC500A283D6 /* UIViewExtension.swift */; };
@@ -57,6 +61,10 @@
 		18660B7E2CB9F8D300CBDFBE /* AtomicBool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicBool.swift; sourceTree = "<group>"; };
 		18660B802CBA094A00CBDFBE /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		18660B822CBA098500CBDFBE /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
+		18660B8F2CBB6D4900CBDFBE /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		18660B952CBB883100CBDFBE /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		18660B992CBB890D00CBDFBE /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		18660B9B2CBB940E00CBDFBE /* AppEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventsViewModel.swift; sourceTree = "<group>"; };
 		1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1874E6EF2C9C0EC500A283D6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -125,6 +133,15 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		18660B942CBB882400CBDFBE /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				18660B992CBB890D00CBDFBE /* LaunchViewController.swift */,
+				18660B952CBB883100CBDFBE /* LaunchView.swift */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
 		1874E6E32C9BFD8C00A283D6 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +149,7 @@
 				1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */,
 				1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
+				18660B8F2CBB6D4900CBDFBE /* Launch Screen.storyboard */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -152,6 +170,8 @@
 		1874E6F32C9C11D700A283D6 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				18660B9B2CBB940E00CBDFBE /* AppEventsViewModel.swift */,
+				18660B942CBB882400CBDFBE /* Launch */,
 				18660B822CBA098500CBDFBE /* SessionViewModel.swift */,
 				18660B802CBA094A00CBDFBE /* AppViewController.swift */,
 				1874E6F52C9C11F700A283D6 /* Home */,
@@ -295,6 +315,7 @@
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				EC065809A5608C4B31D70D6A /* Frameworks */,
+				72DB7AE222F6D7403A4E162C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -344,6 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18660B902CBB6D4900CBDFBE /* Launch Screen.storyboard in Resources */,
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
 			);
@@ -352,6 +374,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		72DB7AE222F6D7403A4E162C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E46795182C2E747F13BCC597 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -382,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1874E7052C9C154400A283D6 /* CreateViewController.swift in Sources */,
+				18660B9A2CBB891600CBDFBE /* LaunchViewController.swift in Sources */,
 				18896D6B2CB7F0CA00872985 /* LoadingDialog.swift in Sources */,
 				1874E70D2C9C23BE00A283D6 /* ProfileView.swift in Sources */,
 				1874E7072C9C156E00A283D6 /* NotificationViewController.swift in Sources */,
@@ -399,6 +439,7 @@
 				18896D6E2CB7F39F00872985 /* BaseViewController.swift in Sources */,
 				18657AF42CA0003C001EC16A /* Snackbar.swift in Sources */,
 				1874E6EA2C9BFF2600A283D6 /* SceneDelegate.swift in Sources */,
+				18660B962CBB883D00CBDFBE /* LaunchView.swift in Sources */,
 				18660B7F2CB9F8DA00CBDFBE /* AtomicBool.swift in Sources */,
 				1806C3272CB25D6F000EAE3A /* CustomTextField.swift in Sources */,
 				181FA8412C9F2DE30036FE3F /* LoginViewModel.swift in Sources */,
@@ -408,6 +449,7 @@
 				1874E7092C9C15A200A283D6 /* ProfileViewController.swift in Sources */,
 				187D38432CA166B30046C684 /* KeyDirectory.swift in Sources */,
 				1874E6F22C9C102100A283D6 /* UIViewControllerExtension.swift in Sources */,
+				18660B9C2CBB941500CBDFBE /* AppEventsViewModel.swift in Sources */,
 				18660B7D2CB9F7DE00CBDFBE /* AtomicDictionary.swift in Sources */,
 				1874E6F02C9C0EC500A283D6 /* UIViewExtension.swift in Sources */,
 				1874E6F92C9C144900A283D6 /* HomeViewController.swift in Sources */,
@@ -549,6 +591,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lsqlite3",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -572,6 +619,11 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lsqlite3",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

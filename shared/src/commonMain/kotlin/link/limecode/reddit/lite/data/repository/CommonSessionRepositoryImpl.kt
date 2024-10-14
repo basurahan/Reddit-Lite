@@ -6,16 +6,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import link.limecode.reddit.lite.database.SessionQueries
+import link.limecode.reddit.lite.database.EntitySessionQueries
+import link.limecode.reddit.lite.database.GetUserInfo
 import link.limecode.reddit.lite.domain.model.UiUser
 import link.limecode.reddit.lite.domain.repository.SessionRepository
 import link.limecode.reddit.lite.util.getCurrentDateTime
 
-class CommonSessionRepositoryImpl(private val sessionQueries: SessionQueries) : SessionRepository {
+class CommonSessionRepositoryImpl(private val entitySessionQueries: EntitySessionQueries) :
+    SessionRepository {
 
     override suspend fun setSessionBy(user: UiUser, token: String) {
         withContext(Dispatchers.IO) {
-            sessionQueries.setSessionBy(
+            entitySessionQueries.setSessionBy(
+                session_id = 1,
                 token = token,
                 email = user.email,
                 username = user.username,
@@ -25,6 +28,10 @@ class CommonSessionRepositoryImpl(private val sessionQueries: SessionQueries) : 
     }
 
     override fun getToken(): Flow<String?> {
-        return sessionQueries.getToken().asFlow().mapToOneOrNull(Dispatchers.IO)
+        return entitySessionQueries.getToken().asFlow().mapToOneOrNull(Dispatchers.IO)
+    }
+
+    override fun getUserInfo(): Flow<GetUserInfo?> {
+        return entitySessionQueries.getUserInfo().asFlow().mapToOneOrNull(Dispatchers.IO)
     }
 }

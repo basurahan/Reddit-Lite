@@ -6,18 +6,22 @@
 //  Copyright © 2024 orgName. All rights reserved.
 //
 
+import Combine
 import shared
 
 class SessionViewModel {
     static let shared = SessionViewModel()
     
-    let session = EventBus<UiUser>()
+    // MARK: - properties
+    private let helper = IOSSessionViewModelHelperWrapper().getHelper()
     
-    func startSessionBy(_ user: UiUser) {
-        session.emit(user)
-    }
+    // MARK: - ui state
+    let onReady = CurrentValueSubject<Bool, Never>(false)
+    let userInfo = CurrentValueSubject<UiUserInfo?, Never>(nil)
     
-    func endSession() {
-        session.emit(nil)
+    
+    // MARK: - class helper
+    func cancelCoroutines() {
+        helper.cancelCoroutines()
     }
 }

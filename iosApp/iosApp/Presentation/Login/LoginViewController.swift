@@ -14,7 +14,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     // MARK: - properties
     private let customView = LoginView()
     private let viewModel = LoginViewModel()
-    private let sessionViewModel = SessionViewModel.shared
+    private let appEventsViewModel = AppEventsViewModel.shared
     private var cancellables = Set<AnyCancellable>()
     
     private var activeTextField: UITextField? = nil
@@ -32,13 +32,15 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        viewModel.leave()
-    }
-    
-    deinit {
-        viewModel.leave()
+        viewModel.cancelCoroutines()
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardShown), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - ui events
@@ -49,8 +51,6 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
         customView.tfUsername.setDelegate(self)
         customView.tfPassword.setDelegate(self)
-        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardShown), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc private func onLoginClick() {
@@ -135,7 +135,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         
         viewModel.onSuccess
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] user in
+            .sink { [weak self] username in
                 if let navController = self?.navigationController {
                     navController.popToRootViewController(animated: true)
                 }
@@ -146,7 +146,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 
                 homeViewController.selectedIndex = 0
                 
-                self?.sessionViewModel.startSessionBy(user)
+                self?.appEventsViewModel.onSessionStarted.emit(username)
             }
             .store(in: &cancellables)
     }

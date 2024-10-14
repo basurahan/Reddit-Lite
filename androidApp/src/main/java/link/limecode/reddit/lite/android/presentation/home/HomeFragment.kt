@@ -56,7 +56,7 @@ class HomeFragment : FragmentViewBinding<FragmentHomeBinding>() {
                         {
                             Snackbar.make(
                                 parent,
-                                getString(R.string.login_successful),
+                                getString(R.string.template_welcome, it),
                                 Snackbar.LENGTH_LONG
                             ).setAnchorView(bottomNavigation).show()
                         },

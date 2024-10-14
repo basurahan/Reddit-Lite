@@ -15,7 +15,7 @@ class LoginViewModel: ObservableObject {
     private let helper = IOSLoginViewModelHelperWrapper().getHelper()
     
     // MARK: - ui events
-    var onSuccess = PassthroughSubject<UiUser, Never>()
+    var onSuccess = PassthroughSubject<String, Never>()
     
     // MARK: - ui state
     @Published var isLoading: Bool = false
@@ -44,19 +44,19 @@ class LoginViewModel: ObservableObject {
             }
             
             if let body = res as? UiResLogin.Success {
-                let success = KeychainHelper.save(token: body.token, forKey: KeyDirectory.token.key)
-                guard success else {
-                    self.message = "Something went wrong"
-                    return
-                }
-                
-                self.onSuccess.send(body.user)
+                self.startSessionBy(user: body.user, token: body.token)
                 return
             }
         }
     }
     
-    func leave() {
+    private func startSessionBy(user: UiUser, token: String) {
+        helper.startSessionBy(user: user, token: token) {
+            self.onSuccess.send(user.username)
+        }
+    }
+    
+    func cancelCoroutines() {
         helper.cancelCoroutines()
     }
 }

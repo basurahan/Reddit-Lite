@@ -1,9 +1,9 @@
 package link.limecode.reddit.lite.data.di
 
 import link.limecode.reddit.lite.database.Database
-import link.limecode.reddit.lite.database.SessionQueries
+import link.limecode.reddit.lite.database.EntitySessionQueries
 import org.koin.dsl.module
 
 val commonDatabaseModule = module {
-    single<SessionQueries> { get<Database>().sessionQueries }
+    single<EntitySessionQueries> { get<Database>().entitySessionQueries }
 }

@@ -5,7 +5,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.domain.model.UiResLogin
-import link.limecode.reddit.lite.domain.model.UiUser
 import link.limecode.reddit.lite.domain.repository.SessionRepository
 import link.limecode.reddit.lite.domain.usecase.CommonLoginUseCase
 import link.limecode.reddit.lite.util.AndroidActionLiveData
@@ -21,7 +20,7 @@ class AndroidLoginViewModel(
 ) : AndroidBaseViewModel() {
 
     // events
-    val onSessionStarted = AndroidActionLiveData<UiUser>()
+    val onSessionStarted = AndroidActionLiveData<String>()
 
     // actions
     val loadingAction = AndroidActionLiveData<Boolean>()
@@ -48,8 +47,8 @@ class AndroidLoginViewModel(
 
             try {
                 val result = loginUseCase.runCommonDomainCatching {
-                        runAndroidDomainCatching { invoke(param) }.getOrThrow()
-                    }.getOrThrow()
+                    runAndroidDomainCatching { invoke(param) }.getOrThrow()
+                }.getOrThrow()
 
                 when (result) {
                     is UiResLogin.Fail -> {
@@ -73,6 +72,6 @@ class AndroidLoginViewModel(
 
     private suspend fun startSession(info: UiResLogin.Success) {
         tokenRepository.setSessionBy(user = info.user, token = info.token)
-        onSessionStarted.value = info.user
+        onSessionStarted.value = info.user.username
     }
 }

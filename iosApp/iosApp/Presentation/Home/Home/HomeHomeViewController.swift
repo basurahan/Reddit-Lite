@@ -13,7 +13,7 @@ class HomeHomeViewController: UIViewController {
     
     // MARK: - properties
     private let pageId = "b1c414ef-d03c-4ab8-82b6-86c59fefcb9a"
-    private let sessionViewModel = SessionViewModel.shared
+    private let appEventsViewModel = AppEventsViewModel.shared
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - lifecycle
@@ -24,9 +24,9 @@ class HomeHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sessionViewModel.session
-            .registerObserver(id: pageId, cancellables: &cancellables) { [weak self] value in
-                self?.showSnackbar(message: "Welcome \(value.username)")
+        appEventsViewModel.onSessionStarted
+            .registerObserver(id: pageId, cancellables: &cancellables) { [weak self] username in
+                self?.showSnackbar(message: "Welcome \(username)")
             }
     }
 }

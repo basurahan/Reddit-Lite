@@ -21,6 +21,7 @@ android-vue-binder = "1.4.1"
 android-lifecycle = "2.8.6"
 android-logger = "1.7.36"
 android-datastore = "1.1.1"
+android-splashscreen = "1.0.0"
 
 # jvm dep
 ktor-server = "2.3.12"
@@ -72,6 +73,7 @@ android-saved-state = { module = "androidx.lifecycle:lifecycle-viewmodel-savedst
 android-ktor-logger = { module = "org.slf4j:slf4j-android", version.ref = "android-logger" }
 android-datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "android-datastore" }
 android-sqldelight-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "kotlin-sqldelight" }
+android-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "android-splashscreen" }
 
 # ios dep
 ios-ktor-client-engine = { module = "io.ktor:ktor-client-darwin", version.ref = "kotlin-ktor-client" }

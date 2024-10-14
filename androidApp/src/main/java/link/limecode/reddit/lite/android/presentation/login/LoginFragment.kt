@@ -79,8 +79,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             }
 
             viewModel.onSessionStarted.observe(viewLifecycleOwner) {
-                sessionViewModel.startSessionBy(it)
-                appEventsViewModel.onUserSessionStarted.emit(Unit)
+                appEventsViewModel.onUserSessionStarted.emit(it)
                 hideKeyboard()
                 findNavController().popBackStack()
             }
