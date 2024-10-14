@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.snackbar.Snackbar
 import link.limecode.reddit.lite.android.R
@@ -14,12 +15,14 @@ import link.limecode.reddit.lite.android.navigation.setupHomeGraph
 import link.limecode.reddit.lite.android.util.activate
 import link.limecode.reddit.lite.android.util.switchTab
 import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidAppEventsViewModel
+import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidSessionViewModel
 import link.limecode.vuebinder.FragmentViewBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class HomeFragment : FragmentViewBinding<FragmentHomeBinding>() {
 
     private val appEventsViewModel: AndroidAppEventsViewModel by activityViewModel()
+    private val sessionViewModel: AndroidSessionViewModel by activityViewModel()
     private lateinit var tabNavController: NavController
 
     override fun bind(inflater: LayoutInflater, container: ViewGroup?): FragmentHomeBinding {
@@ -40,7 +43,11 @@ class HomeFragment : FragmentViewBinding<FragmentHomeBinding>() {
 
         tabNavController.setupHomeGraph()
         with(viewBinding) {
-            bottomNavigation.activate(tabNavController)
+            bottomNavigation.activate(
+                tabNavController = tabNavController,
+                stackNavController = requireActivity().findNavController(R.id.nav_host_fragment),
+                sessionState = sessionViewModel.sessionUIState
+            )
         }
     }
 

@@ -10,22 +10,34 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.flow.StateFlow
 import link.limecode.reddit.lite.android.R
 import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.ChatTabDestination
 import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.CreateTabDestination
 import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.HomeTabDestination
 import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.NotificationTabDestination
 import link.limecode.reddit.lite.android.navigation.destinations.home.tabs.ProfileTabDestination
+import link.limecode.reddit.lite.android.navigation.destinations.main.LoginFragmentDestination
+import link.limecode.reddit.lite.presentation.viewmodel.app.SessionUIState
 import java.lang.ref.WeakReference
 import kotlin.reflect.KClass
 
-fun BottomNavigationView.activate(navController: NavController) {
+fun BottomNavigationView.activate(
+    tabNavController: NavController,
+    stackNavController: NavController,
+    sessionState: StateFlow<SessionUIState>
+) {
     this.setOnItemSelectedListener { item ->
-        navController.switchTab(item.toRoute())
+        if (sessionState.value is SessionUIState.NotLoggedIn && item.itemId == R.id.profile_tab) {
+            stackNavController.navigate(LoginFragmentDestination)
+            false
+        } else {
+            tabNavController.switchTab(item.toRoute())
+        }
     }
 
     val weakReference = WeakReference(this)
-    navController.addOnDestinationChangedListener(
+    tabNavController.addOnDestinationChangedListener(
         object : NavController.OnDestinationChangedListener {
             override fun onDestinationChanged(
                 controller: NavController,
@@ -34,7 +46,7 @@ fun BottomNavigationView.activate(navController: NavController) {
             ) {
                 val view = weakReference.get()
                 if (view == null) {
-                    navController.removeOnDestinationChangedListener(this)
+                    tabNavController.removeOnDestinationChangedListener(this)
                     return
                 }
                 if (destination is FloatingWindow) {
@@ -46,7 +58,7 @@ fun BottomNavigationView.activate(navController: NavController) {
         }
     )
 
-    navController.currentDestination?.let { updateState(it) }
+    tabNavController.currentDestination?.let { updateState(it) }
 }
 
 private fun BottomNavigationView.updateState(destination: NavDestination) {
