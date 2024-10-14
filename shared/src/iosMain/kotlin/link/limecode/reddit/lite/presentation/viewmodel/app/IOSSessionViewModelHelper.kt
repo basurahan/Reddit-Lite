@@ -32,7 +32,7 @@ class IOSSessionViewModelHelper (
         }
     }
 
-    fun leave() {
+    fun cancelCoroutines() {
         coroutineScope.cancel()
         coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     }

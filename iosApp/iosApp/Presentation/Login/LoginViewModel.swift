@@ -56,7 +56,7 @@ class LoginViewModel: ObservableObject {
         }
     }
     
-    func leave() {
+    func cancelCoroutines() {
         helper.cancelCoroutines()
     }
 }

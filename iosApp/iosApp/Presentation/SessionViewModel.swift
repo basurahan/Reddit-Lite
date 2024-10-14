@@ -21,7 +21,7 @@ class SessionViewModel {
     
     
     // MARK: - class helper
-    func leave() {
-        helper.leave()
+    func cancelCoroutines() {
+        helper.cancelCoroutines()
     }
 }

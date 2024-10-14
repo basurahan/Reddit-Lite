@@ -32,6 +32,6 @@ class AppViewController: UINavigationController {
     }
     
     deinit {
-        sessionViewModel.leave()
+        sessionViewModel.cancelCoroutines()
     }
 }
