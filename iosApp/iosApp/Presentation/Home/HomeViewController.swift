@@ -14,6 +14,7 @@ class HomeViewController: UITabBarController {
     // MARK: - properties
     private let pageId = "402d0c4d-a3e9-4766-8d03-467ffffe12f3"
     private let appEventsViewModel = AppEventsViewModel.shared
+    private let sessionViewModel = SessionViewModel.shared
     private var cancellables = Set<AnyCancellable>()
     
     
