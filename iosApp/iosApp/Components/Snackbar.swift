@@ -78,8 +78,16 @@ extension UIViewController {
         // make sure to get the updated constraint
         self.view.layoutIfNeeded()
         
+        var marginBottom = 20.0
+        if let tabBarController = self as? UITabBarController {
+            let tabBarHeight = tabBarController.tabBar.frame.height
+            let bottomInset = tabBarController.tabBar.safeAreaInsets.bottom
+            marginBottom -= bottomInset
+            marginBottom += tabBarHeight
+        }
+        
         // animate showing of snackbar
-        let showTranslation = -(hiddenTranslation + 20)
+        let showTranslation = -(hiddenTranslation + marginBottom)
         UIView.animate(
             withDuration: 0.5,
             animations: {

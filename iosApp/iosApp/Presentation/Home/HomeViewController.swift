@@ -7,9 +7,17 @@
 //
 
 import UIKit
+import Combine
 
 class HomeViewController: UITabBarController {
     
+    // MARK: - properties
+    private let pageId = "402d0c4d-a3e9-4766-8d03-467ffffe12f3"
+    private let appEventsViewModel = AppEventsViewModel.shared
+    private var cancellables = Set<AnyCancellable>()
+    
+    
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -24,6 +32,11 @@ class HomeViewController: UITabBarController {
         } else {
             tabBar.barTintColor = .white
         }
+        
+        appEventsViewModel.onSessionStarted
+            .registerObserver(id: pageId, cancellables: &cancellables) { [weak self] username in
+                self?.showSnackbar(message: "Welcome \(username)")
+            }
         
         setupViews()
     }
