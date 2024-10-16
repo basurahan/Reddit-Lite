@@ -34,10 +34,10 @@ class LaunchView : UIView {
         self.addSubview(logo)
         
         NSLayoutConstraint.activate([
-            logo.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            logo.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            logo.topAnchor.constraint(equalTo: self.topAnchor),
-            logo.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            logo.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            logo.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            logo.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            logo.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }

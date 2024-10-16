@@ -34,4 +34,10 @@ class CommonSessionRepositoryImpl(private val entitySessionQueries: EntitySessio
     override fun getUserInfo(): Flow<GetUserInfo?> {
         return entitySessionQueries.getUserInfo().asFlow().mapToOneOrNull(Dispatchers.IO)
     }
+
+    override suspend fun logout() {
+        withContext(Dispatchers.IO) {
+            entitySessionQueries.destorySession()
+        }
+    }
 }

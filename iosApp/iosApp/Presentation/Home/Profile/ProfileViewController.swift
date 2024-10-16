@@ -10,27 +10,70 @@ import UIKit
 import Combine
 import shared
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: BaseViewController {
     
-    var loginClick: (() -> Void)
-    
+    // MARK: - properties
     private let customView = ProfileView()
+    private let viewModel = ProfileViewModel()
+    private let sessionViewModel = SessionViewModel.shared
+    private var cancellables = Set<AnyCancellable>()
     
-    init(nibName: String?, bundle: Bundle?, loginClick: @escaping () -> Void) {
-        self.loginClick = loginClick
-        super.init(nibName: nibName, bundle: bundle)
-    }
+    // MARK: - dialogs
+    lazy var confirmLogoutDialog: UIAlertController = {
+        let dialog = UIAlertController()
+        dialog.title = "Please Confirm"
+        dialog.message = "Do you really want to logout?"
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        dialog.addAction(UIAlertAction(title: "Logout", style: .destructive, handler: { _ in self.viewModel.logout() }))
+        return dialog
+    }()
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    // MARK: - lifecycle
     override func loadView() {
         self.view = customView
-        customView.button.addTarget(self, action: #selector(onLoginClick), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(onLogoutClick))
     }
     
-    @objc func onLoginClick() {
-        loginClick()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupDataObservers()
+        setupEventObservers()
+    }
+    
+    private func setupDataObservers() {
+        viewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                guard let strongSelf = self else { return }
+                if isLoading {
+                    strongSelf.showLoadingDialog()
+                } else {
+                    strongSelf.hideLoadingDialog()
+                }
+            }
+            .store(in: &cancellables)
+        
+        sessionViewModel.uiState
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                guard let strongSelf = self else { return }
+                if let info = state as? LoggedIn {
+                    strongSelf.customView.username.text = info.userInfo.username
+                }
+            }
+            .store(in: &cancellables)
+        
+        viewModel.onLogoutSuccess
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.tabBarController?.selectedIndex = 0
+            }
+            .store(in: &cancellables)
+    }
+    
+    // MARK: - ui events
+    @objc func onLogoutClick() {
+        present(confirmLogoutDialog, animated: true, completion: nil)
     }
 }

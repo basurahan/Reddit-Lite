@@ -8,4 +8,5 @@ interface SessionRepository {
     suspend fun setSessionBy(user: UiUser, token: String)
     fun getToken(): Flow<String?>
     fun getUserInfo(): Flow<GetUserInfo?>
+    suspend fun logout()
 }

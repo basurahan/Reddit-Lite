@@ -11,4 +11,11 @@
     <string name="register">Register</string>
     <string name="loading">Loading</string>
     <string name="template_welcome">Welcome %1$s</string>
+    <string name="edit_information">Edit Information</string>
+    <string name="logout">Logout</string>
+    <string name="about_body">Hey, I’m Renz Carlo Salanga, your friendly neighborhood fullstack developer. I built this app to prove that Kotlin Multiplatform is so awesome, even Chuck Norris would switch from roundhouse kicks to coding. 😄</string>
+    <string name="about_title">About this app</string>
+    <string name="please_confirm">Please Confirm</string>
+    <string name="do_you_really_want_to_logout">Do you really want to logout?</string>
+    <string name="cancel">Cancel</string>
 </resources>

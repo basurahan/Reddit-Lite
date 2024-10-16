@@ -19,10 +19,11 @@ class AppViewController: UINavigationController {
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         
-        sessionViewModel.onReady.removeDuplicates()
+        sessionViewModel.launchScreenState
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                self.setViewControllers([HomeViewController()], animated: true)
+            .sink { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.setViewControllers([HomeViewController()], animated: true)
             }
             .store(in: &cancellables)
     }
