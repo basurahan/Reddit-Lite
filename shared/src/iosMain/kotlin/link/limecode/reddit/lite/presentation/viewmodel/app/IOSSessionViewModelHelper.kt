@@ -9,11 +9,13 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import link.limecode.reddit.lite.domain.repository.SessionRepository
 import link.limecode.reddit.lite.domain.usecase.CommonLoadLastSessionUseCase
 import link.limecode.reddit.lite.presentation.model.UiUserInfo
 
 class IOSSessionViewModelHelper (
-    private val loadLastSessionUseCase: CommonLoadLastSessionUseCase
+    loadLastSessionUseCase: CommonLoadLastSessionUseCase,
+    private val sessionRepository: SessionRepository
 ) {
     private var coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
@@ -29,6 +31,13 @@ class IOSSessionViewModelHelper (
             session.collect {
                 callBack(it)
             }
+        }
+    }
+
+    fun logout(callBack: () -> Unit) {
+        coroutineScope.launch {
+            sessionRepository.logout()
+            callBack()
         }
     }
 

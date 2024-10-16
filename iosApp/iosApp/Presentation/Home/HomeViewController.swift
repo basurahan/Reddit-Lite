@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-class HomeViewController: UITabBarController {
+class HomeViewController: UITabBarController, UITabBarControllerDelegate {
     
     // MARK: - properties
     private let pageId = "402d0c4d-a3e9-4766-8d03-467ffffe12f3"
@@ -17,11 +17,11 @@ class HomeViewController: UITabBarController {
     private let sessionViewModel = SessionViewModel.shared
     private var cancellables = Set<AnyCancellable>()
     
-    
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.delegate = self
         
         if #available(iOS 13.0, *) {
             let appearance = UITabBarAppearance()
@@ -65,5 +65,20 @@ class HomeViewController: UITabBarController {
         profileTabNavigationController.tabBarItem = UITabBarItem(title: "Person", image: UIImage(systemName: "person"), tag: 4)
         
         self.viewControllers = [homeViewController, chatViewController, createPostViewController, notificationViewController, profileTabNavigationController]
+    }
+    
+    // MARK: - ui events
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if let navigationController = viewController as? UINavigationController {
+            print(type(of: self.sessionViewModel.currentSessionState))
+            if navigationController.viewControllers.first is ProfileViewController && self.sessionViewModel.currentSessionState is NotLoggedIn {
+                if let navigationController = self.navigationController {
+                    let loginViewController = LoginViewController()
+                    navigationController.pushViewController(loginViewController, animated: true)
+                    return false
+                }
+            }
+        }
+        return true
     }
 }

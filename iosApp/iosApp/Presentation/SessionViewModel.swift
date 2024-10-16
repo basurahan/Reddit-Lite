@@ -34,12 +34,6 @@ struct SessionViewModelState: Equatable {
     }
 }
 
-extension SessionViewModelState {
-    func copy(isReady: Bool? = nil, userInfo: UiUserInfo? = nil) -> SessionViewModelState {
-        return SessionViewModelState(isReady: isReady ?? self.isReady, userInfo: userInfo ?? self.userInfo)
-    }
-}
-
 class SessionViewModel {
     static let shared = SessionViewModel()
     
@@ -48,21 +42,38 @@ class SessionViewModel {
     
     // MARK: - ui state
     private let viewModelState = CurrentValueSubject<SessionViewModelState, Never>(SessionViewModelState())
-    var uiState: AnyPublisher<any SessionUIState, Never> {
-        return viewModelState.removeDuplicates().map { state in
+    var currentSessionState: any SessionUIState {
+        return viewModelState.value.toUiState()
+    }
+    var launchScreenState: AnyPublisher<Void, Never> {
+        return viewModelState.map { state in
             state.toUiState()
-        }.eraseToAnyPublisher()
+        }.removeDuplicates { prev, current in
+            if prev is Initial {
+                return false
+            }
+            
+            return true
+        }
+        .map { _ in () }
+        .eraseToAnyPublisher()
     }
     
     // MARK: - lifecycle
     init() {
         helper.collectSession { [weak self] session in
             guard let strongSelf = self else { return }
-            strongSelf.viewModelState.send(strongSelf.viewModelState.value.copy(isReady: true, userInfo: session))
+            strongSelf.viewModelState.send(SessionViewModelState(isReady: true, userInfo: session))
         }
     }
     
     // MARK: - class helper
+    func logout(callBack: @escaping () -> Void) {
+        helper.logout {
+            callBack()
+        }
+    }
+    
     func cancelCoroutines() {
         helper.cancelCoroutines()
     }
