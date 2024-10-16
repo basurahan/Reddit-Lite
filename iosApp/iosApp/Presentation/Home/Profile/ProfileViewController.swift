@@ -12,42 +12,22 @@ import shared
 
 class ProfileViewController: BaseViewController {
     
-    var loginClick: (() -> Void)
-    
     // MARK: - properties
     private let customView = ProfileView()
     private let viewModel = ProfileViewModel()
+    private let sessionViewModel = SessionViewModel.shared
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - lifecycle
-    init(nibName: String?, bundle: Bundle?, loginClick: @escaping () -> Void) {
-        self.loginClick = loginClick
-        super.init(nibName: nibName, bundle: bundle)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func loadView() {
         self.view = customView
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(onLogoutClick))
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupStateObservers()
         setupEventObservers()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(onLogoutClick))
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.tabBarController?.navigationItem.rightBarButtonItem = nil
     }
     
     private func setupStateObservers() {
@@ -59,6 +39,16 @@ class ProfileViewController: BaseViewController {
                     strongSelf.showLoadingDialog()
                 } else {
                     strongSelf.hideLoadingDialog()
+                }
+            }
+            .store(in: &cancellables)
+        
+        sessionViewModel.uiState
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                guard let strongSelf = self else { return }
+                if let info = state as? LoggedIn {
+                    strongSelf.customView.username.text = info.userInfo.username
                 }
             }
             .store(in: &cancellables)

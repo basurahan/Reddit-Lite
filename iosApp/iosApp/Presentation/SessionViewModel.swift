@@ -58,6 +58,12 @@ class SessionViewModel {
         .map { _ in () }
         .eraseToAnyPublisher()
     }
+    var uiState: AnyPublisher<any SessionUIState, Never> {
+        return viewModelState.map { state in
+            state.toUiState()
+        }
+        .eraseToAnyPublisher()
+    }
     
     // MARK: - lifecycle
     init() {

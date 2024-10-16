@@ -37,7 +37,7 @@ class ProfileView: UIView {
         view.addSubview(aboutBody)
         
         NSLayoutConstraint.activate([
-            avatar.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            avatar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             avatar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             avatar.heightAnchor.constraint(equalToConstant: 200),
             avatar.widthAnchor.constraint(equalToConstant: 200),
@@ -59,7 +59,7 @@ class ProfileView: UIView {
             aboutBody.topAnchor.constraint(equalTo: aboutTitle.bottomAnchor, constant: 16),
             aboutBody.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             aboutBody.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            aboutBody.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24)
+            aboutBody.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24)
         ])
         
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +80,6 @@ class ProfileView: UIView {
     
     lazy var username: UILabel = {
         let label = UILabel()
-        label.text = "dev.renz"
         label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

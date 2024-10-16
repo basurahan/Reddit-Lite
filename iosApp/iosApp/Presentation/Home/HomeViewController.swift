@@ -55,16 +55,21 @@ class HomeViewController: UITabBarController, UITabBarControllerDelegate {
         let notificationViewController = NotificationViewController()
         notificationViewController.tabBarItem = UITabBarItem(title: "Notif", image: UIImage(systemName: "bell"), tag: 3)
         
-        let profileViewController = ProfileViewController(nibName: nil, bundle: nil) {
-            if let navigationController = self.navigationController {
-                let loginViewController = LoginViewController()
-                navigationController.pushViewController(loginViewController, animated: true)
-            }
-        }
+        let profileViewController = ProfileViewController()
         let profileTabNavigationController = UINavigationController(rootViewController: profileViewController)
         profileTabNavigationController.tabBarItem = UITabBarItem(title: "Person", image: UIImage(systemName: "person"), tag: 4)
         
         self.viewControllers = [homeViewController, chatViewController, createPostViewController, notificationViewController, profileTabNavigationController]
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     // MARK: - ui events
