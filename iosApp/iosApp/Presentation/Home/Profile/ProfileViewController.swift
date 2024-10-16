@@ -18,6 +18,16 @@ class ProfileViewController: BaseViewController {
     private let sessionViewModel = SessionViewModel.shared
     private var cancellables = Set<AnyCancellable>()
     
+    // MARK: - dialogs
+    lazy var confirmLogoutDialog: UIAlertController = {
+        let dialog = UIAlertController()
+        dialog.title = "Please Confirm"
+        dialog.message = "Do you really want to logout?"
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        dialog.addAction(UIAlertAction(title: "Logout", style: .default, handler: { _ in self.viewModel.logout() }))
+        return dialog
+    }()
+    
     // MARK: - lifecycle
     override func loadView() {
         self.view = customView
@@ -66,6 +76,6 @@ class ProfileViewController: BaseViewController {
     
     // MARK: - ui events
     @objc func onLogoutClick() {
-        viewModel.logout()
+        present(confirmLogoutDialog, animated: true, completion: nil)
     }
 }
