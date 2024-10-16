@@ -21,11 +21,16 @@ sealed interface SessionUIState {
     data object NotLoggedIn: SessionUIState
 }
 
+sealed interface SplashScreenUIState {
+    data object Initial: SplashScreenUIState
+    data object Ready: SplashScreenUIState
+}
+
 private data class AndroidSessionViewModelState(
     val isReady: Boolean = false,
     val userInfo: UiUserInfo? = null
 ) {
-    fun toUiState(): SessionUIState {
+    fun toSessionUIState(): SessionUIState {
         return if (isReady) {
             if (userInfo != null) {
                 SessionUIState.LoggedIn(userInfo)
@@ -36,6 +41,14 @@ private data class AndroidSessionViewModelState(
             SessionUIState.Initial
         }
     }
+
+    fun toSplashScreenUIState(): SplashScreenUIState {
+        return if (isReady) {
+            SplashScreenUIState.Ready
+        } else {
+            SplashScreenUIState.Initial
+        }
+    }
 }
 
 class AndroidSessionViewModel(
@@ -44,11 +57,18 @@ class AndroidSessionViewModel(
 
     private val viewModelState = MutableStateFlow(AndroidSessionViewModelState())
     val sessionUIState = viewModelState
-        .map { it.toUiState() }
+        .map { it.toSessionUIState() }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
-            initialValue = viewModelState.value.toUiState()
+            initialValue = viewModelState.value.toSessionUIState()
+        )
+    val splashScreenUIState = viewModelState
+        .map { it.toSplashScreenUIState() }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = viewModelState.value.toSplashScreenUIState()
         )
 
     init {

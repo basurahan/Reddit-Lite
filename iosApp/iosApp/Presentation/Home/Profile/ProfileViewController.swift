@@ -36,11 +36,11 @@ class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupStateObservers()
+        setupDataObservers()
         setupEventObservers()
     }
     
-    private func setupStateObservers() {
+    private func setupDataObservers() {
         viewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoading in
@@ -62,9 +62,7 @@ class ProfileViewController: BaseViewController {
                 }
             }
             .store(in: &cancellables)
-    }
-    
-    private func setupEventObservers() {
+        
         viewModel.onLogoutSuccess
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in

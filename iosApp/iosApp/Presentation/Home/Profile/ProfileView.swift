@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileView: UIView {
 
+    // MARK: - ui components
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.delaysContentTouches = false
@@ -126,6 +127,7 @@ class ProfileView: UIView {
         return label
     }()
     
+    // MARK: - lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()

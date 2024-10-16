@@ -14,7 +14,7 @@ import link.limecode.reddit.lite.android.databinding.ActivityMainBinding
 import link.limecode.reddit.lite.android.navigation.setupMainNavGraph
 import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidAppEventsViewModel
 import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidSessionViewModel
-import link.limecode.reddit.lite.presentation.viewmodel.app.SessionUIState
+import link.limecode.reddit.lite.presentation.viewmodel.app.SplashScreenUIState
 import link.limecode.vuebinder.ActivityViewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,7 +33,7 @@ class MainActivity : ActivityViewBinding<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         with(viewBinding) {
             root.viewTreeObserver.addOnPreDrawListener {
-                return@addOnPreDrawListener sessionViewModel.sessionUIState.value !is SessionUIState.Initial
+                return@addOnPreDrawListener sessionViewModel.splashScreenUIState.value is SplashScreenUIState.Ready
             }
         }
         setupKeyboardInsets()
