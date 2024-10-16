@@ -23,8 +23,8 @@ class ProfileViewController: BaseViewController {
         let dialog = UIAlertController()
         dialog.title = "Please Confirm"
         dialog.message = "Do you really want to logout?"
-        dialog.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-        dialog.addAction(UIAlertAction(title: "Logout", style: .default, handler: { _ in self.viewModel.logout() }))
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        dialog.addAction(UIAlertAction(title: "Logout", style: .destructive, handler: { _ in self.viewModel.logout() }))
         return dialog
     }()
     
