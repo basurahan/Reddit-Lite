@@ -23,7 +23,7 @@ fun Context.generateAvatar(
     val canvas = Canvas(bitmap)
 
     val paint = Paint().apply {
-        color = colorOnPrimary()
+        color = colorOnTertiary()
         textSize = spToPx(100F)
         textAlign = Paint.Align.CENTER
         typeface = ResourcesCompat.getFont(this@generateAvatar, R.font.poppins_medium)
@@ -31,7 +31,7 @@ fun Context.generateAvatar(
 
     val xPos = px / 2
     val yPos = (px / 2 - (paint.descent() + paint.ascent()) / 2)
-    canvas.drawColor(colorPrimary())
+    canvas.drawColor(colorTertiary())
     canvas.drawText(initials, xPos.toFloat(), yPos, paint)
 
     return bitmap
