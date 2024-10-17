@@ -37,7 +37,6 @@ class ProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDataObservers()
-        setupEventObservers()
     }
     
     private func setupDataObservers() {
