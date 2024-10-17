@@ -45,11 +45,14 @@
                 app:shapeAppearanceOverlay="?attr/shapeOverlayAvatar">
 
                 <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/avatar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitCenter"
                     android:src="@drawable/placeholder_man"
-                    app:shapeAppearanceOverlay="?attr/shapeOverlayAvatar" />
+                    app:shapeAppearanceOverlay="?attr/shapeOverlayAvatar"
+                    app:strokeColor="?attr/colorOnPrimary"
+                    app:strokeWidth="10dp" />
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.textview.MaterialTextView

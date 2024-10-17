@@ -8,10 +8,12 @@ import androidx.core.view.get
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.android.R
 import link.limecode.reddit.lite.android.base.BaseFragment
 import link.limecode.reddit.lite.android.databinding.FragmentProfileBinding
+import link.limecode.reddit.lite.android.util.generateAvatar
 import link.limecode.reddit.lite.android.util.showConfirmationDialog
 import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidAppEventsViewModel
 import link.limecode.reddit.lite.presentation.viewmodel.app.AndroidSessionViewModel
@@ -61,6 +63,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                         sessionViewModel.sessionUIState.collect { state ->
                             if (state is SessionUIState.LoggedIn) {
                                 username.text = state.userInfo.username
+
+                                Glide.with(this@ProfileFragment)
+                                    .load(
+                                        requireContext().generateAvatar(
+                                            initials = state.userInfo.initial,
+                                            size = 200
+                                        )
+                                    )
+                                    .into(avatar)
                             }
                         }
                     }
