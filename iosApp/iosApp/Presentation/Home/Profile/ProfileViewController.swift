@@ -58,6 +58,7 @@ class ProfileViewController: BaseViewController {
                 guard let strongSelf = self else { return }
                 if let info = state as? LoggedIn {
                     strongSelf.customView.username.text = info.userInfo.username
+                    strongSelf.customView.avatar.image = generateAvatar(initials: info.userInfo.initial, size: 200)
                 }
             }
             .store(in: &cancellables)

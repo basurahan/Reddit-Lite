@@ -91,7 +91,6 @@ class ProfileView: UIView {
     lazy var avatar: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = generateAvatar(initials: "dv", size: 200)
         imageView.layer.cornerRadius = 100
         imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false

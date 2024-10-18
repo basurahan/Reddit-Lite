@@ -75,7 +75,6 @@ class HomeViewController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - ui events
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if let navigationController = viewController as? UINavigationController {
-            print(type(of: self.sessionViewModel.currentSessionState))
             if navigationController.viewControllers.first is ProfileViewController && self.sessionViewModel.currentSessionState is NotLoggedIn {
                 if let navigationController = self.navigationController {
                     let loginViewController = LoginViewController()
