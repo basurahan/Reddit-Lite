@@ -37,28 +37,20 @@ class ProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDataObservers()
-        setupEventObservers()
     }
     
     private func setupDataObservers() {
-        viewModel.$isLoading
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] isLoading in
-                guard let strongSelf = self else { return }
-                if isLoading {
-                    strongSelf.showLoadingDialog()
-                } else {
-                    strongSelf.hideLoadingDialog()
-                }
-            }
-            .store(in: &cancellables)
-        
-        sessionViewModel.uiState
+        sessionViewModel.sessionUIState
             .receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 guard let strongSelf = self else { return }
-                if let info = state as? LoggedIn {
-                    strongSelf.customView.username.text = info.userInfo.username
+                strongSelf.bindLoadingDialogState(isLoading: state.isLoading)
+                switch state {
+                case .logged_in(_, _, let info):
+                    strongSelf.customView.username.text = info.username
+                    strongSelf.customView.avatar.image = generateAvatar(initials: info.initial, size: 200)
+                default:
+                    break
                 }
             }
             .store(in: &cancellables)

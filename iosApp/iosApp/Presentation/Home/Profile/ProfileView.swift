@@ -30,7 +30,7 @@ class ProfileView: UIView {
     
     lazy var container: UIView = {
         let view = UIView()
-        view.addSubview(avatar)
+        view.addSubview(avatarContainer)
         view.addSubview(username)
         view.addSubview(editInformation)
         view.addSubview(divider)
@@ -38,16 +38,16 @@ class ProfileView: UIView {
         view.addSubview(aboutBody)
         
         NSLayoutConstraint.activate([
-            avatar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
-            avatar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            avatar.heightAnchor.constraint(equalToConstant: 200),
-            avatar.widthAnchor.constraint(equalToConstant: 200),
+            avatarContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+            avatarContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            avatarContainer.heightAnchor.constraint(equalToConstant: 200),
+            avatarContainer.widthAnchor.constraint(equalToConstant: 200),
             
-            username.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 24),
-            username.centerXAnchor.constraint(equalTo: avatar.centerXAnchor),
+            username.topAnchor.constraint(equalTo: avatarContainer.bottomAnchor, constant: 24),
+            username.centerXAnchor.constraint(equalTo: avatarContainer.centerXAnchor),
             
             editInformation.topAnchor.constraint(equalTo: username.bottomAnchor, constant: 16),
-            editInformation.centerXAnchor.constraint(equalTo: avatar.centerXAnchor),
+            editInformation.centerXAnchor.constraint(equalTo: avatarContainer.centerXAnchor),
             
             divider.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             divider.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
@@ -55,7 +55,7 @@ class ProfileView: UIView {
             divider.heightAnchor.constraint(equalToConstant: 1),
             
             aboutTitle.topAnchor.constraint(equalTo: divider.bottomAnchor, constant: 16),
-            aboutTitle.centerXAnchor.constraint(equalTo: avatar.centerXAnchor),
+            aboutTitle.centerXAnchor.constraint(equalTo: avatarContainer.centerXAnchor),
             
             aboutBody.topAnchor.constraint(equalTo: aboutTitle.bottomAnchor, constant: 16),
             aboutBody.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -67,14 +67,32 @@ class ProfileView: UIView {
         return view
     }()
     
+    lazy var avatarContainer: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 100
+        view.layer.shadowColor = UIColor.lightGray.cgColor
+        view.layer.borderWidth = 10
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowRadius = 100
+        view.addSubview(avatar)
+        
+        NSLayoutConstraint.activate([
+            avatar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            avatar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            avatar.topAnchor.constraint(equalTo: view.topAnchor),
+            avatar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var avatar: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "Avatar")
         imageView.layer.cornerRadius = 100
         imageView.layer.masksToBounds = true
-        imageView.layer.borderColor = UIColor.lightGray.cgColor
-        imageView.layer.borderWidth = 1
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

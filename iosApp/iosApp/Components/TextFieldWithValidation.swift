@@ -76,12 +76,8 @@ class TextFieldWithValidation : UIView {
         return textField.text
     }
     
-    func showError(message: String) {
+    func setError(message: String?) {
         errorLabel.text = message
-    }
-
-    func clearError() {
-        errorLabel.text = ""
     }
     
     func toggleSecurityText() {

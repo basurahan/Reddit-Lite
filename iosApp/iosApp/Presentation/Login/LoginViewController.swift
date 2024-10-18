@@ -60,13 +60,13 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @objc private func onUsernameChange(_ textfield: UITextField) {
-        customView.tfUsername.clearError()
-        customView.tfPassword.clearError()
+        customView.tfUsername.setError(message: nil)
+        customView.tfPassword.setError(message: nil)
     }
     
     @objc private func onPasswordChange(_ textfield: UITextField) {
-        customView.tfUsername.clearError()
-        customView.tfPassword.clearError()
+        customView.tfUsername.setError(message: nil)
+        customView.tfPassword.setError(message: nil)
     }
     
     @objc func onKeyboardShown(notification: NSNotification) {
@@ -97,46 +97,35 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     // MARK: - data observers
     private func setupDataObservers() {
-        viewModel.$isLoading
+        viewModel.uiState
             .receive(on: DispatchQueue.main)
-            .sink{ [weak self] isLoading in
+            .sink{ [weak self] state in
                 guard let strongSelf = self else { return }
-                if isLoading {
-                    strongSelf.showLoadingDialog()
-                } else {
-                    strongSelf.hideLoadingDialog()
+                strongSelf.bindLoadingDialogState(isLoading: state.isLoading)
+                switch state {
+                case .validation(_, let username, let password):
+                    strongSelf.customView.tfUsername.setError(message: username)
+                    strongSelf.customView.tfPassword.setError(message: password)
+                default:
+                    break
                 }
             }
             .store(in: &cancellables)
         
-        viewModel.$message
+        viewModel.onMessageReceived
             .receive(on: DispatchQueue.main)
             .sink { [weak self] message in
-                guard let unWrapMessage = message else { return }
-                self?.showSnackbar(message: unWrapMessage)
-            }
-            .store(in: &cancellables)
-        
-        viewModel.$usernameError
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] error in
-                guard let strongSelf = self, let unWrapError = error else { return }
-                strongSelf.customView.tfUsername.showError(message: unWrapError)
-            }
-            .store(in: &cancellables)
-        
-        viewModel.$passwordError
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] error in
-                guard let strongSelf = self, let unWrapError = error else { return }
-                strongSelf.customView.tfPassword.showError(message: unWrapError)
+                guard let strongSelf = self else { return }
+                strongSelf.showSnackbar(message: message)
             }
             .store(in: &cancellables)
         
         viewModel.onSuccess
             .receive(on: DispatchQueue.main)
             .sink { [weak self] username in
-                if let navController = self?.navigationController {
+                guard let strongSelf = self else { return }
+                
+                if let navController = strongSelf.navigationController {
                     navController.popToRootViewController(animated: true)
                 }
                 
@@ -146,7 +135,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 
                 homeViewController.selectedIndex = 0
                 
-                self?.appEventsViewModel.onSessionStarted.emit(username)
+                strongSelf.appEventsViewModel.onSessionStarted.emit(username)
             }
             .store(in: &cancellables)
     }

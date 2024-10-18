@@ -51,18 +51,14 @@ dependencies {
     implementation(libs.android.navigation.ui)
     implementation(libs.kotlin.multiplatform.serialization.json)
     implementation(libs.android.vue.binder)
-
     implementation(project.dependencies.platform(libs.kotlin.multiplatform.koin.bom))
     implementation(libs.kotlin.multiplatform.koin.core)
     implementation(libs.android.koin)
     implementation(libs.android.koin.viewmodel)
-
     implementation(libs.android.coroutines)
-
     implementation(libs.android.lifecycle)
     implementation(libs.android.livedata)
     implementation(libs.android.saved.state)
-
-    implementation(libs.android.datastore)
     implementation(libs.android.splashscreen)
+    implementation(libs.android.glide)
 }

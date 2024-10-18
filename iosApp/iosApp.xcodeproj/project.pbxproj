@@ -25,6 +25,7 @@
 		18660B9A2CBB891600CBDFBE /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B992CBB890D00CBDFBE /* LaunchViewController.swift */; };
 		18660B9C2CBB941500CBDFBE /* AppEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660B9B2CBB940E00CBDFBE /* AppEventsViewModel.swift */; };
 		18660BA22CBF482E00CBDFBE /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660BA12CBF482B00CBDFBE /* ProfileViewModel.swift */; };
+		18660BA42CC12F9400CBDFBE /* AvatarUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18660BA32CC12F8C00CBDFBE /* AvatarUtil.swift */; };
 		1874E6E82C9BFE3400A283D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */; };
 		1874E6EA2C9BFF2600A283D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */; };
 		1874E6F02C9C0EC500A283D6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1874E6EF2C9C0EC500A283D6 /* UIViewExtension.swift */; };
@@ -67,6 +68,7 @@
 		18660B992CBB890D00CBDFBE /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		18660B9B2CBB940E00CBDFBE /* AppEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventsViewModel.swift; sourceTree = "<group>"; };
 		18660BA12CBF482B00CBDFBE /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		18660BA32CC12F8C00CBDFBE /* AvatarUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarUtil.swift; sourceTree = "<group>"; };
 		1874E6E72C9BFE3400A283D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1874E6E92C9BFF2600A283D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1874E6EF2C9C0EC500A283D6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		1874E6EE2C9C0E2D00A283D6 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				18660BA32CC12F8C00CBDFBE /* AvatarUtil.swift */,
 				18660B7E2CB9F8D300CBDFBE /* AtomicBool.swift */,
 				18660B7C2CB9F7D800CBDFBE /* AtomicDictionary.swift */,
 				18660B782CB9F5A700CBDFBE /* EventBus.swift */,
@@ -427,6 +430,7 @@
 				18660B9A2CBB891600CBDFBE /* LaunchViewController.swift in Sources */,
 				18896D6B2CB7F0CA00872985 /* LoadingDialog.swift in Sources */,
 				1874E70D2C9C23BE00A283D6 /* ProfileView.swift in Sources */,
+				18660BA42CC12F9400CBDFBE /* AvatarUtil.swift in Sources */,
 				1874E7072C9C156E00A283D6 /* NotificationViewController.swift in Sources */,
 				1874E70F2C9C4A4C00A283D6 /* NotificationView.swift in Sources */,
 				187D38402CA164820046C684 /* KeychainHelper.swift in Sources */,

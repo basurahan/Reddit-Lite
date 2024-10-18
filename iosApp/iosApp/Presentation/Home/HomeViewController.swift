@@ -36,7 +36,8 @@ class HomeViewController: UITabBarController, UITabBarControllerDelegate {
         
         appEventsViewModel.onSessionStarted
             .registerObserver(id: pageId, cancellables: &cancellables) { [weak self] username in
-                self?.showSnackbar(message: "Welcome \(username)")
+                guard let strongSelf = self else { return }
+                strongSelf.showSnackbar(message: "Welcome \(username)")
             }
         
         setupViews()
@@ -75,8 +76,7 @@ class HomeViewController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - ui events
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if let navigationController = viewController as? UINavigationController {
-            print(type(of: self.sessionViewModel.currentSessionState))
-            if navigationController.viewControllers.first is ProfileViewController && self.sessionViewModel.currentSessionState is NotLoggedIn {
+            if navigationController.viewControllers.first is ProfileViewController, case .logged_out(_, _) = self.sessionViewModel.currentSessionUIState {
                 if let navigationController = self.navigationController {
                     let loginViewController = LoginViewController()
                     navigationController.pushViewController(loginViewController, animated: true)
