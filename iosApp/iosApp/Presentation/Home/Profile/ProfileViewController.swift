@@ -40,7 +40,7 @@ class ProfileViewController: BaseViewController {
     }
     
     private func setupDataObservers() {
-        viewModel.$isLoading
+        viewModel.onLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoading in
                 guard let strongSelf = self else { return }

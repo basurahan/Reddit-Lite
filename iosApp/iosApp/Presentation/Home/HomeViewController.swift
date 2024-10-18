@@ -36,7 +36,8 @@ class HomeViewController: UITabBarController, UITabBarControllerDelegate {
         
         appEventsViewModel.onSessionStarted
             .registerObserver(id: pageId, cancellables: &cancellables) { [weak self] username in
-                self?.showSnackbar(message: "Welcome \(username)")
+                guard let strongSelf = self else { return }
+                strongSelf.showSnackbar(message: "Welcome \(username)")
             }
         
         setupViews()
