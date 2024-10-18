@@ -9,7 +9,11 @@
 import Combine
 import shared
 
-enum SealedLoginUIState: Equatable {
+protocol LoginUIState {
+    var isLoading: Bool { get }
+}
+
+enum SealedLoginUIState: Equatable, LoginUIState {
     case initial(isLoading: Bool)
     case validation(isLoading: Bool, username: String?, password: String?)
     

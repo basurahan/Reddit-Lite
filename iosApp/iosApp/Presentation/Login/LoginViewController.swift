@@ -101,13 +101,13 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             .receive(on: DispatchQueue.main)
             .sink{ [weak self] state in
                 guard let strongSelf = self else { return }
+                strongSelf.bindLoadingDialogState(isLoading: state.isLoading)
                 switch state {
-                case .initial(let isLoading):
-                    strongSelf.bindLoadingDialogState(isLoading: isLoading)
-                case .validation(let isLoading, let username, let password):
-                    strongSelf.bindLoadingDialogState(isLoading: isLoading)
+                case .validation(_, let username, let password):
                     strongSelf.customView.tfUsername.setError(message: username)
                     strongSelf.customView.tfPassword.setError(message: password)
+                default:
+                    break
                 }
             }
             .store(in: &cancellables)
@@ -138,14 +138,6 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 strongSelf.appEventsViewModel.onSessionStarted.emit(username)
             }
             .store(in: &cancellables)
-    }
-    
-    private func bindLoadingDialogState(isLoading: Bool) {
-        if isLoading {
-            showLoadingDialog()
-        } else {
-            hideLoadingDialog()
-        }
     }
     
     // MARK: - delegates

@@ -19,9 +19,9 @@ class AppViewController: UINavigationController {
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         
-        sessionViewModel.launchScreenState
+        sessionViewModel.launchScreenUIState
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
+            .sink { [weak self] _ in
                 guard let strongSelf = self else { return }
                 strongSelf.setViewControllers([HomeViewController()], animated: true)
             }

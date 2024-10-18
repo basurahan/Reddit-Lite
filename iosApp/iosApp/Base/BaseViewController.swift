@@ -33,4 +33,12 @@ class BaseViewController : UIViewController {
     func hideLoadingDialog() {
         loadingDialog?.removeFromSuperview()
     }
+    
+    func bindLoadingDialogState(isLoading: Bool) {
+        if isLoading {
+            showLoadingDialog()
+        } else {
+            hideLoadingDialog()
+        }
+    }
 }
