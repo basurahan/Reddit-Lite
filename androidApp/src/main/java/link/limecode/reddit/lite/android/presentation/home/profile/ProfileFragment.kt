@@ -8,7 +8,6 @@ import androidx.core.view.get
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 import link.limecode.reddit.lite.android.R
 import link.limecode.reddit.lite.android.base.BaseFragment
@@ -63,15 +62,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                         sessionViewModel.sessionUIState.collect { state ->
                             if (state is SessionUIState.LoggedIn) {
                                 username.text = state.userInfo.username
-
-                                Glide.with(this@ProfileFragment)
-                                    .load(
-                                        requireContext().generateAvatar(
-                                            initials = state.userInfo.initial,
-                                            size = 200
-                                        )
+                                avatar.setAvatar(
+                                    requireContext().generateAvatar(
+                                        initials = state.userInfo.initial,
+                                        size = 200
                                     )
-                                    .into(avatar)
+                                )
                             }
                         }
                     }
