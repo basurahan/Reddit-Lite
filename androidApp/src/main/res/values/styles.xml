@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="AvatarStyle">
+        <item name="avatarStrokeWidth">10dp</item>
+    </style>
+
     <style name="ShapeCircle">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>

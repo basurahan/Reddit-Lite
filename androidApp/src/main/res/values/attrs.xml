@@ -2,4 +2,9 @@
 <resources>
     <attr name="shapeOverlayAvatar" format="reference" />
     <attr name="materialButtonTonalStyle" format="reference" />
+    <attr name="avatarTheme" format="reference" />
+
+    <declare-styleable name="Avatar">
+        <attr name="avatarStrokeWidth" format="dimension" />
+    </declare-styleable>
 </resources>

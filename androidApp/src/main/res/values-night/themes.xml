@@ -69,8 +69,10 @@
         <item name="textAppearanceLabelMedium">@style/LabelMedium</item>
         <item name="textAppearanceLabelSmall">@style/LabelSmall</item>
 
-        <item name="shapeOverlayAvatar">@style/ShapeCircle</item>
         <item name="materialButtonTonalStyle">@style/Widget.Material3.Button.TonalButton</item>
         <item name="actionMenuTextColor">?attr/colorPrimary</item>
+
+        <item name="avatarTheme">@style/AvatarStyle</item>
+        <item name="shapeOverlayAvatar">@style/ShapeCircle</item>
     </style>
 </resources>

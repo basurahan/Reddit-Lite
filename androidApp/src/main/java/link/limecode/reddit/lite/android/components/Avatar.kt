@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import com.bumptech.glide.Glide
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.shape.ShapeAppearanceModel
+import link.limecode.reddit.lite.android.R
 import link.limecode.reddit.lite.android.databinding.ViewAvatarBinding
 import link.limecode.reddit.lite.android.util.shapeOverlayAvatar
 
@@ -25,6 +26,21 @@ class Avatar @JvmOverloads constructor(
                 0,
                 context.shapeOverlayAvatar()
             ).build()
+        }
+
+        context.obtainStyledAttributes(
+            attrs,
+            R.styleable.Avatar,
+            R.attr.avatarTheme,
+            R.style.AvatarStyle
+        ).apply {
+
+            val strokeWidth = getDimension(R.styleable.Avatar_avatarStrokeWidth, 0f)
+            with(viewBinding) {
+                avatar.strokeWidth = strokeWidth
+            }
+
+            recycle()
         }
     }
 
