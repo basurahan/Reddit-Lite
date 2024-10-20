@@ -7,5 +7,5 @@
     android:scaleType="fitCenter"
     android:src="@drawable/placeholder_man"
     app:shapeAppearanceOverlay="?attr/shapeOverlayAvatar"
-    app:strokeColor="?attr/colorOnPrimary"
+    app:strokeColor="?attr/colorOnTertiary"
     app:strokeWidth="10dp" />
