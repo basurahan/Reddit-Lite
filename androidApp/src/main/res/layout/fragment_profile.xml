@@ -34,7 +34,7 @@
             android:clipToPadding="false"
             android:paddingBottom="24dp">
 
-            <link.limecode.reddit.lite.android.components.Avatar
+            <link.limecode.reddit.lite.android.components.AvatarView
                 android:id="@+id/avatar"
                 android:layout_width="200dp"
                 android:layout_height="200dp"

@@ -11,7 +11,7 @@ import link.limecode.reddit.lite.android.R
 import link.limecode.reddit.lite.android.databinding.ViewAvatarBinding
 import link.limecode.reddit.lite.android.util.shapeOverlayAvatar
 
-class Avatar @JvmOverloads constructor(
+class AvatarView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewOutlinedStyle
