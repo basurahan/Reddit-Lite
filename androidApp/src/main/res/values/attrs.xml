@@ -4,7 +4,12 @@
     <attr name="materialButtonTonalStyle" format="reference" />
     <attr name="avatarTheme" format="reference" />
 
-    <declare-styleable name="Avatar">
+    <declare-styleable name="AvatarView">
         <attr name="avatarStrokeWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="PostActionView">
+        <attr name="actionIsIconOnly" format="boolean" />
+        <attr name="actionIcon" format="reference" />
     </declare-styleable>
 </resources>

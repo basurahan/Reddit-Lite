@@ -30,12 +30,12 @@ class AvatarView @JvmOverloads constructor(
 
         context.obtainStyledAttributes(
             attrs,
-            R.styleable.Avatar,
+            R.styleable.AvatarView,
             R.attr.avatarTheme,
             R.style.AvatarStyle
         ).apply {
 
-            val strokeWidth = getDimension(R.styleable.Avatar_avatarStrokeWidth, 0f)
+            val strokeWidth = getDimension(R.styleable.AvatarView_avatarStrokeWidth, 0f)
             with(viewBinding) {
                 avatar.strokeWidth = strokeWidth
             }

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:paddingBottom="6dp">
 
     <link.limecode.reddit.lite.android.components.AvatarView
         android:id="@+id/avatar"
@@ -85,5 +86,16 @@
         android:layout_marginStart="12dp"
         app:layout_constraintBottom_toBottomOf="@id/vote_panel"
         app:layout_constraintStart_toEndOf="@id/vote_panel"
+        app:layout_constraintTop_toTopOf="@id/vote_panel" />
+
+    <link.limecode.reddit.lite.android.components.PostActionView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        app:actionIcon="@drawable/ic_share_social_outline"
+        app:actionIsIconOnly="true"
+        app:layout_constraintBottom_toBottomOf="@id/vote_panel"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/vote_panel" />
 </androidx.constraintlayout.widget.ConstraintLayout>
